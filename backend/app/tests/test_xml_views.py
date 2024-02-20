@@ -1,38 +1,32 @@
+import re, os
 from .test_setup import TestSetup
-
+xmlheaders={"accept": "application/xml"}
 class TestXMLViews(TestSetup):
-    headers={"content-type":"application/xml", "accept": "application/xml"}
 
     def test_scenario_list(self):
-        resp = self.client.get(self.scenario_list, headers=self.headers)
+        resp = self.client.get(self.scenario_list, headers=xmlheaders)
         expected=b'''<?xml version="1.0" encoding="utf-8"?>\n<root></root>'''
+        self.assertEqual(resp.status_code, 200)
         self.assertEqual(resp.content, expected)
 
     def test_scenario_create_without_data(self):
-        resp = self.client.post(self.scenario_list, headers=self.headers)
+        resp = self.client.post(self.scenario_list, headers=xmlheaders)
         self.assertEqual(resp.status_code, 400)
 
-    def test_scenario_create_with_data(self):        
-        resp = self.client.post(self.scenario_list, self.xml, headers=self.headers)
-        self.assertEqual(resp.status_code, 201)
-        # self.assertGreaterEqual(resp.data.pop('id'), 0)
-        # self.assertEqual(resp.content, self.json | {'id': 1})
+    def test_scenario_create_with_data(self):
+        # TODO: replace this hacky shit with actual xml parse.
+        # Need to s/root/scenario as well
+        expected = re.sub(r'[\n\t]*', '', self.xml).replace("<?xml version='1.0' encoding='utf-8'?><root>", '<root><id>1</id>')
+        resp = self.client.post(self.scenario_list, self.xml, content_type='application/xml')
+        self.assertContains(resp, expected, status_code=201)
 
-    # def test_scenario_update(self):
-    #     updated_data = {
-	# 	    "header": {
-	# 		    "title": {
-	# 			    "name": "UPDATE",
-	# 			    "top": 50,
-	# 			    "left": 10
-	# 		    },
-	# 		"author": "UPDATE",
-	# 		"date_of_creation": "2024-02-20",
-	# 		"description": "test"
-	# 	    }
-	#     }
-    #     resp = self.client.post(self.scenario_list, self.json, format="xml")
-    #     self.assertEqual(resp.status_code, 201)
-    #     resp = self.client.put(self.scenario_detail, updated_data, format="xml")
-    #     self.assertEqual(resp.status_code, 200)
-    #     self.assertEqual(resp.data, updated_data | {'id': 1})
+    def test_scenario_update(self):
+        # TODO: replace this hacky shit with actual xml parse.
+        # Need to s/root/scenario as well in *.xml
+        with open(os.path.join(os.path.dirname(__file__), 'updated.xml'), 'r+') as file:
+            updated_xml = file.read()
+        expected = re.sub(r'[\n\t]*', '', updated_xml).replace("<?xml version='1.0' encoding='utf-8'?><root>", '<root><id>1</id>')
+        resp = self.client.post(self.scenario_list, self.xml, content_type='application/xml')
+        self.assertEqual(resp.status_code, 201)
+        resp = self.client.put(self.scenario_detail, updated_xml, content_type='application/xml')
+        self.assertContains(resp, expected)

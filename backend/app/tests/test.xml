@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+	<header>
+		<author>test</author>
+		<title>
+			<name>test</name>
+			<top>0</top>
+			<left>0</left>
+		</title>
+		<date_of_creation>2024-02-19</date_of_creation>
+		<description>test</description>
+	</header>
+</root>
