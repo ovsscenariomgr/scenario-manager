@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<scenario>
+	<header>
+		<author>new author</author>
+		<title>
+			<name>better title</name>
+			<top>50</top>
+			<left>100</left>
+		</title>
+		<date_of_creation>2024-02-19</date_of_creation>
+		<description>better description</description>
+	</header>
+</scenario>
