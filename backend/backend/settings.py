@@ -140,11 +140,11 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.JSONParser'
     ],
     'DEFAULT_RENDERER_CLASSES': [
-        'rest_framework_xml.renderers.XMLRenderer',
+        'rest_framework_xml.renderers.XMLRenderer', # Need to set this to custom ScenarioXMLRenderer
         'rest_framework.renderers.JSONRenderer'
     ],
     'TEST_REQUEST_RENDERER_CLASSES': [
-        'rest_framework_xml.renderers.XMLRenderer',
+        'rest_framework_xml.renderers.XMLRenderer', # Need to set this to custom ScenarioXMLRenderer
         'rest_framework.renderers.JSONRenderer',
     ]
 }

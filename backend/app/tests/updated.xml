@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<root>
+<scenario>
 	<header>
 		<author>new author</author>
 		<title>
@@ -10,4 +10,4 @@
 		<date_of_creation>2024-02-19</date_of_creation>
 		<description>better description</description>
 	</header>
-</root>
+</scenario>
