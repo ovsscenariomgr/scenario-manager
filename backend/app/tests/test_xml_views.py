@@ -4,12 +4,19 @@ xmlheaders={"accept": "application/xml"}
 class TestXMLViews(TestSetup):
 
     def test_scenario_list(self):
-        resp = self.client.get(self.scenario_list, headers=xmlheaders)
-        expected='<?xml version="1.0" encoding="utf-8"?>\n<scenarios></scenarios>'
-        self.assertContains(resp, expected)
+        # Should work without being logged in
+        self.client.logout()
+        resp = self.client.get(self.scenario_list)
+        self.assertContains(resp, '<?xml version="1.0" encoding="utf-8"?>\n<scenarios></scenarios>')
+
+    def test_scenario_create_needs_auth(self):
+        # Should not work without being logged in
+        self.client.logout()
+        resp = self.client.post(self.scenario_list, self.xml, content_type='application/xml')
+        self.assertEqual(resp.status_code, 403)
 
     def test_scenario_create_without_data(self):
-        resp = self.client.post(self.scenario_list, headers=xmlheaders)
+        resp = self.client.post(self.scenario_list, content_type='application/xml')
         self.assertEqual(resp.status_code, 400)
 
     def test_scenario_create_with_data(self):
@@ -17,6 +24,10 @@ class TestXMLViews(TestSetup):
         expected = re.sub(r'[\n\t]*', '', self.xml).replace("<?xml version='1.0' encoding='utf-8'?><scenario>", '<scenario><id>1</id>')
         resp = self.client.post(self.scenario_list, self.xml, content_type='application/xml')
         self.assertContains(resp, expected, status_code=201)
+        # Should be able to retrieve anonymously
+        self.client.logout()
+        resp = self.client.get(self.scenario_detail)
+        self.assertContains(resp, expected)
 
     def test_scenario_update(self):
         # TODO: replace this hacky shit with actual xml parse.

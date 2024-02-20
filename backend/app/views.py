@@ -7,7 +7,7 @@ from app.models import Scenario
 from app.serializers import ScenarioSerializer
 from app.renderers import ScenarioXMLRenderer
 
-@permission_classes([permissions.IsAuthenticated])
+@permission_classes([permissions.IsAuthenticatedOrReadOnly])
 @renderer_classes([ScenarioXMLRenderer, JSONRenderer])
 @parser_classes([XMLParser, JSONParser])
 class ScenarioList(generics.ListCreateAPIView):
@@ -15,7 +15,7 @@ class ScenarioList(generics.ListCreateAPIView):
     serializer_class = ScenarioSerializer
 
 
-@permission_classes([permissions.IsAuthenticated])
+@permission_classes([permissions.IsAuthenticatedOrReadOnly])
 @renderer_classes([ScenarioXMLRenderer, JSONRenderer])
 @parser_classes([XMLParser, JSONParser])
 class ScenarioDetail(generics.RetrieveUpdateDestroyAPIView):
