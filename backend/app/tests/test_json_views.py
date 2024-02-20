@@ -1,6 +1,6 @@
 from .test_setup import TestSetup
 
-class TestViews(TestSetup):
+class TestJsonViews(TestSetup):
     def test_scenario_list(self):
         resp = self.client.get(self.scenario_list, format="json")
         self.assertEqual(resp.data, [])
@@ -10,10 +10,10 @@ class TestViews(TestSetup):
         self.assertEqual(resp.status_code, 400)
 
     def test_scenario_create_with_data(self):        
-        resp = self.client.post(self.scenario_list, self.data, format="json")
+        resp = self.client.post(self.scenario_list, self.json, format="json")
         self.assertEqual(resp.status_code, 201)
         # self.assertGreaterEqual(resp.data.pop('id'), 0)
-        self.assertEqual(resp.data, self.data | {'id': 1})
+        self.assertEqual(resp.data, self.json | {'id': 1})
 
     def test_scenario_update(self):
         updated_data = {
@@ -28,8 +28,8 @@ class TestViews(TestSetup):
 			"description": "test"
 		    }
 	    }
-        resp = self.client.post(self.scenario_list, self.data, format="json")
+        resp = self.client.post(self.scenario_list, self.json, format="json")
         self.assertEqual(resp.status_code, 201)
         resp = self.client.put(self.scenario_detail, updated_data, format="json")
-        self.assertEqual(resp.status_code, 201)
+        self.assertEqual(resp.status_code, 200)
         self.assertEqual(resp.data, updated_data | {'id': 1})

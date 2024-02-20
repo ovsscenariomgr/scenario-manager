@@ -1,9 +1,6 @@
-import base64
-from rest_framework.test import APITestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
-from app.serializers import ScenarioSerializer
-
+from rest_framework.test import APITestCase
 
 class TestSetup(APITestCase):
     def setUp(self):
@@ -11,9 +8,8 @@ class TestSetup(APITestCase):
         self.scenario_detail = reverse('scenario_detail', kwargs={'pk': 1})
         self.user = User.objects.create_user(username='test', password='test')
         self.client.login(username='test', password='test')
-        # self.client.credentials(HTTP_AUTHORIZATION='Basic %s' % base64.b64decode(b'admin:admin'))
 
-        self.data = {
+        self.json = {
 		    "header": {
 			"author": "test",
             "title": {
@@ -25,6 +21,22 @@ class TestSetup(APITestCase):
 			"description": "test"
 		    }
 	    }
+        self.xml = '''<?xml version='1.0' encoding='UTF-8'?>
+<scenario>
+    <header>
+        <author>Test Author</author>
+        <title>
+            <name>Sepsis</name>
+            <top>5</top>
+            <left>10</left>
+        </title>
+        <date_of_creation>2023-08-29</date_of_creation>
+        <description>
+            Scenario depicting a dog with septic pneumonia
+        </description>
+    </header>
+</scenario>    
+'''
         return super().setUp()
     
     def tearDown(self):
