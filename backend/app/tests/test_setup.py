@@ -1,4 +1,4 @@
-import os
+import os, json
 from django.urls import reverse
 from django.contrib.auth.models import User
 from rest_framework.test import APITestCase
@@ -11,7 +11,7 @@ class TestSetup(APITestCase):
         self.client.login(username='test', password='test')
 
         with open(os.path.join(os.path.dirname(__file__), 'test.json'), 'r+') as file:
-            self.json = file.read()
+            self.json = json.loads(file.read())
         with open(os.path.join(os.path.dirname(__file__), 'test.xml'), 'r+') as file:
             self.xml = file.read()
         return super().setUp()

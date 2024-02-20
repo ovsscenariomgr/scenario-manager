@@ -143,7 +143,6 @@ REST_FRAMEWORK = {
         'rest_framework_xml.renderers.XMLRenderer',
         'rest_framework.renderers.JSONRenderer'
     ],
-    'TEST_REQUEST_DEFAULT_FORMAT': 'xml',
     'TEST_REQUEST_RENDERER_CLASSES': [
         'rest_framework_xml.renderers.XMLRenderer',
         'rest_framework.renderers.JSONRenderer',

@@ -12,7 +12,6 @@ class TestJsonViews(TestSetup):
     def test_scenario_create_with_data(self):        
         resp = self.client.post(self.scenario_list, self.json, format="json")
         self.assertEqual(resp.status_code, 201)
-        # self.assertGreaterEqual(resp.data.pop('id'), 0)
         self.assertEqual(resp.data, self.json | {'id': 1})
 
     def test_scenario_update(self):
