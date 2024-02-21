@@ -1,41 +1,31 @@
 from django.contrib import admin
-from nested_inline.admin import NestedStackedInline, NestedModelAdmin
+import nested_admin
 
 # Register your models here.
 from .models import *
 
-class TitleInline(NestedStackedInline):
+class TitleInline(nested_admin.NestedStackedInline):
     model = Title
-    extra = 1
-    fk_name = 'header'
-class HeaderInline(NestedStackedInline):
+
+class HeaderInline(nested_admin.NestedStackedInline):
     model = Header
-    extra = 1
-    fk_name = 'scenario'
     inlines = [TitleInline]
 
-class AvatarInline(NestedStackedInline):
+class AvatarInline(nested_admin.NestedStackedInline):
     model = Avatar
-    extra = 1
-    fk_name = 'profile'
 
-class SummaryInline(NestedStackedInline):
+class SummaryInline(nested_admin.NestedStackedInline):
     model = Summary
-    extra = 1
-    fk_name = 'profile'
 
-class ControlInline(NestedStackedInline):
+class ControlInline(nested_admin.NestedStackedInline):
     model = Control
-    extra = 1
-    fk_name = 'profile'
 
-class ProfileInline(NestedStackedInline):
+class ProfileInline(nested_admin.NestedStackedInline):
     model = Profile
-    extra = 1
-    fk_name = 'scenario'
     inlines = [AvatarInline, SummaryInline, ControlInline]
 
-@admin.register(Scenario)
-class ScenarioAdmin(NestedModelAdmin):
+class ScenarioAdmin(nested_admin.NestedModelAdmin):
     model = Scenario
     inlines = [HeaderInline, ProfileInline]
+
+admin.site.register(Scenario, ScenarioAdmin)
