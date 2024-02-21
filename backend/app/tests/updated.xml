@@ -25,7 +25,6 @@
 			<symptoms>Too much food. Chonky.</symptoms>
 			<image>duke.jpg</image>
 		</summary>
-		<color>#111111</color> <!-- Color should be in controls below but... hard to model. -->
 		<controls>
 			<control>
 				<title>Vocalizations</title>
@@ -40,5 +39,6 @@
 				<left>80</left>
 			</control>
 		</controls>
+		<color>#111111</color>
 	</profile>
 </scenario>

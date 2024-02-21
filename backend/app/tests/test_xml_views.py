@@ -20,6 +20,7 @@ class TestXMLViews(TestSetup):
         self.assertEqual(resp.status_code, 400)
 
     def test_scenario_create_with_data(self):
+        # NOTE: The fields order in the serializer effects render order, so the test.xml has to be in the same order for assertContains
         # TODO: replace this hacky shit with actual xml parse.
         expected = re.sub(r'[\n\t]*', '', self.xml).replace("<?xml version='1.0' encoding='utf-8'?><scenario>", '<scenario><id>1</id>')
         resp = self.client.post(self.scenario_list, self.xml, content_type='application/xml')
@@ -30,6 +31,7 @@ class TestXMLViews(TestSetup):
         self.assertContains(resp, expected)
 
     def test_scenario_update(self):
+        # NOTE: The fields order in the serializer effects render order, so the test.xml has to be in the same order for assertContains
         # TODO: replace this hacky shit with actual xml parse.
         with open(os.path.join(os.path.dirname(__file__), 'updated.xml'), 'r+') as file:
             updated_xml = file.read()

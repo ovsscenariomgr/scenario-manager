@@ -25,7 +25,6 @@
 			<symptoms>Should symptoms be nullable?</symptoms>
 			<image>duke.jpg</image>
 		</summary>
-		<color>#000000</color> <!-- Color should be in controls below but... hard to model. -->
 		<controls>
 			<control>
 				<title>Vocalizations</title>
@@ -40,5 +39,6 @@
 				<left>80</left>
 			</control>
 		</controls>
+		<color>#000000</color>
 	</profile>
 </scenario>
