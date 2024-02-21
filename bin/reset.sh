@@ -16,6 +16,7 @@ rm -f db.sqlite3
 
 # Recreate
 micromamba activate ovs
+pip install -r requirements.txt
 python manage.py makemigrations app --noinput
 python manage.py migrate --noinput
 python manage.py loaddata app/fixtures/users.json
