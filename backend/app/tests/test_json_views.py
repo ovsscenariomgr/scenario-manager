@@ -1,3 +1,4 @@
+import os, json
 from .test_setup import TestSetup
 
 class TestJsonViews(TestSetup):
@@ -29,18 +30,8 @@ class TestJsonViews(TestSetup):
 
 
     def test_scenario_update(self):
-        updated_data = {
-		    "header": {
-			    "title": {
-				    "name": "UPDATE",
-				    "top": 50,
-				    "left": 10
-			    },
-			"author": "UPDATE",
-			"date_of_creation": "2024-02-20",
-			"description": "test"
-		    }
-	    }
+        with open(os.path.join(os.path.dirname(__file__), 'updated.json'), 'r+') as file:
+            updated_data = json.loads(file.read())
         resp = self.client.post(self.scenario_list, self.json, format="json")
         self.assertEqual(resp.status_code, 201)
         resp = self.client.put(self.scenario_detail, updated_data, format="json")

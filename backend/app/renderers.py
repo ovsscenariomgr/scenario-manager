@@ -6,7 +6,6 @@ from django.utils.xmlutils import SimplerXMLGenerator
 class ScenarioXMLRenderer(XMLRenderer):
     # Override XML tag names
     root_tag_name = "scenario"
-    item_tag_name = "scenario"
 
     def render(self, data, accepted_media_type=None, renderer_context=None):
         """
@@ -30,3 +29,24 @@ class ScenarioXMLRenderer(XMLRenderer):
         xml.endElement(self.root_tag_name)
         xml.endDocument()
         return stream.getvalue()
+
+    def _to_xml(self, xml, data):
+        if isinstance(data, (list, tuple)):
+            for item in data:
+                xml.startElement(self.item_tag_name, {})
+                self._to_xml(xml, item)
+                xml.endElement(self.item_tag_name)
+
+        elif isinstance(data, dict):
+            for key, value in data.items():
+                xml.startElement(key, {})
+                self._to_xml(xml, value)
+                xml.endElement(key)
+
+        elif data is None:
+            # Don't output any value
+            pass
+
+        else:
+            xml.characters(force_str(data))
+

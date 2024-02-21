@@ -16,7 +16,7 @@ rm -f db.sqlite3
 
 # Recreate
 micromamba activate ovs
-python manage.py makemigrations app
-python manage.py migrate
-
-DJANGO_SUPERUSER_USERNAME=admin DJANGO_SUPERUSER_PASSWORD=admin DJANGO_SUPERUSER_EMAIL=dh749@cornell.edu python manage.py createsuperuser --noinput
+python manage.py makemigrations app --noinput
+python manage.py migrate --noinput
+python manage.py loaddata app/fixtures/users.json
+python manage.py collectstatic --noinput

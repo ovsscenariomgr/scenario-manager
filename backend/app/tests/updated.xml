@@ -10,4 +10,35 @@
 		<date_of_creation>2024-02-19</date_of_creation>
 		<description>better description</description>
 	</header>
+	<profile>
+		<avatar>
+			<filename>stock-dog.jpg</filename>
+			<height_pct>100</height_pct>
+			<width_pct>50</width_pct>
+		</avatar>
+		<summary>
+			<description>A more succinct description</description>
+			<breed>Bulldog</breed>
+			<gender>Castrated male</gender>
+			<weight>50 kg</weight>
+			<species>Canine</species>
+			<symptoms>Too much food. Chonky.</symptoms>
+			<image>duke.jpg</image>
+		</summary>
+		<color>#111111</color> <!-- Color should be in controls below but... hard to model. -->
+		<controls>
+			<control>
+				<title>Vocalizations</title>
+				<id>vocals-dog-control</id>
+				<top>125</top>
+				<left>300</left>
+			</control>
+			<control>
+				<title>Left Lung Sounds</title>
+				<id>left-lung-dog-control</id>
+				<top>180</top>
+				<left>80</left>
+			</control>
+		</controls>
+	</profile>
 </scenario>

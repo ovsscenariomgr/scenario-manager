@@ -1,0 +1,43 @@
+{
+    "header": {
+        "author": "new author",
+        "title": {
+            "name": "test",
+            "top": 10,
+            "left": 40
+        },
+        "date_of_creation": "2024-02-20",
+        "description": "test"
+    },
+    "profile": {
+        "avatar": {
+            "filename": "stock-dog.jpg",
+            "height_pct": 100,
+            "width_pct": 10
+        },
+        "summary": {
+            "description": "the best boy",
+            "breed": "doggy",
+            "gender": "identifies as a tabby",
+            "weight": "chonk",
+            "species": "unknown",
+            "symptoms": "too chonk",
+            "image": "rollypolly.png"
+        },
+        "color": "#111111",
+        "controls": [
+            {
+                "title": "control1",
+                "id": "test",
+                "top": 100,
+                "left": 100
+            },
+            {
+                "title": "control2",
+                "id": "tst",
+                "top": 0,
+                "left": 0
+            }
+        ]
+    }
+}

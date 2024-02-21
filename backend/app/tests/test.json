@@ -1,12 +1,43 @@
 {
     "header": {
-    "author": "test",
-    "title": {
-        "name": "test",
-        "top": 0,
-        "left": 0
+        "author": "test",
+        "title": {
+            "name": "test",
+            "top": 0,
+            "left": 0
+        },
+        "date_of_creation": "2024-02-19",
+        "description": "test"
     },
-    "date_of_creation": "2024-02-19",
-    "description": "test"
+    "profile": {
+        "avatar": {
+            "filename": "stock-dog.jpg",
+            "height_pct": 100,
+            "width_pct": 50
+        },
+        "summary": {
+            "description": "test",
+            "breed": "test",
+            "gender": "test",
+            "weight": "test",
+            "species": "test",
+            "symptoms": "test",
+            "image": "test"
+        },
+        "color": "#000000",
+        "controls": [
+            {
+                "title": "test",
+                "id": "test",
+                "top": 100,
+                "left": 100
+            },
+            {
+                "title": "test",
+                "id": "tst",
+                "top": 100,
+                "left": 100
+            }
+        ]
     }
 }
