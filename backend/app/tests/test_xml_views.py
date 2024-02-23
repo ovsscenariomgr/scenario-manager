@@ -24,6 +24,7 @@ class TestXMLViews(TestSetup):
         # TODO: replace this hacky shit with actual xml parse.
         expected = re.sub(r'[\n\t]*', '', self.xml).replace("<?xml version='1.0' encoding='utf-8'?><scenario>", '<scenario><id>1</id>')
         resp = self.client.post(self.scenario_list, self.xml, content_type='application/xml')
+        # print(resp.content)
         self.assertContains(resp, expected, status_code=201)
         # Should be able to retrieve anonymously
         self.client.logout()
@@ -37,6 +38,8 @@ class TestXMLViews(TestSetup):
             updated_xml = file.read()
         expected = re.sub(r'[\n\t]*', '', updated_xml).replace("<?xml version='1.0' encoding='utf-8'?><scenario>", '<scenario><id>1</id>')
         resp = self.client.post(self.scenario_list, self.xml, content_type='application/xml')
+        # print(resp.content)
         self.assertEqual(resp.status_code, 201)
         resp = self.client.put(self.scenario_detail, updated_xml, content_type='application/xml')
+        # print(resp.content)
         self.assertContains(resp, expected)

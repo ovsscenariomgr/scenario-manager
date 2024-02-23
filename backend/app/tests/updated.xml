@@ -53,12 +53,12 @@
 	</vocals>
 	<media>
 		<file>
-			<filename >mri.jpg</filename>
+			<filename>mri.jpg</filename>
 			<title>MRI of healthy dog</title>
 		</file>
 		<file>
-			<filename >bloodwork.jpg</filename>
+			<filename>bloodwork.jpg</filename>
 			<title>Bloodwork of healthy dog</title>
-		</file>	
+		</file>
 	</media>
 </scenario>
