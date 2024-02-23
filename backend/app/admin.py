@@ -1,44 +1,48 @@
 from django.contrib import admin
-from nested_inline.admin import NestedStackedInline, NestedModelAdmin
-
-# Register your models here.
+import nested_admin
+from .forms import TitleForm, AvatarForm, SummaryForm, ControlForm
 from .models import *
 
-class TitleInline(NestedStackedInline):
+class TitleInline(nested_admin.NestedStackedInline):
     model = Title
-    fk_name = 'header'
+    form = TitleForm
+    classes = ('grp-collapse grp-open',) # Set so default is form opened.
+    inline_classes = ('grp-collapse grp-open',)
 
-class HeaderInline(NestedStackedInline):
+class HeaderInline(nested_admin.NestedStackedInline):
     model = Header
-    fk_name = 'scenario'
-    inlines = [TitleInline]
+    inlines = [TitleInline,]
+    classes = ('grp-collapse grp-open',)
+    inline_classes = ('grp-collapse grp-open',)
 
-class AvatarInline(NestedStackedInline):
+class AvatarInline(nested_admin.NestedStackedInline):
     model = Avatar
-    fk_name = 'profile'
+    form = AvatarForm
+    classes = ('grp-collapse grp-open',)
+    inline_classes = ('grp-collapse grp-open',)
 
-class SummaryInline(NestedStackedInline):
+class SummaryInline(nested_admin.NestedStackedInline):
     model = Summary
-    fk_name = 'profile'
+    form = SummaryForm
+    classes = ('grp-collapse grp-open',)
+    inline_classes = ('grp-collapse grp-open',)
 
-class ControlInline(NestedStackedInline):
+class ControlInline(nested_admin.NestedStackedInline):
     model = Control
-    extra = 2
-    fk_name = 'profile'
+    form = ControlForm
+    extra = 1
+    classes = ('grp-collapse grp-open',)
+    inline_classes = ('grp-collapse grp-open',)
 
-class ProfileInline(NestedStackedInline):
+class ProfileInline(nested_admin.NestedStackedInline):
     model = Profile
-    fk_name = 'scenario'
-    inlines = [AvatarInline, SummaryInline, ControlInline]
+    inlines = [AvatarInline, SummaryInline, ControlInline,]
+    classes = ('grp-collapse grp-open',)
+    inline_classes = ('grp-collapse grp-open',)
 
 @admin.register(Scenario)
-class ScenarioAdmin(NestedModelAdmin):
+class ScenarioAdmin(nested_admin.NestedModelAdmin):
     model = Scenario
-    inlines = [HeaderInline, ProfileInline]
-
-admin.site.register(Profile)
-admin.site.register(Control)
-admin.site.register(Avatar)
-admin.site.register(Summary)
-admin.site.register(Header)
-admin.site.register(Title)
+    inlines = [HeaderInline, ProfileInline,]
+    classes = ('grp-collapse grp-open',)
+    inline_classes = ('grp-collapse grp-open',)
