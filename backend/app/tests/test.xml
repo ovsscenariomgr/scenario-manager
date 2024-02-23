@@ -33,7 +33,7 @@
 				<left>300</left>
 			</control>
 			<control>
-				<title>Right Lung Sounds</title>
+				<title>Right Lung Sound</title>
 				<id>right-lung-dog-control</id>
 				<top>180</top>
 				<left>80</left>
@@ -41,4 +41,16 @@
 		</controls>
 		<color>#000000</color>
 	</profile>
+	<vocals>
+		<file>
+			<filename>bark.wav</filename>
+			<title>Barking</title>
+		</file>
+	</vocals>
+	<media>
+		<file>
+			<filename >mri.jpg</filename>
+			<title>MRI of healthy dog</title>
+		</file>
+	</media>
 </scenario>

@@ -17,3 +17,7 @@ class SummaryForm(forms.ModelForm):
 class ControlForm(forms.ModelForm):
     def has_changed(self):
         return not self.instance.pk or super().has_changed()
+    
+class FileForm(forms.ModelForm):
+    def has_changed(self):
+        return not self.instance.pk or super().has_changed()

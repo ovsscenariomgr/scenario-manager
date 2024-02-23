@@ -27,17 +27,37 @@
         "color": "#111111",
         "controls": [
             {
-                "title": "control1",
-                "id": "test",
-                "top": 100,
-                "left": 100
+                "title": "Temp",
+                "id": "button-Tperi",
+                "top": 10,
+                "left": 60
             },
             {
-                "title": "control2",
-                "id": "tst",
+                "title": "CPR",
+                "id": "button-cpr",
                 "top": 0,
                 "left": 0
             }
         ]
-    }
+    },
+    "vocals": [
+        {
+            "filename": "bark.wav",
+            "title": "Barking"
+        },
+        {
+            "filename": "meow.wav",
+            "title": "Mewing"
+        }
+    ],
+    "media": [
+        {
+            "filename": "mri.jpg",
+            "title": "MRI of healthy dog"
+        },
+        {
+            "filename": "bloodwork.jpg",
+            "title": "Blood work healthy dog"
+        }
+    ]
 }

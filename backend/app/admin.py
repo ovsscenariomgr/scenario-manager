@@ -1,6 +1,6 @@
 from django.contrib import admin
 import nested_admin
-from .forms import TitleForm, AvatarForm, SummaryForm, ControlForm
+from .forms import *
 from .models import *
 
 class TitleInline(nested_admin.NestedStackedInline):
@@ -40,9 +40,25 @@ class ProfileInline(nested_admin.NestedStackedInline):
     classes = ('grp-collapse grp-open',)
     inline_classes = ('grp-collapse grp-open',)
 
+class VocalsInline(nested_admin.NestedStackedInline):
+    model = VocalFile
+    form = FileForm
+    fk_name = 'vocals'
+    extra = 1
+    classes = ('grp-collapse grp-open',)
+    inline_classes = ('grp-collapse grp-open',)
+
+class MediaInline(nested_admin.NestedStackedInline):
+    model = MediaFile
+    form = FileForm
+    fk_name = 'media'
+    extra = 1
+    classes = ('grp-collapse grp-open',)
+    inline_classes = ('grp-collapse grp-open',)
+
 @admin.register(Scenario)
 class ScenarioAdmin(nested_admin.NestedModelAdmin):
     model = Scenario
-    inlines = [HeaderInline, ProfileInline,]
+    inlines = [HeaderInline, ProfileInline, VocalsInline, MediaInline,]
     classes = ('grp-collapse grp-open',)
     inline_classes = ('grp-collapse grp-open',)

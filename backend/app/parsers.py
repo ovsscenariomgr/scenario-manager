@@ -13,7 +13,7 @@ class ScenarioXMLParser(XMLParser):
             return self._type_convert(element.text)
         else:
             # If the tag is in the list of scenario xml "lists", do the thing here. 
-            if children[0].tag in ['control']:
+            if children[0].tag in ['control', 'file']:
                 data = []
                 for child in children:
                     data.append(self._xml_convert(child))

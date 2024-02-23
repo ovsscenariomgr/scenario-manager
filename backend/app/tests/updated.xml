@@ -27,13 +27,13 @@
 		</summary>
 		<controls>
 			<control>
-				<title>Vocalizations</title>
-				<id>vocals-dog-control</id>
+				<title>Temp</title>
+				<id>button-Tperi</id>
 				<top>125</top>
 				<left>300</left>
 			</control>
 			<control>
-				<title>Left Lung Sounds</title>
+				<title>Left Lung Sound</title>
 				<id>left-lung-dog-control</id>
 				<top>180</top>
 				<left>80</left>
@@ -41,4 +41,24 @@
 		</controls>
 		<color>#111111</color>
 	</profile>
+	<vocals>
+		<file>
+			<filename>bark.wav</filename>
+			<title>Barking</title>
+		</file>
+		<file>
+			<filename>meow.wav</filename>
+			<title>Mewing</title>
+		</file>
+	</vocals>
+	<media>
+		<file>
+			<filename >mri.jpg</filename>
+			<title>MRI of healthy dog</title>
+		</file>
+		<file>
+			<filename >bloodwork.jpg</filename>
+			<title>Bloodwork of healthy dog</title>
+		</file>	
+	</media>
 </scenario>

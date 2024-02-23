@@ -27,17 +27,23 @@
         "color": "#000000",
         "controls": [
             {
-                "title": "test",
-                "id": "test",
-                "top": 100,
-                "left": 100
-            },
-            {
-                "title": "test",
-                "id": "tst",
+                "title": "Temp",
+                "id": "button-Tperi",
                 "top": 100,
                 "left": 100
             }
         ]
-    }
+    },
+    "vocals": [
+        {
+            "filename": "bark.wav",
+            "title": "Barking"
+        }
+    ],
+    "media": [
+        {
+            "filename": "mri.jpg",
+            "title": "MRI of healthy dog"
+        }
+    ]
 }
