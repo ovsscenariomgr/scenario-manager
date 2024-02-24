@@ -1,7 +1,7 @@
 from django.contrib import admin
 import nested_admin
-from .forms import *
-from .models import *
+from .forms import TitleForm, AvatarForm, SummaryForm, ControlForm, FileForm
+from .models import Title, Header, Avatar, Summary, Control, Profile, VocalFile, MediaFile, Scenario
 
 class TitleInline(nested_admin.NestedStackedInline):
     model = Title

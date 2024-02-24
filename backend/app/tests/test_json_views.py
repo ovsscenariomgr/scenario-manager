@@ -1,4 +1,5 @@
-import os, json
+import os
+import json
 from .test_setup import TestSetup, replace_file_paths
 
 class TestJsonViews(TestSetup):

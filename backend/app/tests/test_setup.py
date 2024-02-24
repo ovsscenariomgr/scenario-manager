@@ -1,4 +1,5 @@
-import os, json
+import os
+import json
 from pathlib import Path
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.urls import reverse
