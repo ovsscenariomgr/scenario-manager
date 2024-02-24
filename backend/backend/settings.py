@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR.joinpath('data') / 'db.sqlite3',
     }
 }
 
@@ -116,6 +116,10 @@ USE_I18N = True
 
 USE_TZ = True
 
+# Media/Image files
+# https://docs.djangoproject.com/en/5.0/ref/settings/#std-setting-MEDIA_ROOT
+MEDIA_ROOT = BASE_DIR.joinpath('files')
+MEDIA_URL = '/files/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/

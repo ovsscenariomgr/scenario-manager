@@ -2,6 +2,7 @@ from .Avatar import Avatar
 from .Control import Control
 from .File import File
 from .Header import Header
+from .Init import Init
 from .MediaFile import MediaFile
 from .Profile import Profile
 from .Scenario import Scenario

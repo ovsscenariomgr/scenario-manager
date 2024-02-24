@@ -11,8 +11,8 @@ cd ${__backend}
 find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
 find . -path "*/migrations/*.pyc"  -delete
 
-# Nuke db
-rm -f db.sqlite3
+# Nuke db.
+rm -f ./data/*
 
 # Recreate
 micromamba activate ovs
