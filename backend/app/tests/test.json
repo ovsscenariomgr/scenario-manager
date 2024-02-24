@@ -11,7 +11,7 @@
     },
     "profile": {
         "avatar": {
-            "filename": "stock-dog.jpg",
+            "filename": "images/linus.jpg",
             "height_pct": 100,
             "width_pct": 50
         },
@@ -22,7 +22,7 @@
             "weight": "test",
             "species": "test",
             "symptoms": "test",
-            "image": "test"
+            "image": "images/linus.jpg"
         },
         "color": "#000000",
         "controls": [
@@ -36,14 +36,14 @@
     },
     "vocals": [
         {
-            "filename": "bark.wav",
-            "title": "Barking"
+            "filename": "vocals/purr.wav",
+            "title": "Purring"
         }
     ],
     "media": [
         {
-            "filename": "mri.jpg",
-            "title": "MRI of healthy dog"
+            "filename": "media/logo.jpeg",
+            "title": "OVS Logo"
         }
     ]
 }

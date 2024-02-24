@@ -11,7 +11,7 @@
     },
     "profile": {
         "avatar": {
-            "filename": "stock-dog.jpg",
+            "filename": "images/linus.jpg",
             "height_pct": 100,
             "width_pct": 10
         },
@@ -22,7 +22,7 @@
             "weight": "chonk",
             "species": "unknown",
             "symptoms": "too chonk",
-            "image": "rollypolly.png"
+            "image": "images/linus.jpg"
         },
         "color": "#111111",
         "controls": [
@@ -42,22 +42,22 @@
     },
     "vocals": [
         {
-            "filename": "bark.wav",
-            "title": "Barking"
+            "filename": "vocals/purr.wav",
+            "title": "Purring"
         },
         {
-            "filename": "meow.wav",
-            "title": "Mewing"
+            "filename": "vocals/purr.wav",
+            "title": "Moar purring"
         }
     ],
     "media": [
         {
-            "filename": "mri.jpg",
-            "title": "MRI of healthy dog"
+            "filename": "media/logo.jpeg",
+            "title": "OVS Logo"
         },
         {
-            "filename": "bloodwork.jpg",
-            "title": "Blood work healthy dog"
+            "filename": "media/logo.jpeg",
+            "title": "An extra logo"
         }
     ]
 }

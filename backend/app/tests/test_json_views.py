@@ -1,5 +1,5 @@
 import os, json
-from .test_setup import TestSetup
+from .test_setup import TestSetup, replace_file_paths
 
 class TestJsonViews(TestSetup):
     def test_scenario_list(self):
@@ -32,6 +32,7 @@ class TestJsonViews(TestSetup):
     def test_scenario_update(self):
         with open(os.path.join(os.path.dirname(__file__), 'updated.json'), 'r+') as file:
             updated_data = json.loads(file.read())
+            # replace_file_paths(updated_data)
         resp = self.client.post(self.scenario_list, self.json, format="json")
         self.assertEqual(resp.status_code, 201)
         resp = self.client.put(self.scenario_detail, updated_data, format="json")

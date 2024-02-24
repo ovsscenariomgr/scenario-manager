@@ -8,6 +8,7 @@ class Summary(models.Model):
     weight = models.CharField(max_length=6, default='30 kg')
     species = models.CharField(max_length=64, default='Canine') # Make this a choices field?
     symptoms = models.TextField(default='Summary Symptoms')
-    image = models.CharField(max_length=256, default='summaryimage.jpg') # TODO: validate that this file exists??
+    image = models.CharField(max_length=256, default='images/linus.jpg')
+    # image = models.ImageField(upload_to='images', default='images/linus.jpg')
     # Foreign Key
     profile = models.OneToOneField(Profile, on_delete=models.CASCADE)

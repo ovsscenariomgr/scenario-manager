@@ -12,7 +12,7 @@
 	</header>
 	<profile>
 		<avatar>
-			<filename>stock-dog.jpg</filename>
+			<filename>images/linus.jpg</filename>
 			<height_pct>100</height_pct>
 			<width_pct>50</width_pct>
 		</avatar>
@@ -23,7 +23,7 @@
 			<weight>35 kg</weight>
 			<species>Canine</species>
 			<symptoms>Should symptoms be nullable?</symptoms>
-			<image>duke.jpg</image>
+			<image>images/linus.jpg</image>
 		</summary>
 		<controls>
 			<control>
@@ -43,14 +43,14 @@
 	</profile>
 	<vocals>
 		<file>
-			<filename>bark.wav</filename>
-			<title>Barking</title>
+			<filename>vocals/purr.wav</filename>
+			<title>Purring</title>
 		</file>
 	</vocals>
 	<media>
 		<file>
-			<filename>mri.jpg</filename>
-			<title>MRI of healthy dog</title>
+			<filename>media/logo.jpeg</filename>
+			<title>OVS Logo</title>
 		</file>
 	</media>
 </scenario>

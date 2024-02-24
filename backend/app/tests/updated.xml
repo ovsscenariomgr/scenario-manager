@@ -43,22 +43,22 @@
 	</profile>
 	<vocals>
 		<file>
-			<filename>bark.wav</filename>
-			<title>Barking</title>
+			<filename>vocals/purr.wav</filename>
+			<title>Purring</title>
 		</file>
 		<file>
-			<filename>meow.wav</filename>
-			<title>Mewing</title>
+			<filename>vocals/purr.wav</filename>
+			<title>Moar purring</title>
 		</file>
 	</vocals>
 	<media>
 		<file>
-			<filename>mri.jpg</filename>
-			<title>MRI of healthy dog</title>
+			<filename>media/logo.jpeg</filename>
+			<title>OVS Logo</title>
 		</file>
 		<file>
-			<filename>bloodwork.jpg</filename>
-			<title>Bloodwork of healthy dog</title>
+			<filename>media/logo.jpeg</filename>
+			<title>Extra Logo</title>
 		</file>
 	</media>
 </scenario>
