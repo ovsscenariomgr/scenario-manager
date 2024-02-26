@@ -62,6 +62,7 @@ db.sqlite3
 db.sqlite3-journal
 static/
 data/
+files/
 
 # Flask stuff:
 instance/
@@ -166,3 +167,6 @@ cython_debug/
 
 # MacOS
 .DS_Store
+
+# Ruff stuff
+.ruff_cache

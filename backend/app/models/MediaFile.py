@@ -1,6 +1,7 @@
 from django.db import models
 from .Scenario import Scenario
 
+# TODO: Need to add play? per section 11.6 of spec?
 class MediaFile(models.Model):
     filename = models.CharField(max_length=256, default='media/logo.jpeg')
     # commented until can figure out how to POST/test

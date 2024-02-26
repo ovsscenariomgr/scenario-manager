@@ -41,6 +41,7 @@ ID_VALUES = [
     'button-Tperi'
 ]
 
+# Zipped in order of: (value set in Model, Human readable choice)
 TITLE_VALID_CHOICES=list(zip(ID_HR_VALUES, ID_HR_VALUES))
 ID_VALID_CHOICES=list(zip(ID_VALUES, ID_HR_VALUES))
 
