@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from .Init import Init
 
 RHYTHM_CHOICES=[
     ('sinus', 'Sinus rhythm'),
@@ -60,3 +61,7 @@ class Cardiac(models.Model):
     ecg_indicator = models.IntegerField(choices=ILLUMINATED_CHOICES, default=ILLUMINATED_CHOICES[0])
     bp_cuff = models.IntegerField(choices=ILLUMINATED_CHOICES, default=ILLUMINATED_CHOICES[0])
     arrest = models.IntegerField(choices=ILLUMINATED_CHOICES, default=ILLUMINATED_CHOICES[0])
+
+
+class InitCardiac(Cardiac):
+    init = models.OneToOneField(Init, on_delete=models.CASCADE, related_name='cardiac')

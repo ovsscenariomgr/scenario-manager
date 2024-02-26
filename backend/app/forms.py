@@ -2,22 +2,22 @@
 
 from django import forms
 
-class TitleForm(forms.ModelForm):
-    def has_changed(self):
-        return not self.instance.pk or super().has_changed()
-   
 class AvatarForm(forms.ModelForm):
     def has_changed(self):
         return not self.instance.pk or super().has_changed()
-    
-class SummaryForm(forms.ModelForm):
+
+class FileForm(forms.ModelForm):
     def has_changed(self):
         return not self.instance.pk or super().has_changed()
 
 class ControlForm(forms.ModelForm):
     def has_changed(self):
         return not self.instance.pk or super().has_changed()
-    
-class FileForm(forms.ModelForm):
+
+class SummaryForm(forms.ModelForm):
+    def has_changed(self):
+        return not self.instance.pk or super().has_changed()
+
+class TitleForm(forms.ModelForm):
     def has_changed(self):
         return not self.instance.pk or super().has_changed()

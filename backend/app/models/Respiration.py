@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from .Init import Init
 
 LUNG_SOUND_CHOICES=[
     ('normal', 'Normal'),
@@ -25,3 +26,6 @@ class Respiration(models.Model):
     etco2_indicator = models.IntegerField(default=0, choices=[(0, 'Not connected'), (1, 'connected')])
     chest_movement = models.IntegerField(default=0, choices=[(0, 'off'), (1, 'on')])
     manual_count = models.IntegerField(default=0, validators=[MinValueValidator(0)])
+
+class InitRespiration(Respiration):
+    init = models.OneToOneField(Init, on_delete=models.CASCADE, related_name='respiration')
