@@ -53,4 +53,46 @@
 			<title>OVS Logo</title>
 		</file>
 	</media>
+	<init>
+		<cardiac>
+			<rhythm>sinus</rhythm>
+			<vpc>none</vpc>
+			<pea>0</pea>
+			<vpc_freq>0</vpc_freq>
+			<vfib_amplitude>medium</vfib_amplitude>
+			<rate>180</rate>
+			<nibp_rate>180</nibp_rate>
+			<bps_sys>55</bps_sys>
+			<bps_dia>40</bps_dia>
+			<left_dorsal_pulse_strength>weak</left_dorsal_pulse_strength>
+			<right_dorsal_pulse_strength>weak</right_dorsal_pulse_strength>
+			<left_femoral_pulse_strength>weak</left_femoral_pulse_strength>
+			<right_femoral_pulse_strength>weak</right_femoral_pulse_strength>
+			<heart_sound_volume>7</heart_sound_volume>
+			<heart_sound>normal</heart_sound>
+			<ecg_indicator>0</ecg_indicator>
+			<bp_cuff>0</bp_cuff>
+			<arrest>0</arrest>
+		</cardiac>
+		<respiration>
+			<left_lung_sound>coarse_crackles</left_lung_sound>
+			<left_lung_sound_volume>7</left_lung_sound_volume>
+			<right_lung_sound>coarse_crackles</right_lung_sound>
+			<right_lung_sound_volume>7</right_lung_sound_volume>
+			<inhalation_duration>500</inhalation_duration>
+			<exhalation_duration>500</exhalation_duration>
+			<spo2>86</spo2>
+			<spo2_indicator>0</spo2_indicator>
+			<etco2>36</etco2>
+			<etco2_indicator>0</etco2_indicator>
+			<rate>50</rate>
+			<chest_movement>1</chest_movement>
+		</respiration>			
+		<general>
+			<temperature>1038</temperature>
+			<temperature_enable>1</temperature_enable>
+		</general>
+		<initial_scene>1</initial_scene>
+		<record>1</record>
+	</init>	
 </scenario>

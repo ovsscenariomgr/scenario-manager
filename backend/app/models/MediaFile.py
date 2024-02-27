@@ -7,4 +7,4 @@ class MediaFile(models.Model):
     # commented until can figure out how to POST/test
     # filename = models.FileField(upload_to='media', default='media/logo.jpeg')
     title = models.CharField(max_length=256, default='Logo')
-    media = models.ForeignKey(Scenario, on_delete=models.CASCADE, related_name='media')
+    scenario = models.ForeignKey(Scenario, on_delete=models.CASCADE, related_name='media')

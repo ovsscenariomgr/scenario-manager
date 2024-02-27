@@ -59,5 +59,47 @@
             "filename": "media/logo.jpeg",
             "title": "An extra logo"
         }
-    ]
+    ],
+    "init": {
+        "cardiac": {
+			"rhythm": "asystole",
+			"vpc": "none",
+			"pea": 0,
+			"vpc_freq": 0,
+			"vfib_amplitude": "medium",
+			"rate": 180,
+            "nibp_rate": 180,
+			"bps_sys": 55,
+			"bps_dia": 40,
+			"left_dorsal_pulse_strength": "weak",
+            "right_dorsal_pulse_strength": "medium",
+            "left_femoral_pulse_strength": "weak",
+            "right_femoral_pulse_strength": "medium",
+			"heart_sound_volume": 7,
+            "heart_sound": "normal",
+			"ecg_indicator": 0,
+            "bp_cuff": 0,
+			"arrest": 0
+        },
+        "respiration": {
+            "left_lung_sound": "coarse_crackles",
+            "left_lung_sound_volume": 7,
+			"right_lung_sound": "fine_crackles",
+			"right_lung_sound_volume": 7,
+            "inhalation_duration": 500,
+            "exhalation_duration": 500,
+			"spo2": 86,
+			"spo2_indicator": 0,
+			"etco2": 36,
+			"etco2_indicator": 0,
+			"rate": 50,
+			"chest_movement": 1
+        },
+        "general": {
+            "temperature": 1038,
+            "temperature_enable": 1
+        },
+        "initial_scene": 1,
+        "record": 1
+    }
 }

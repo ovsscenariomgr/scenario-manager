@@ -1,23 +1,30 @@
 # Overriding has_changed in nested models so NestedInline will save if the defaults have not changed.
-
 from django import forms
 
-class AvatarForm(forms.ModelForm):
+class BaseNestedInlineForm(forms.ModelForm):
     def has_changed(self):
         return not self.instance.pk or super().has_changed()
 
-class FileForm(forms.ModelForm):
-    def has_changed(self):
-        return not self.instance.pk or super().has_changed()
+class AvatarForm(BaseNestedInlineForm):
+    pass
 
-class ControlForm(forms.ModelForm):
-    def has_changed(self):
-        return not self.instance.pk or super().has_changed()
+class ControlForm(BaseNestedInlineForm):
+    pass
 
-class SummaryForm(forms.ModelForm):
-    def has_changed(self):
-        return not self.instance.pk or super().has_changed()
+class FileForm(BaseNestedInlineForm):
+    pass
 
-class TitleForm(forms.ModelForm):
-    def has_changed(self):
-        return not self.instance.pk or super().has_changed()
+class InitCardiacForm(BaseNestedInlineForm):
+    pass
+
+class InitGeneralForm(BaseNestedInlineForm):
+    pass
+
+class InitRespirationForm(BaseNestedInlineForm):
+    pass
+
+class SummaryForm(BaseNestedInlineForm):
+    pass
+
+class TitleForm(BaseNestedInlineForm):
+    pass
