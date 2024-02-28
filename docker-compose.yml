@@ -10,6 +10,7 @@ services:
     volumes:
       - appdata:/code/data
       - appfiles:/code/files
+      - appstatic:/code/static
     ports:
       - "8000:8000"
     env_file:
@@ -17,3 +18,4 @@ services:
 volumes:
   appdata:
   appfiles:
+  appstatic:
