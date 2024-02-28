@@ -1,5 +1,8 @@
 Django==5.0.2
 djangorestframework==3.14.0
 djangorestframework-xml==2.0.0
-django-nested-inline==0.4.6
 drf-writable-nested==0.7.0
+django-nested-admin==4.0.2
+django-grappelli==3.0.8
+Pillow==10.2.0
+ruff==0.2.2

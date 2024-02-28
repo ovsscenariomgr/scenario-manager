@@ -1,0 +1,38 @@
+[
+{
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$720000$APaLavVq6LLE1RDAdlseKJ$jpeEJTnfBBlrdVS1F1tHke88ktpAq/03WImm4ZBkfJo=",
+        "last_login": "2024-02-24T20:39:54.550Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "dh749@cornell.edu",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-02-20T18:29:52.703Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$720000$FbeMdCUYj6yfUglfDKFL75$OzVeZ0qRcmQdWB09mKj0mUZ4JDgmyISNGnrEEb5Zp0M=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "test",
+        "first_name": "",
+        "last_name": "",
+        "email": "dh749@cornell.edu",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-02-20T18:29:53Z",
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]

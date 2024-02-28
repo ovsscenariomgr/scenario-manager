@@ -1,36 +1,42 @@
 {
     "header": {
-        "author": "test",
+        "author": "new author",
         "title": {
             "name": "test",
-            "top": 0,
-            "left": 0
+            "top": 10,
+            "left": 40
         },
-        "date_of_creation": "2024-02-19",
+        "date_of_creation": "2024-02-20",
         "description": "test"
     },
     "profile": {
         "avatar": {
             "filename": "images/linus.jpg",
             "height_pct": 100,
-            "width_pct": 50
+            "width_pct": 10
         },
         "summary": {
-            "description": "test",
-            "breed": "test",
-            "gender": "test",
-            "weight": "test",
-            "species": "test",
-            "symptoms": "test",
+            "description": "the best boy",
+            "breed": "doggy",
+            "gender": "identifies as a tabby",
+            "weight": "chonk",
+            "species": "unknown",
+            "symptoms": "too chonk",
             "image": "images/linus.jpg"
         },
-        "color": "#000000",
+        "color": "#111111",
         "controls": [
             {
                 "title": "Temp",
                 "id": "button-Tperi",
-                "top": 100,
-                "left": 100
+                "top": 10,
+                "left": 60
+            },
+            {
+                "title": "CPR",
+                "id": "button-cpr",
+                "top": 0,
+                "left": 0
             }
         ]
     },
@@ -38,17 +44,25 @@
         {
             "filename": "vocals/purr.wav",
             "title": "Purring"
+        },
+        {
+            "filename": "vocals/purr.wav",
+            "title": "Moar purring"
         }
     ],
     "media": [
         {
             "filename": "media/logo.jpeg",
             "title": "OVS Logo"
+        },
+        {
+            "filename": "media/logo.jpeg",
+            "title": "An extra logo"
         }
     ],
     "init": {
         "cardiac": {
-			"rhythm": "sinus",
+			"rhythm": "asystole",
 			"vpc": "none",
 			"pea": 0,
 			"vpc_freq": 0,
@@ -58,9 +72,9 @@
 			"bps_sys": 55,
 			"bps_dia": 40,
 			"left_dorsal_pulse_strength": "weak",
-            "right_dorsal_pulse_strength": "weak",
+            "right_dorsal_pulse_strength": "medium",
             "left_femoral_pulse_strength": "weak",
-            "right_femoral_pulse_strength": "weak",
+            "right_femoral_pulse_strength": "medium",
 			"heart_sound_volume": 7,
             "heart_sound": "normal",
 			"ecg_indicator": 0,
@@ -70,7 +84,7 @@
         "respiration": {
             "left_lung_sound": "coarse_crackles",
             "left_lung_sound_volume": 7,
-			"right_lung_sound": "coarse_crackles",
+			"right_lung_sound": "fine_crackles",
 			"right_lung_sound_volume": 7,
             "inhalation_duration": 500,
             "exhalation_duration": 500,

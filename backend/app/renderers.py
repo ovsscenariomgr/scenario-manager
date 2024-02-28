@@ -6,7 +6,8 @@ from django.utils.xmlutils import SimplerXMLGenerator
 class ScenarioXMLRenderer(XMLRenderer):
     # Override XML tag names
     root_tag_name = "scenario"
-    item_tag_name = "scenario"
+
+    # item_tag_name is overridden by key value to _to_xml
 
     def render(self, data, accepted_media_type=None, renderer_context=None):
         """
@@ -15,18 +16,39 @@ class ScenarioXMLRenderer(XMLRenderer):
         if data is None:
             return ""
 
-        # Only overriding render so a list of scenarios is rendered with plural root tag.
-        if isinstance(data, (list, tuple)):
-            self.root_tag_name += 's'
+        # A list of scenarios is rendered with plural root tag.
+        render_root_tag = self.root_tag_name + 's' if isinstance(data, (list, tuple)) else self.root_tag_name
 
         stream = StringIO()
 
         xml = SimplerXMLGenerator(stream, self.charset)
         xml.startDocument()
-        xml.startElement(self.root_tag_name, {})
+        xml.startElement(render_root_tag, {})
 
-        self._to_xml(xml, data)
+        self._to_xml(xml, data, render_root_tag)
 
-        xml.endElement(self.root_tag_name)
+        xml.endElement(render_root_tag)
         xml.endDocument()
         return stream.getvalue()
+
+    def _to_xml(self, xml, data, key=None):
+        if isinstance(data, (list, tuple)):
+            for item in data:
+                 # creates list like <controls><control>...</control></controls>
+                singular_key = 'file' if key in ['vocals', 'media'] else key[:-1]
+                xml.startElement(singular_key, {})
+                self._to_xml(xml, item)
+                xml.endElement(singular_key)
+
+        elif isinstance(data, dict):
+            for key, value in data.items():
+                xml.startElement(key, {})
+                self._to_xml(xml, value, key)
+                xml.endElement(key)
+
+        elif data is None:
+            # Don't output any value
+            pass
+
+        else:
+            xml.characters(force_str(data))

@@ -10,4 +10,97 @@
 		<date_of_creation>2024-02-19</date_of_creation>
 		<description>better description</description>
 	</header>
+	<profile>
+		<avatar>
+			<filename>stock-dog.jpg</filename>
+			<height_pct>100</height_pct>
+			<width_pct>50</width_pct>
+		</avatar>
+		<summary>
+			<description>A more succinct description</description>
+			<breed>Bulldog</breed>
+			<gender>Castrated male</gender>
+			<weight>50 kg</weight>
+			<species>Canine</species>
+			<symptoms>Too much food. Chonky.</symptoms>
+			<image>duke.jpg</image>
+		</summary>
+		<controls>
+			<control>
+				<title>Temp</title>
+				<id>button-Tperi</id>
+				<top>125</top>
+				<left>300</left>
+			</control>
+			<control>
+				<title>Left Lung Sound</title>
+				<id>left-lung-dog-control</id>
+				<top>180</top>
+				<left>80</left>
+			</control>
+		</controls>
+		<color>#111111</color>
+	</profile>
+	<vocals>
+		<file>
+			<filename>vocals/purr.wav</filename>
+			<title>Purring</title>
+		</file>
+		<file>
+			<filename>vocals/purr.wav</filename>
+			<title>Moar purring</title>
+		</file>
+	</vocals>
+	<media>
+		<file>
+			<filename>media/logo.jpeg</filename>
+			<title>OVS Logo</title>
+		</file>
+		<file>
+			<filename>media/logo.jpeg</filename>
+			<title>Extra Logo</title>
+		</file>
+	</media>
+	<init>
+		<cardiac>
+			<rhythm>asystole</rhythm>
+			<vpc>none</vpc>
+			<pea>0</pea>
+			<vpc_freq>0</vpc_freq>
+			<vfib_amplitude>medium</vfib_amplitude>
+			<rate>180</rate>
+			<nibp_rate>180</nibp_rate>
+			<bps_sys>55</bps_sys>
+			<bps_dia>40</bps_dia>
+			<left_dorsal_pulse_strength>weak</left_dorsal_pulse_strength>
+			<right_dorsal_pulse_strength>medium</right_dorsal_pulse_strength>
+			<left_femoral_pulse_strength>weak</left_femoral_pulse_strength>
+			<right_femoral_pulse_strength>medium</right_femoral_pulse_strength>
+			<heart_sound_volume>7</heart_sound_volume>
+			<heart_sound>normal</heart_sound>
+			<ecg_indicator>0</ecg_indicator>
+			<bp_cuff>0</bp_cuff>
+			<arrest>0</arrest>
+		</cardiac>
+		<respiration>
+			<left_lung_sound>coarse_crackles</left_lung_sound>
+			<left_lung_sound_volume>7</left_lung_sound_volume>
+			<right_lung_sound>fine_crackles</right_lung_sound>
+			<right_lung_sound_volume>7</right_lung_sound_volume>
+			<inhalation_duration>500</inhalation_duration>
+			<exhalation_duration>500</exhalation_duration>
+			<spo2>86</spo2>
+			<spo2_indicator>0</spo2_indicator>
+			<etco2>36</etco2>
+			<etco2_indicator>0</etco2_indicator>
+			<rate>50</rate>
+			<chest_movement>1</chest_movement>
+		</respiration>			
+		<general>
+			<temperature>1038</temperature>
+			<temperature_enable>1</temperature_enable>
+		</general>
+		<initial_scene>1</initial_scene>
+		<record>1</record>
+	</init>	
 </scenario>
