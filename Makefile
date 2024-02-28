@@ -7,4 +7,4 @@ run:
 	docker compose up -d --wait
 
 clean:
-	docker compose down
+	docker compose down --volumes

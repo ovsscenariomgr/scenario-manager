@@ -19,5 +19,5 @@ micromamba activate ovs
 pip install -r requirements.txt
 python manage.py makemigrations app --noinput
 python manage.py migrate --noinput
-python manage.py loaddata app/fixtures/users.json
+python manage.py loaddata users
 python manage.py collectstatic --noinput
