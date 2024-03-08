@@ -1,0 +1,522 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<scenario>
+	<header>
+		<author>Daniel J. Fletcher, PhD, DVM, DACVECC; Kenichiro Yagi, MS, RVT, VTS (ECC, SAIM)</author>
+		<title>
+			<name>Megacode 1</name>
+			<top>5</top>
+			<left>10</left>
+		</title>
+		<date_of_creation>2018-10-04</date_of_creation>
+		<description>ALS Assessment Scenario: Megacode 1</description>
+	</header>
+	<profile>
+		<avatar>
+			<filename>stock-dogRECOVER.jpg</filename>
+			<height_pct>100</height_pct>
+			<width_pct>100</width_pct>
+		</avatar>
+		<summary>
+			<description>
+				A 3 year old male Dalmatian presents on referral for a urethral obstruction. He was extremely painful on abdominal palpation on presentation and the referring veterinarian placed an IV catheter, gave 0.2 mg/kg of methadone IV did a decompressive cystocentesis. On presentation to your clinic he is recumbent and unresponsive, so your nurse calls you to assess him.
+			</description>
+			<breed>Dalmatian</breed>
+			<sex>Male</sex>
+			<weight>30 kg</weight>
+			<complaint>Vomiting and dribbling bloody urine</complaint>
+			<image>mancha.jpg</image>
+			<species>Canine</species>
+		</summary>
+		<controls>
+			<color>#000000</color>
+			<control>
+				<title>Vocalizations</title>
+				<id>vocals-dog-control</id>
+				<top>125</top>
+				<left>300</left>
+			</control>
+			<control>
+				<title>Right Lung Sounds</title>
+				<id>right-lung-dog-control</id>
+				<top>180</top>
+				<left>80</left>
+			</control>
+			<control>
+				<title>Left Lung Sounds</title>
+				<id>left-lung-dog-control</id>
+				<top>180</top>
+				<left>320</left>
+			</control>
+			<control>
+				<title>Left Femoral Pulse</title>
+				<id>left-femoral-pulse-dog-control</id>
+				<top>275</top>
+				<left>320</left>
+			</control>
+			<control>
+				<title>Right Femoral Pulse</title>
+				<id>right-femoral-pulse-dog-control</id>
+				<top>275</top>
+				<left>75</left>
+			</control>
+			<control>
+				<title>Left Dorsal Pulse</title>
+				<id>left-dorsal-pulse-dog-control</id>
+				<top>310</top>
+				<left>325</left>
+			</control>
+			<control>
+				<title>Right Dorsal Pulse</title>
+				<id>right-dorsal-pulse-dog-control</id>
+				<top>310</top>
+				<left>85</left>
+			</control>
+			<control>
+				<title>Heart Sounds</title>
+				<id>heart-sound-dog-control</id>
+				<top>225</top>
+				<left>221</left>
+			</control>
+			<control>
+				<title>Chest Movement</title>
+				<id>chest-dog-control</id>
+				<top>210</top>
+				<left>325</left>
+			</control>
+			<control>
+				<title>CPR</title>
+				<id>button-cpr</id>
+				<top>20</top>
+				<left>450</left>
+			</control>
+			<control>
+				<title>ECG</title>
+				<id>button-ekg</id>
+				<top>350</top>
+				<left>0</left>
+			</control>
+			<control>
+				<title>SpO&lt;sub&gt;2&lt;&#47;sub&gt;</title>
+				<id>button-SpO2</id>
+				<top>350</top>
+				<left>55</left>
+			</control>
+			<control>
+				<title>ETCO&lt;sub&gt;2&lt;&#47;sub&gt;</title>
+				<id>button-CO2</id>
+				<top>350</top>
+				<left>395</left>
+			</control>
+			<control>
+				<title>Cuff</title>
+				<id>button-bpcuff</id>
+				<top>350</top>
+				<left>450</left>
+			</control>
+			<control>
+				<title>Palpate</title>
+				<id>button-palpate</id>
+				<top>20</top>
+				<left>390</left>
+			</control>
+			<control>
+				<title>Temp</title>
+				<id>button-Tperi</id>
+				<top>350</top>
+				<left>110</left>
+			</control>
+		</controls>
+	</profile>
+
+	<vocals>
+		<file>
+			<filename>AggressiveDogGrowlBark.wav</filename>
+			<title>Dog Bark Growl</title>
+		</file>
+		<file>
+			<filename>BigDogBark.wav</filename>
+			<title>Dog Big Bark</title>
+		</file>
+		<file>
+			<filename>DogBarkSnarl.wav</filename>
+			<title>Dog Bark Snarl</title>
+		</file>
+	</vocals>	
+	
+	<media>
+		<file>
+			<!-- None -->
+		</file>
+	</media>
+
+	<init>
+		<cardiac>
+			<rhythm>asystole</rhythm>
+			<vpc>none</vpc>
+			<pea>0</pea>
+			<vpc_freq>0</vpc_freq>
+			<vfib_amplitude>low</vfib_amplitude>
+			<rate>0</rate>
+			<bps_sys>0</bps_sys>
+			<bps_dia>0</bps_dia>
+			<nibp_rate>0</nibp_rate>
+			<pulse_strength>none</pulse_strength>
+			<heart_sound>normal</heart_sound>
+			<heart_sound_volume>7</heart_sound_volume>
+			<ecg_indicator>0</ecg_indicator>
+		</cardiac>
+		<respiration>
+			<left_lung_sound>normal</left_lung_sound>
+			<left_lung_sound_volume>9</left_lung_sound_volume>
+			<right_lung_sound>normal</right_lung_sound>
+			<right_lung_sound_volume>9</right_lung_sound_volume>
+			<spo2>0</spo2>
+			<spo2_indicator>0</spo2_indicator>
+			<etco2>12</etco2>
+			<etco2_indicator>0</etco2_indicator>
+			<rate>0</rate>
+			<chest_movement>0</chest_movement>
+		</respiration>			
+		<general>
+			<temperature>995</temperature>
+		</general>
+		<initial_scene>1</initial_scene>
+		<record>1</record>
+	</init>
+   
+	<events>
+		<category>
+			<name>drugs</name>
+			<title>Drugs</title>
+			<event>
+				<title>Low Dose Epi</title>
+				<id>epi_low</id>
+				<priority>1</priority>
+			</event>
+			<event>
+				<title>High Dose Epi</title>
+				<id>epi_high</id>
+				<priority>0</priority>
+			</event>
+			<event>
+				<title>Vasopressin</title>
+				<id>vasopressin</id>
+				<priority>1</priority>
+			</event>
+			<event>
+				<title>Fluids</title>
+				<id>fluids</id>
+				<priority>0</priority>
+			</event>
+			<event>
+				<title>Lidocaine</title>
+				<id>lidocaine</id>
+				<priority>0</priority>
+			</event>
+		</category>
+		<category>
+			<name>interventions</name>
+			<title>Interventions</title>
+			<event>
+				<title>Defib</title>
+				<id>aed</id>
+				<priority>1</priority>
+			</event>
+			<event>
+				<title>Terminal</title>
+				<id>terminal</id>
+				<priority>1</priority>
+			</event>
+		</category>
+	</events>
+	
+	<scene>
+		<!-- Starting scene -->
+		<title>Initial State</title>
+		<id>1</id>
+		<init>
+		<cardiac>
+		</cardiac>
+		<respiration>
+		</respiration>			
+		<general>
+		</general>
+		</init>
+		
+		<!-- triggers to leave the scene -->
+		<triggers>
+			<!-- jump to terminal asystole if defib attempted -->
+			<trigger>
+				<event_id>aed</event_id>
+				<scene_id>100</scene_id>
+			</trigger>
+		<!-- Jump to Asystole 2 after 100 seconds of compressions -->
+			<trigger>
+				<test>GTE</test>
+				<scene_id>2</scene_id>
+				<cpr>
+					<duration>100</duration>
+				</cpr>
+			</trigger>
+		</triggers>
+	</scene>
+	
+	<scene>
+		<!--Asystole 2 - Need epi/vaso -->
+		<title>Asystole 2 - Need epi/vaso</title>
+		<id>2</id>
+		<init>			
+		</init>
+		
+		<!-- triggers to leave the scene -->
+		
+		<triggers>
+			<!-- jump to next state if epi or vasopressin are given -->
+			<trigger>
+				<event_id>epi_low</event_id>
+				<scene_id>3</scene_id>
+			</trigger>
+			<trigger>
+				<event_id>vasopressin</event_id>
+				<scene_id>3</scene_id>
+			</trigger>
+			<trigger>
+				<event_id>terminal</event_id>
+				<scene_id>100</scene_id>
+			</trigger>
+			<!-- jump to terminal asystole if defibrillation is performed -->
+			<trigger>
+				<event_id>aed</event_id>
+				<scene_id>100</scene_id>
+			</trigger>
+		</triggers>
+	</scene>
+
+	<scene>
+		<!-- Asystole 3 - Need Compressions -->
+		<title>Asystole 3 - Need Compressions</title>
+		<id>3</id>
+		<init>			
+		</init>
+		
+		<!-- triggers to leave the scene -->
+		<triggers>
+			<!-- jump to terminal asystole if defib attempted -->
+			<trigger>
+				<event_id>aed</event_id>
+				<scene_id>100</scene_id>
+			</trigger>
+			<!-- Jump to PEA 1 after 100 seconds of compressions -->
+			<trigger>
+				<test>GTE</test>
+				<scene_id>4</scene_id>
+				<cpr>
+					<duration>100</duration>
+				</cpr>
+			</trigger>
+		</triggers>
+	</scene>
+	
+	<scene>
+		<!--PEA 1 - Need epi/vaso -->
+		<title>PEA 1 - Need epi/vaso</title>
+		<id>4</id>
+		<init>
+			<cardiac>
+				<rhythm>vtach1</rhythm>
+				<rate>140</rate>
+				<pea>1</pea>
+				<transfer_time>0</transfer_time>
+				<bps_sys>0</bps_sys>
+				<bps_dia>0</bps_dia>
+				<nibp_rate>0</nibp_rate>
+			</cardiac>		
+		</init>
+		
+		<!-- triggers to leave the scene -->
+		
+		<triggers>
+			<!-- jump to next state if epi or vasopressin are given -->
+			<trigger>
+				<event_id>epi_low</event_id>
+				<scene_id>5</scene_id>
+			</trigger>
+			<trigger>
+				<event_id>vasopressin</event_id>
+				<scene_id>5</scene_id>
+			</trigger>
+			<trigger>
+				<event_id>terminal</event_id>
+				<scene_id>100</scene_id>
+			</trigger>
+			<!-- jump to terminal asystole if defibrillation is performed -->
+			<trigger>
+				<event_id>aed</event_id>
+				<scene_id>100</scene_id>
+			</trigger>
+		</triggers>
+	</scene>
+
+	<scene>
+		<!-- PEA 2 - Need Compressions -->
+		<title>PEA 2 - Need Compressions</title>
+		<id>5</id>
+		<init>			
+		</init>
+		
+		<!-- triggers to leave the scene -->
+		<triggers>
+			<!-- jump to terminal asystole if defib attempted -->
+			<trigger>
+				<event_id>aed</event_id>
+				<scene_id>100</scene_id>
+			</trigger>
+			<!-- Jump to PVT 1 after 100 seconds of compressions -->
+			<trigger>
+				<test>GTE</test>
+				<scene_id>6</scene_id>
+				<cpr>
+					<duration>100</duration>
+				</cpr>
+			</trigger>
+		</triggers>
+	</scene>
+	
+	<scene>
+		<!-- PVT 1 - Need defibrillation -->
+		<title>PVT 1 - Need defibrillation</title>
+		<id>6</id>
+		<init>
+			<cardiac>
+				<rhythm>vtach2</rhythm>
+				<rate>240</rate>
+				<transfer_time>0</transfer_time>
+				<pulse_strength>none</pulse_strength>
+				<heart_sound>normal</heart_sound>
+				<heart_sound_volume>0</heart_sound_volume>
+				<pea>1</pea>
+			</cardiac>
+		</init>	
+		
+		<!-- triggers to leave the scene -->
+		<triggers>
+			<!-- jump to PVT 2 if defibrillation is performed -->
+			<trigger>
+				<event_id>aed</event_id>
+				<scene_id>7</scene_id>
+			</trigger>
+		</triggers>
+	</scene>
+	
+	<scene>
+		<!-- PVT 2 - Need Compressions -->
+		<title>PVT 2 - Need compressions</title>
+		<id>7</id>
+		<init>
+		</init>
+		
+		<!-- triggers to leave the scene -->
+		<triggers>
+			<!-- jump to PVT 3 if compressions for at least 100 seconds -->
+			<trigger>
+				<test>GTE</test>
+				<scene_id>8</scene_id>
+				<cpr>
+					<duration>100</duration>
+				</cpr>
+			</trigger>					
+		</triggers>
+	</scene>
+	
+	<scene>
+		<!-- PVT 3 - Need defibrillation -->
+		<title>PVT 3 - Need defibrillation</title>
+		<id>8</id>
+		<init>
+		</init>
+		
+		<!-- triggers to leave the scene -->
+		<triggers>
+			<!-- jump to Asystole if defibrillation is performed -->
+			<trigger>
+				<event_id>aed</event_id>
+				<scene_id>9</scene_id>
+			</trigger>
+		</triggers>
+	</scene>
+	
+	<scene>
+		<!-- Asystole - Delay to sinus -->
+		<title>Asystole - Delay to sinus</title>
+		<id>9</id>
+		<init>
+			<cardiac>
+				<rhythm>asystole</rhythm>
+				<transfer_time>0</transfer_time>
+			</cardiac>
+		</init>
+		
+		<!-- triggers to leave the scene -->
+		<triggers>		
+		<!-- jump to sinus rhythm if compressions for at least 100 seconds -->
+			<trigger>
+				<test>GTE</test>
+				<scene_id>10</scene_id>
+				<cpr>
+					<duration>30</duration>
+				</cpr>
+			</trigger>
+		</triggers>
+	</scene>
+	
+	<scene>
+		<!-- ROSC - Sinus Rhythm -->
+		<title>ROSC - Sinus Rhythm</title>
+		<id>10</id>
+		<init>
+			<cardiac>
+				<rhythm>sinus</rhythm>
+				<rate>180</rate>
+				<pulse_strength>strong</pulse_strength>
+				<heart_sound>normal</heart_sound>
+				<heart_sound_volume>7</heart_sound_volume>
+				<pea>0</pea>
+				<bps_sys>104</bps_sys>
+				<bps_dia>52</bps_dia>
+				<nibp_rate>180</nibp_rate>
+				<transfer_time>0</transfer_time>
+			</cardiac>
+			<respiration>
+				<left_lung_sound>normal</left_lung_sound>
+				<left_lung_sound_volume>9</left_lung_sound_volume>
+				<right_lung_sound>normal</right_lung_sound>
+				<right_lung_sound_volume>9</right_lung_sound_volume>
+				<spo2>94</spo2>
+				<rate>0</rate>
+				<etco2>56</etco2>
+				<transfer_time>12</transfer_time>
+				<chest_movement>0</chest_movement>
+			</respiration>
+			<general>
+				<temperature>995</temperature>
+				<transfer_time>0</transfer_time>
+			</general>
+		</init>
+	</scene>
+	
+	<!-- terminal asystole -->
+	<scene>
+		<title>Terminal Asystole</title>
+		<id>100</id>
+		<init>
+			<cardiac>
+				<rate>0</rate>
+				<bps_sys>0</bps_sys>
+				<bps_dia>0</bps_dia>
+				<nibp_rate>0</nibp_rate>
+				<transfer_rate>0</transfer_rate>
+			</cardiac>
+		</init>
+	</scene>
+	
+</scenario>

@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.core.exceptions import ValidationError
-from .Init import Init
+from .Init import ScenarioInit, SceneInit
 
 # TODO: Items indicated as trendable would need to associate a modifier: <transfer_time>100</transfer_time> somehow
 class Respiration(models.Model):
@@ -43,5 +43,8 @@ class Respiration(models.Model):
         if self.right_lung_sound == self.LungSoundChoices.SAME_AS_RIGHT:
             raise ValidationError("right_lung_sound cannot be assigned value: %s" % (self.LungSoundChoices.SAME_AS_RIGHT))
 
-class InitRespiration(Respiration):
-    init = models.OneToOneField(Init, on_delete=models.CASCADE, related_name='respiration')
+class ScenarioInitRespiration(Respiration):
+    scenario_init = models.OneToOneField(ScenarioInit, on_delete=models.CASCADE, related_name='respiration')
+
+class SceneInitRespiration(Respiration):
+    scene_init = models.OneToOneField(SceneInit, on_delete=models.CASCADE, related_name='respiration')

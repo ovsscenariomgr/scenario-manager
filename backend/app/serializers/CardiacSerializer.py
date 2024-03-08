@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from app.models import Cardiac, InitCardiac
+from app.models import Cardiac, ScenarioInitCardiac, SceneInitCardiac
 
 class CardiacSerializer(serializers.ModelSerializer):
     class Meta:
@@ -8,6 +8,10 @@ class CardiacSerializer(serializers.ModelSerializer):
                   'left_dorsal_pulse_strength', 'right_dorsal_pulse_strength', 'left_femoral_pulse_strength', 'right_femoral_pulse_strength',
                   'heart_sound_volume', 'heart_sound', 'ecg_indicator', 'bp_cuff', 'arrest',)
 
-class InitCardiacSerializer(CardiacSerializer):
+class ScenarioInitCardiacSerializer(CardiacSerializer):
     class Meta(CardiacSerializer.Meta):
-        model = InitCardiac
+        model = ScenarioInitCardiac
+
+class SceneInitCardiacSerializer(CardiacSerializer):
+    class Meta(CardiacSerializer.Meta):
+        model = SceneInitCardiac

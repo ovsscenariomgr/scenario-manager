@@ -4,14 +4,14 @@ from .CategorySerializer import CategorySerializer
 from .HeaderSerializer import HeaderSerializer
 from .FileSerializer import MediaSerializer, VocalSerializer
 from .ProfileSerializer import ProfileSerializer
-from .InitSerializer import InitSerializer
+from .InitSerializer import ScenarioInitSerializer
 
 class ScenarioSerializer(WritableNestedModelSerializer):
     header = HeaderSerializer()
     profile = ProfileSerializer()
     vocals = VocalSerializer(many=True)
     media = MediaSerializer(many=True)
-    init = InitSerializer()
+    init = ScenarioInitSerializer()
     categories = CategorySerializer(many=True)
 
     class Meta:

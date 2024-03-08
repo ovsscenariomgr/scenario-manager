@@ -2,8 +2,8 @@ from django.contrib import admin
 import nested_admin
 from .forms import BaseNestedInlineForm
 from .models import (Title, Header, Avatar, Summary, Control, Profile,
-    VocalFile, MediaFile, Scenario, Init, InitCardiac,
-    InitGeneral, InitRespiration, Category, Event)
+    VocalFile, MediaFile, Scenario, ScenarioInit, ScenarioInitCardiac,
+    ScenarioInitGeneral, ScenarioInitRespiration, Category, Event)
 
 class TitleInline(nested_admin.NestedStackedInline):
     model = Title
@@ -58,30 +58,30 @@ class MediaInline(nested_admin.NestedStackedInline):
     classes = ('grp-collapse grp-open',)
     inline_classes = ('grp-collapse grp-open',)
 
-class InitRespirationInline(nested_admin.NestedStackedInline):
-    model = InitRespiration
+class ScenarioInitRespirationInline(nested_admin.NestedStackedInline):
+    model = ScenarioInitRespiration
     form = BaseNestedInlineForm
     fk_name = 'init'
     classes = ('grp-collapse grp-open',) # Set so default is form opened.
     inline_classes = ('grp-collapse grp-open',)
 
-class InitGeneralInline(nested_admin.NestedStackedInline):
-    model = InitGeneral
+class ScenarioInitGeneralInline(nested_admin.NestedStackedInline):
+    model = ScenarioInitGeneral
     form = BaseNestedInlineForm
     fk_name = 'init'
     classes = ('grp-collapse grp-open',) # Set so default is form opened.
     inline_classes = ('grp-collapse grp-open',)
 
-class InitCardiacInline(nested_admin.NestedStackedInline):
-    model = InitCardiac
+class ScenarioInitCardiacInline(nested_admin.NestedStackedInline):
+    model = ScenarioInitCardiac
     form = BaseNestedInlineForm
     fk_name = 'init'
     classes = ('grp-collapse grp-open',) # Set so default is form opened.
     inline_classes = ('grp-collapse grp-open',)
 
-class InitInline(nested_admin.NestedStackedInline):
-    model = Init
-    inlines = [InitCardiacInline, InitRespirationInline, InitGeneralInline,]
+class ScenarioInitInline(nested_admin.NestedStackedInline):
+    model = ScenarioInit
+    inlines = [ScenarioInitCardiacInline, ScenarioInitRespirationInline, ScenarioInitGeneralInline,]
     classes = ('grp-collapse grp-open',)
     inline_classes = ('grp-collapse grp-open',)
 
@@ -103,6 +103,6 @@ class CategoryInline(nested_admin.NestedStackedInline):
 @admin.register(Scenario)
 class ScenarioAdmin(nested_admin.NestedModelAdmin):
     model = Scenario
-    inlines = [HeaderInline, ProfileInline, VocalsInline, MediaInline, InitInline, CategoryInline]
+    inlines = [HeaderInline, ProfileInline, VocalsInline, MediaInline, ScenarioInitInline, CategoryInline]
     classes = ('grp-collapse grp-open',)
     inline_classes = ('grp-collapse grp-open',)

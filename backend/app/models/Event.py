@@ -6,7 +6,7 @@ class Event(models.Model):
     title = models.CharField(max_length=256, default='Morphine')
     id = models.CharField(max_length=256, default='opiate_morphine')
     priority = models.IntegerField(default=0) # nullable
-    hotkey = models.CharField(max_length=1, blank=True, default='') # allow it to be blank? serialize as missing?
+    hotkey = models.CharField(max_length=1, blank=True, default='') # TODO: should this be null? understand blank/null/none bleh.
     # ForeignKey
     # The XML spec should be:
     # <events><event>...</event></events>
