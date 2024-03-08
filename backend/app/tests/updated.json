@@ -101,5 +101,39 @@
         },
         "initial_scene": 1,
         "record": 1
-    }
+    },
+    "categories": [
+        {
+            "name": "drugs",
+            "title": "Drugs",
+            "events": [
+                {
+                    "title": "Low Dose Epi",
+                    "id": "epi_low",
+                    "priority": 1
+                },
+                {
+                    "title": "High Dose Epi",
+                    "id": "epi_high",
+                    "priority": 0
+                }
+            ]
+        },
+        {
+            "name": "interventions",
+            "title": "Interventions",
+            "events": [
+                {
+                    "title": "Defib",
+                    "id": "aed",
+                    "priority": 1
+                },
+                {
+                    "title": "Terminal",
+                    "id": "terminal",
+                    "priority": 1
+                }
+            ]
+        }
+    ]
 }

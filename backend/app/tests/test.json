@@ -87,5 +87,29 @@
         },
         "initial_scene": 1,
         "record": 1
-    }
+    },
+    "categories": [
+        {
+            "name": "drugs",
+            "title": "Drugs",
+            "events": [
+                {
+                    "title": "Low Dose Epi",
+                    "id": "epi_low",
+                    "priority": 1
+                }
+            ]
+        },
+        {
+            "name": "interventions",
+            "title": "Interventions",
+            "events": [
+                {
+                    "title": "Defib",
+                    "id": "aed",
+                    "priority": 1
+                }
+            ]
+        }
+    ]
 }

@@ -34,8 +34,13 @@ class ScenarioXMLRenderer(XMLRenderer):
     def _to_xml(self, xml, data, key=None):
         if isinstance(data, (list, tuple)):
             for item in data:
-                 # creates list like <controls><control>...</control></controls>
-                singular_key = 'file' if key in ['vocals', 'media'] else key[:-1]
+                # creates list like <controls><control>...</control></controls>
+                if key in ['vocals', 'media']:
+                    singular_key = 'file'
+                elif key == 'categories': # This needs to be events
+                    singular_key = 'category'
+                else:
+                    singular_key = key[:-1]
                 xml.startElement(singular_key, {})
                 self._to_xml(xml, item)
                 xml.endElement(singular_key)

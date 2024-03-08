@@ -94,5 +94,29 @@
 		</general>
 		<initial_scene>1</initial_scene>
 		<record>1</record>
-	</init>	
+	</init>
+	<categories>
+		<category>
+			<name>drugs</name>
+			<title>Drugs</title>
+			<events>
+				<event>
+					<title>Low Dose Epi</title>
+					<id>epi_low</id>
+					<priority>1</priority>
+				</event>
+			</events>
+		</category>
+		<category>
+			<name>interventions</name>
+			<title>Interventions</title>
+			<events>
+				<event>
+					<title>Defib</title>
+					<id>aed</id>
+					<priority>1</priority>
+				</event>
+			</events>
+		</category>
+	</categories>
 </scenario>

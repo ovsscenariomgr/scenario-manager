@@ -1,6 +1,7 @@
 from rest_framework_xml.parsers import XMLParser
 
 class ScenarioXMLParser(XMLParser):
+    list_item_tags = ['control', 'vocalfile', 'mediafile', 'file', 'category', 'event']
 
     def _xml_convert(self, element):
         """
@@ -12,8 +13,9 @@ class ScenarioXMLParser(XMLParser):
         if len(children) == 0:
             return self._type_convert(element.text)
         else:
-            # If the tag is in the list of scenario xml "lists", do the thing here. 
-            if children[0].tag in ['control', 'file']:
+            # If the tag is in the list of scenario xml "lists", do the thing here.
+            # if the first child tag is list-item means all children are list-item
+            if children[0].tag in self.list_item_tags:
                 data = []
                 for child in children:
                     data.append(self._xml_convert(child))
