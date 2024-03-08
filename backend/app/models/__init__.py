@@ -1,6 +1,8 @@
 from .Avatar import Avatar
 from .Cardiac import Cardiac, InitCardiac
+from .Category import Category
 from .Control import Control
+from .Event import Event
 from .File import File
 from .General import General, InitGeneral
 from .Header import Header

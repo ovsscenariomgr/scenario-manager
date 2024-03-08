@@ -1,5 +1,6 @@
 from drf_writable_nested.serializers import WritableNestedModelSerializer
 from app.models import Scenario
+from .CategorySerializer import CategorySerializer
 from .HeaderSerializer import HeaderSerializer
 from .FileSerializer import MediaSerializer, VocalSerializer
 from .ProfileSerializer import ProfileSerializer
@@ -11,7 +12,8 @@ class ScenarioSerializer(WritableNestedModelSerializer):
     vocals = VocalSerializer(many=True)
     media = MediaSerializer(many=True)
     init = InitSerializer()
+    categories = CategorySerializer(many=True)
 
     class Meta:
         model = Scenario
-        fields = ('id', 'header', 'profile', 'vocals', 'media', 'init',)
+        fields = ('id', 'header', 'profile', 'vocals', 'media', 'init', 'categories',)

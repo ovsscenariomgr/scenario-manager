@@ -1,0 +1,12 @@
+from django.db import models
+from .Scenario import Scenario
+
+class Category(models.Model):
+    name = models.CharField(max_length=64, default='drugs')
+    title = models.CharField(max_length=64, default='Injected Drugs')
+    # Foreign Key
+    # This will have to get rendered as 'events' in the end XML
+    scenario = models.ForeignKey(Scenario, on_delete=models.CASCADE, related_name='categories')
+
+    class Meta:  
+        verbose_name_plural = 'categories'

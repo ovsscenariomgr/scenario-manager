@@ -1,7 +1,9 @@
 from django.contrib import admin
 import nested_admin
 from .forms import BaseNestedInlineForm
-from .models import Title, Header, Avatar, Summary, Control, Profile, VocalFile, MediaFile, Scenario, Init, InitCardiac, InitGeneral, InitRespiration
+from .models import (Title, Header, Avatar, Summary, Control, Profile,
+    VocalFile, MediaFile, Scenario, Init, InitCardiac,
+    InitGeneral, InitRespiration, Category, Event)
 
 class TitleInline(nested_admin.NestedStackedInline):
     model = Title
@@ -83,9 +85,24 @@ class InitInline(nested_admin.NestedStackedInline):
     classes = ('grp-collapse grp-open',)
     inline_classes = ('grp-collapse grp-open',)
 
+class EventInline(nested_admin.NestedStackedInline):
+    model = Event
+    form = BaseNestedInlineForm
+    extra = 1
+    fk_name = 'category'
+    classes = ('grp-collapse grp-open',)
+    inline_classes = ('grp-collapse grp-open',)
+
+class CategoryInline(nested_admin.NestedStackedInline):
+    model = Category
+    extra = 1
+    inlines = [EventInline]
+    classes = ('grp-collapse grp-open',)
+    inline_classes = ('grp-collapse grp-open',)
+
 @admin.register(Scenario)
 class ScenarioAdmin(nested_admin.NestedModelAdmin):
     model = Scenario
-    inlines = [HeaderInline, ProfileInline, VocalsInline, MediaInline, InitInline]
+    inlines = [HeaderInline, ProfileInline, VocalsInline, MediaInline, InitInline, CategoryInline]
     classes = ('grp-collapse grp-open',)
     inline_classes = ('grp-collapse grp-open',)
