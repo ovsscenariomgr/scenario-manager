@@ -18,4 +18,4 @@ class ScenarioSerializer(WritableNestedModelSerializer):
 
     class Meta:
         model = Scenario
-        fields = ('id', 'header', 'profile', 'vocals', 'media', 'init', 'categories','scenes',)
+        fields = ('id', 'header', 'profile', 'vocals', 'media', 'init', 'categories', 'scenes',)

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from app.models import Cardiac, ScenarioInitCardiac, SceneInitCardiac
+from app.models import Cardiac, ScenarioInitCardiac, SceneInitCardiac, ParameterTriggerCardiac
 
 class CardiacSerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,3 +15,7 @@ class ScenarioInitCardiacSerializer(CardiacSerializer):
 class SceneInitCardiacSerializer(CardiacSerializer):
     class Meta(CardiacSerializer.Meta):
         model = SceneInitCardiac
+
+class ParameterTriggerCardiacSerializer(CardiacSerializer):
+    class Meta(CardiacSerializer.Meta):
+        model = ParameterTriggerCardiac

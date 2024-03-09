@@ -117,6 +117,10 @@
             "title": "Opening Scene",
             "id": 1,
             "triggers_needed": 1,
+            "timeout": {
+                "timeout_value": 30,
+                "scene_id": 1
+            },
             "init": {
                 "cardiac": {
                     "pea": 0
@@ -127,7 +131,13 @@
                 "general": {
                     "temperature": 975
                 }
-            }
+            },
+            "triggers": [
+                {
+                    "event_id": "aed",
+                    "scene_id": 5
+                }
+            ]
         }
     ]
 }

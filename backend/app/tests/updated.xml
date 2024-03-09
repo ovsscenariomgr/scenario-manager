@@ -141,6 +141,11 @@
 		<scene>
 			<title>Opening Scene</title>
 			<id>1</id>
+			<triggers_needed>1</triggers_needed>
+			<timeout>
+				<timout_value>30</timout_value>
+				<scene_id>1</scene_id>
+			</timeout>
 			<init>
 				<cardiac>
 					<rate>100</rate>
@@ -158,10 +163,21 @@
 					<temperature>975</temperature>
 				</general>
 			</init>
+			<triggers>
+				<trigger>
+					<event_id>aed</event_id>
+					<scene_id>5</scene_id>
+				</trigger>
+			</triggers>
 		</scene>
 		<scene>
 			<title>Second Scene</title>
 			<id>2</id>
+			<triggers_needed>2</triggers_needed>
+			<timeout>
+				<timout_value>30</timout_value>
+				<scene_id>1</scene_id>
+			</timeout>
 			<init>
 				<cardiac>
 					<rate>100</rate>
@@ -179,6 +195,12 @@
 					<temperature>975</temperature>
 				</general>
 			</init>
+			<triggers>
+				<trigger>
+					<event_id>aed</event_id>
+					<scene_id>5</scene_id>
+				</trigger>
+			</triggers>
 		</scene>
 	</scenes>
 </scenario>

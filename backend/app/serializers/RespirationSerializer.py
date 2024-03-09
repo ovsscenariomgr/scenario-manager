@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from app.models import Respiration, ScenarioInitRespiration, SceneInitRespiration
+from app.models import Respiration, ScenarioInitRespiration, SceneInitRespiration, ParameterTriggerRespiration
 
 class RespirationSerializer(serializers.ModelSerializer):
     class Meta:
@@ -14,3 +14,7 @@ class ScenarioInitRespirationSerializer(RespirationSerializer):
 class SceneInitRespirationSerializer(RespirationSerializer):
     class Meta(RespirationSerializer.Meta):
         model = SceneInitRespiration
+
+class ParameterTriggerRespirationSerializer(RespirationSerializer):
+    class Meta(RespirationSerializer.Meta):
+        model = ParameterTriggerRespiration

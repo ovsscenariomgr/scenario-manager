@@ -17,4 +17,4 @@ class SceneInit(models.Model):
     # general = OneToOneField(SceneInitGeneral)
     dummy_field = models.IntegerField(default=1)
     # Foreign Key
-    # scene = models.OneToOneField(Scene, on_delete=models.CASCADE, related_name='init')
+    scene = models.OneToOneField(Scene, on_delete=models.CASCADE, related_name='init')
