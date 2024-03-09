@@ -7,9 +7,9 @@ from .TriggerSerializer import TriggerSerializer
 class SceneSerializer(WritableNestedModelSerializer):
     # init = SceneInitSerializer()
     timeout = TimeoutSerializer()
-    # triggers = TriggerSerializer(many=True)
+    triggers = TriggerSerializer(many=True)
 
     class Meta:
         model = Scene
         # fields = ('title', 'id', 'init', 'timeout', 'triggers_needed', 'triggers')
-        fields = ('title', 'id', 'timeout', 'triggers_needed')
+        fields = ('title', 'id', 'timeout', 'triggers_needed', 'triggers',)

@@ -29,4 +29,4 @@ class Trigger(models.Model):
     # general = OneToOneField(ParameterTriggerGeneral)
 
     # Foreign Key
-    # scenefk = models.ForeignKey(Scene, on_delete=models.CASCADE, related_name='triggers')
+    scenefk = models.ForeignKey(Scene, on_delete=models.CASCADE, related_name='triggers')
