@@ -10,5 +10,8 @@ from .InitSerializer import ScenarioInitSerializer, SceneInitSerializer
 from .ProfileSerializer import ProfileSerializer
 from .RespirationSerializer import RespirationSerializer, ScenarioInitRespirationSerializer, SceneInitRespirationSerializer
 from .ScenarioSerializer import ScenarioSerializer
+from .SceneSerializer import SceneSerializer
 from .SummarySerializer import SummarySerializer
+from .TimeoutSerializer import TimeoutSerializer
 from .TitleSerializer import TitleSerializer
+from .TriggerSerializer import TriggerSerializer

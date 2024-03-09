@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from .Init import ScenarioInit, SceneInit
+from .Trigger import Trigger
 
 # TODO: Items indicated as trendable would need to associate a modifier: <transfer_time>100</transfer_time> somehow
 class General(models.Model):
@@ -16,3 +17,6 @@ class ScenarioInitGeneral(General):
 
 class SceneInitGeneral(General):
     scene_init = models.OneToOneField(SceneInit, on_delete=models.CASCADE, related_name='general')
+
+class ParameterTriggerGeneral(General):
+    trigger = models.OneToOneField(Trigger, on_delete=models.CASCADE, related_name='general')

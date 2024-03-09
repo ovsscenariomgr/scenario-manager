@@ -3,7 +3,10 @@ import nested_admin
 from .forms import BaseNestedInlineForm
 from .models import (Title, Header, Avatar, Summary, Control, Profile,
     VocalFile, MediaFile, Scenario, ScenarioInit, ScenarioInitCardiac,
-    ScenarioInitGeneral, ScenarioInitRespiration, Category, Event)
+    ScenarioInitGeneral, ScenarioInitRespiration, Category, Event,
+    Scene, SceneInit, SceneInitCardiac, SceneInitGeneral, SceneInitRespiration,
+    Trigger, ParameterTriggerCardiac, ParameterTriggerGeneral, ParameterTriggerRespiration,
+    Timeout)
 
 class TitleInline(nested_admin.NestedStackedInline):
     model = Title
@@ -61,22 +64,22 @@ class MediaInline(nested_admin.NestedStackedInline):
 class ScenarioInitRespirationInline(nested_admin.NestedStackedInline):
     model = ScenarioInitRespiration
     form = BaseNestedInlineForm
-    fk_name = 'init'
-    classes = ('grp-collapse grp-open',) # Set so default is form opened.
+    fk_name = 'scenario_init'
+    classes = ('grp-collapse grp-open',)
     inline_classes = ('grp-collapse grp-open',)
 
 class ScenarioInitGeneralInline(nested_admin.NestedStackedInline):
     model = ScenarioInitGeneral
     form = BaseNestedInlineForm
-    fk_name = 'init'
-    classes = ('grp-collapse grp-open',) # Set so default is form opened.
+    fk_name = 'scenario_init'
+    classes = ('grp-collapse grp-open',)
     inline_classes = ('grp-collapse grp-open',)
 
 class ScenarioInitCardiacInline(nested_admin.NestedStackedInline):
     model = ScenarioInitCardiac
     form = BaseNestedInlineForm
-    fk_name = 'init'
-    classes = ('grp-collapse grp-open',) # Set so default is form opened.
+    fk_name = 'scenario_init'
+    classes = ('grp-collapse grp-open',)
     inline_classes = ('grp-collapse grp-open',)
 
 class ScenarioInitInline(nested_admin.NestedStackedInline):
@@ -100,9 +103,81 @@ class CategoryInline(nested_admin.NestedStackedInline):
     classes = ('grp-collapse grp-open',)
     inline_classes = ('grp-collapse grp-open',)
 
+class SceneInitRespirationInline(nested_admin.NestedStackedInline):
+    model = SceneInitRespiration
+    form = BaseNestedInlineForm
+    fk_name = 'scene_init'
+    classes = ('grp-collapse grp-open',)
+    inline_classes = ('grp-collapse grp-open',)
+
+class SceneInitGeneralInline(nested_admin.NestedStackedInline):
+    model = SceneInitGeneral
+    form = BaseNestedInlineForm
+    fk_name = 'scene_init'
+    classes = ('grp-collapse grp-open',)
+    inline_classes = ('grp-collapse grp-open',)
+
+class SceneInitCardiacInline(nested_admin.NestedStackedInline):
+    model = SceneInitCardiac
+    form = BaseNestedInlineForm
+    fk_name = 'scene_init'
+    classes = ('grp-collapse grp-open',)
+    inline_classes = ('grp-collapse grp-open',)
+
+class SceneInitInline(nested_admin.NestedStackedInline):
+    model = SceneInit
+    fk_name = 'scene'
+    inlines = [SceneInitCardiacInline, SceneInitRespirationInline, SceneInitGeneralInline,]
+    classes = ('grp-collapse grp-open',)
+    inline_classes = ('grp-collapse grp-open',)
+
+class TimeoutInline(nested_admin.NestedStackedInline):
+    model = Timeout
+    form = BaseNestedInlineForm
+    fk_name = 'scenefk'
+    classes = ('grp-collapse grp-open',)
+    inline_classes = ('grp-collapse grp-open',)
+
+class ParameterTriggerRespirationInline(nested_admin.NestedStackedInline):
+    model = ParameterTriggerRespiration
+    form = BaseNestedInlineForm
+    fk_name = 'trigger'
+    classes = ('grp-collapse grp-open',)
+    inline_classes = ('grp-collapse grp-open',)
+
+class ParameterTriggerGeneralInline(nested_admin.NestedStackedInline):
+    model = ParameterTriggerGeneral
+    form = BaseNestedInlineForm
+    fk_name = 'trigger'
+    classes = ('grp-collapse grp-open',)
+    inline_classes = ('grp-collapse grp-open',)
+
+class ParameterTriggerCardiacInline(nested_admin.NestedStackedInline):
+    model = ParameterTriggerCardiac
+    form = BaseNestedInlineForm
+    fk_name = 'trigger'
+    classes = ('grp-collapse grp-open',)
+    inline_classes = ('grp-collapse grp-open',)
+
+class TriggerInline(nested_admin.NestedStackedInline):
+    model = Trigger
+    inlines = [ParameterTriggerCardiacInline, ParameterTriggerRespirationInline, ParameterTriggerGeneralInline]
+    extra = 1
+    fk_name = 'scenefk'
+    classes = ('grp-collapse grp-open',)
+    inline_classes = ('grp-collapse grp-open',)
+
+class SceneInline(nested_admin.NestedStackedInline):
+    model = Scene
+    extra = 1
+    inlines = [SceneInitInline, TimeoutInline]
+    # inlines = [SceneInitInline, TimeoutInline, TriggerInline]
+    classes = ('grp-collapse grp-open',)
+    inline_classes = ('grp-collapse grp-open',)
+
 @admin.register(Scenario)
 class ScenarioAdmin(nested_admin.NestedModelAdmin):
     model = Scenario
-    inlines = [HeaderInline, ProfileInline, VocalsInline, MediaInline, ScenarioInitInline, CategoryInline]
+    inlines = [HeaderInline, ProfileInline, VocalsInline, MediaInline, ScenarioInitInline, CategoryInline, SceneInline]
     classes = ('grp-collapse grp-open',)
     inline_classes = ('grp-collapse grp-open',)
