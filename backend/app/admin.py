@@ -126,7 +126,6 @@ class SceneInitCardiacInline(nested_admin.NestedStackedInline):
 
 class SceneInitInline(nested_admin.NestedStackedInline):
     model = SceneInit
-    fk_name = 'scene'
     inlines = [SceneInitCardiacInline, SceneInitRespirationInline, SceneInitGeneralInline,]
     classes = ('grp-collapse grp-closed',)
     inline_classes = ('grp-collapse grp-closed',)
@@ -138,39 +137,39 @@ class TimeoutInline(nested_admin.NestedStackedInline):
     classes = ('grp-collapse grp-closed',)
     inline_classes = ('grp-collapse grp-closed',)
 
-class ParameterTriggerRespirationInline(nested_admin.NestedStackedInline):
-    model = ParameterTriggerRespiration
-    form = BaseNestedInlineForm
-    fk_name = 'trigger'
-    classes = ('grp-collapse grp-closed',)
-    inline_classes = ('grp-collapse grp-closed',)
+# class ParameterTriggerRespirationInline(nested_admin.NestedStackedInline):
+#     model = ParameterTriggerRespiration
+#     form = BaseNestedInlineForm
+#     fk_name = 'trigger'
+#     classes = ('grp-collapse grp-closed',)
+#     inline_classes = ('grp-collapse grp-closed',)
 
-class ParameterTriggerGeneralInline(nested_admin.NestedStackedInline):
-    model = ParameterTriggerGeneral
-    form = BaseNestedInlineForm
-    fk_name = 'trigger'
-    classes = ('grp-collapse grp-closed',)
-    inline_classes = ('grp-collapse grp-closed',)
+# class ParameterTriggerGeneralInline(nested_admin.NestedStackedInline):
+#     model = ParameterTriggerGeneral
+#     form = BaseNestedInlineForm
+#     fk_name = 'trigger'
+#     classes = ('grp-collapse grp-closed',)
+#     inline_classes = ('grp-collapse grp-closed',)
 
-class ParameterTriggerCardiacInline(nested_admin.NestedStackedInline):
-    model = ParameterTriggerCardiac
-    form = BaseNestedInlineForm
-    fk_name = 'trigger'
-    classes = ('grp-collapse grp-closed',)
-    inline_classes = ('grp-collapse grp-closed',)
+# class ParameterTriggerCardiacInline(nested_admin.NestedStackedInline):
+#     model = ParameterTriggerCardiac
+#     form = BaseNestedInlineForm
+#     fk_name = 'trigger'
+#     classes = ('grp-collapse grp-closed',)
+#     inline_classes = ('grp-collapse grp-closed',)
 
-class TriggerInline(nested_admin.NestedStackedInline):
-    model = Trigger
-    inlines = [ParameterTriggerCardiacInline, ParameterTriggerRespirationInline, ParameterTriggerGeneralInline]
-    extra = 1
-    fk_name = 'scenefk'
-    classes = ('grp-collapse grp-closed',)
-    inline_classes = ('grp-collapse grp-closed',)
+# class TriggerInline(nested_admin.NestedStackedInline):
+    # model = Trigger
+    # inlines = [ParameterTriggerCardiacInline, ParameterTriggerRespirationInline, ParameterTriggerGeneralInline]
+    # extra = 1
+    # fk_name = 'scenefk'
+    # classes = ('grp-collapse grp-closed',)
+    # inline_classes = ('grp-collapse grp-closed',)
 
 class SceneInline(nested_admin.NestedStackedInline):
     model = Scene
     extra = 1
-    inlines = [SceneInitInline, TimeoutInline]
+    inlines = [TimeoutInline]
     # inlines = [SceneInitInline, TimeoutInline, TriggerInline]
     classes = ('grp-collapse grp-closed',)
     inline_classes = ('grp-collapse grp-closed',)

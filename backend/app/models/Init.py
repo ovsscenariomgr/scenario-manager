@@ -15,5 +15,6 @@ class SceneInit(models.Model):
     # cardiac = OneToOneField(SceneInitCardiac)
     # respiration = OneToOneField(SceneInitRespiration)
     # general = OneToOneField(SceneInitGeneral)
+    dummy_field = models.IntegerField(default=1)
     # Foreign Key
-    scene = models.OneToOneField(Scene, on_delete=models.CASCADE, related_name='init')
+    # scene = models.OneToOneField(Scene, on_delete=models.CASCADE, related_name='init')

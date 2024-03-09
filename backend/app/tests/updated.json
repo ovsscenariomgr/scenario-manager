@@ -135,5 +135,39 @@
                 }
             ]
         }
+    ],
+    "scenes": [
+        {
+            "title": "Opening Scene",
+            "id": 1,
+            "triggers_needed": 1,
+            "init": {
+                "cardiac": {
+                    "pea": 0
+                },
+                "respiration": {
+                    "rate": 1
+                },
+                "general": {
+                    "temperature": 975
+                }
+            }
+        },
+        {
+            "title": "Second Scene",
+            "id": 2,
+            "triggers_needed": 0,
+            "init": {
+                "cardiac": {
+                    "pea": 0
+                },
+                "respiration": {
+                    "rate": 1
+                },
+                "general": {
+                    "temperature": 975
+                }
+            }
+        }
     ]
 }

@@ -137,4 +137,48 @@
 			</events>
 		</category>
 	</categories>
+	<scenes>
+		<scene>
+			<title>Opening Scene</title>
+			<id>1</id>
+			<init>
+				<cardiac>
+					<rate>100</rate>
+					<bps_sys>103</bps_sys>
+					<bps_dia>68</bps_dia>
+					<nibp_rate>100</nibp_rate>
+					<pulse_strength>strong</pulse_strength>
+					<transfer_time>90</transfer_time>
+				</cardiac>
+				<respiration>
+					<spo2>98</spo2>
+					<rate>20</rate>
+				</respiration>
+				<general>
+					<temperature>975</temperature>
+				</general>
+			</init>
+		</scene>
+		<scene>
+			<title>Second Scene</title>
+			<id>2</id>
+			<init>
+				<cardiac>
+					<rate>100</rate>
+					<bps_sys>103</bps_sys>
+					<bps_dia>68</bps_dia>
+					<nibp_rate>100</nibp_rate>
+					<pulse_strength>strong</pulse_strength>
+					<transfer_time>90</transfer_time>
+				</cardiac>
+				<respiration>
+					<spo2>98</spo2>
+					<rate>20</rate>
+				</respiration>
+				<general>
+					<temperature>975</temperature>
+				</general>
+			</init>
+		</scene>
+	</scenes>
 </scenario>

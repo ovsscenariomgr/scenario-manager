@@ -8,7 +8,7 @@ class Event(models.Model):
     priority = models.IntegerField(default=0) # nullable
     hotkey = models.CharField(max_length=1, blank=True, default='') # TODO: should this be null? understand blank/null/none bleh.
     # ForeignKey
-    # The XML spec should be:
+    # TODO: The XML spec should be:
     # <events><event>...</event></events>
     # But... it's not, so this will ultimately have to get flattented in the Renderer.
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='events')

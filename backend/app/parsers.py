@@ -1,7 +1,7 @@
 from rest_framework_xml.parsers import XMLParser
 
 class ScenarioXMLParser(XMLParser):
-    list_item_tags = ['control', 'vocalfile', 'mediafile', 'file', 'category', 'event']
+    list_item_tags = ['control', 'vocalfile', 'mediafile', 'file', 'category', 'event', 'scene']
 
     def _xml_convert(self, element):
         """

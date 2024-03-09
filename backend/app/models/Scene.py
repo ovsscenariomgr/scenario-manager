@@ -10,4 +10,4 @@ class Scene(models.Model):
     # timeout = OneToOneField(Timeout)
     triggers_needed = models.IntegerField(default=1, validators=[MinValueValidator(0)])
     # triggers = ForeignKey
-    scenario = models.ForeignKey(Scenario, on_delete=models.CASCADE)
+    scenario = models.ForeignKey(Scenario, on_delete=models.CASCADE, related_name='scenes')
