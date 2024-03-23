@@ -143,30 +143,53 @@
 			<id>1</id>
 			<triggers_needed>1</triggers_needed>
 			<timeout>
-				<timout_value>30</timout_value>
+				<timeout_value>30</timeout_value>
 				<scene_id>1</scene_id>
 			</timeout>
 			<init>
 				<cardiac>
-					<rate>100</rate>
-					<bps_sys>103</bps_sys>
-					<bps_dia>68</bps_dia>
-					<nibp_rate>100</nibp_rate>
-					<pulse_strength>strong</pulse_strength>
-					<transfer_time>90</transfer_time>
+					<rhythm>sinus</rhythm>
+					<vpc>none</vpc>
+					<pea>0</pea>
+					<vpc_freq>0</vpc_freq>
+					<vfib_amplitude>low</vfib_amplitude>
+					<rate>0</rate>
+					<nibp_rate>0</nibp_rate>
+					<bps_sys>0</bps_sys>
+					<bps_dia>0</bps_dia>
+					<left_dorsal_pulse_strength>none</left_dorsal_pulse_strength>
+					<right_dorsal_pulse_strength>none</right_dorsal_pulse_strength>
+					<left_femoral_pulse_strength>none</left_femoral_pulse_strength>
+					<right_femoral_pulse_strength>none</right_femoral_pulse_strength>
+					<heart_sound_volume>0</heart_sound_volume>
+					<heart_sound>normal</heart_sound>
+					<ecg_indicator>0</ecg_indicator>
+					<bp_cuff>0</bp_cuff>
+					<arrest>0</arrest>
 				</cardiac>
 				<respiration>
-					<spo2>98</spo2>
-					<rate>20</rate>
-				</respiration>
+					<left_lung_sound>normal</left_lung_sound>
+					<left_lung_sound_volume>0</left_lung_sound_volume>
+					<right_lung_sound>normal</right_lung_sound>
+					<right_lung_sound_volume>0</right_lung_sound_volume>
+					<inhalation_duration>500</inhalation_duration>
+					<exhalation_duration>500</exhalation_duration>
+					<spo2>0</spo2>
+					<spo2_indicator>0</spo2_indicator>
+					<etco2>0</etco2>
+					<etco2_indicator>0</etco2_indicator>
+					<rate>1</rate>
+					<chest_movement>0</chest_movement>
+				</respiration>			
 				<general>
 					<temperature>975</temperature>
+					<temperature_enable>0</temperature_enable>
 				</general>
 			</init>
 			<triggers>
 				<trigger>
-					<event_id>aed</event_id>
 					<scene_id>5</scene_id>
+					<event_id>aed</event_id>
 				</trigger>
 			</triggers>
 		</scene>
@@ -175,30 +198,56 @@
 			<id>2</id>
 			<triggers_needed>2</triggers_needed>
 			<timeout>
-				<timout_value>30</timout_value>
+				<timeout_value>30</timeout_value>
 				<scene_id>1</scene_id>
 			</timeout>
 			<init>
 				<cardiac>
-					<rate>100</rate>
-					<bps_sys>103</bps_sys>
-					<bps_dia>68</bps_dia>
-					<nibp_rate>100</nibp_rate>
-					<pulse_strength>strong</pulse_strength>
-					<transfer_time>90</transfer_time>
+					<rhythm>sinus</rhythm>
+					<vpc>none</vpc>
+					<pea>0</pea>
+					<vpc_freq>0</vpc_freq>
+					<vfib_amplitude>low</vfib_amplitude>
+					<rate>0</rate>
+					<nibp_rate>0</nibp_rate>
+					<bps_sys>0</bps_sys>
+					<bps_dia>0</bps_dia>
+					<left_dorsal_pulse_strength>none</left_dorsal_pulse_strength>
+					<right_dorsal_pulse_strength>none</right_dorsal_pulse_strength>
+					<left_femoral_pulse_strength>none</left_femoral_pulse_strength>
+					<right_femoral_pulse_strength>none</right_femoral_pulse_strength>
+					<heart_sound_volume>0</heart_sound_volume>
+					<heart_sound>normal</heart_sound>
+					<ecg_indicator>0</ecg_indicator>
+					<bp_cuff>0</bp_cuff>
+					<arrest>0</arrest>
 				</cardiac>
 				<respiration>
-					<spo2>98</spo2>
-					<rate>20</rate>
-				</respiration>
+					<left_lung_sound>normal</left_lung_sound>
+					<left_lung_sound_volume>0</left_lung_sound_volume>
+					<right_lung_sound>normal</right_lung_sound>
+					<right_lung_sound_volume>0</right_lung_sound_volume>
+					<inhalation_duration>500</inhalation_duration>
+					<exhalation_duration>500</exhalation_duration>
+					<spo2>0</spo2>
+					<spo2_indicator>0</spo2_indicator>
+					<etco2>0</etco2>
+					<etco2_indicator>0</etco2_indicator>
+					<rate>1</rate>
+					<chest_movement>0</chest_movement>
+				</respiration>			
 				<general>
 					<temperature>975</temperature>
+					<temperature_enable>0</temperature_enable>
 				</general>
 			</init>
 			<triggers>
 				<trigger>
-					<event_id>aed</event_id>
 					<scene_id>5</scene_id>
+					<test>eq</test>
+					<cpr>
+						<duration>10</duration>
+					</cpr>
 				</trigger>
 			</triggers>
 		</scene>

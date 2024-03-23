@@ -147,19 +147,48 @@
             },
             "init": {
                 "cardiac": {
-                    "pea": 0
+                    "rhythm": "sinus",
+					"vpc": "none",
+					"pea": 0,
+					"vpc_freq": 0,
+					"vfib_amplitude": "low",
+					"rate": 0,
+					"nibp_rate": 0,
+					"bps_sys": 0,
+					"bps_dia": 0,
+					"left_dorsal_pulse_strength": "none",
+					"right_dorsal_pulse_strength": "none",
+					"left_femoral_pulse_strength": "none",
+					"right_femoral_pulse_strength": "none",
+					"heart_sound_volume": 0,
+					"heart_sound": "normal",
+					"ecg_indicator": 0,
+					"bp_cuff": 0,
+					"arrest": 0
                 },
                 "respiration": {
-                    "rate": 1
+                    "left_lung_sound": "normal",
+					"left_lung_sound_volume": 0,
+					"right_lung_sound": "normal",
+					"right_lung_sound_volume": 0,
+					"inhalation_duration": 500,
+					"exhalation_duration": 500,
+					"spo2": 0,
+					"spo2_indicator": 0,
+					"etco2": 0,
+					"etco2_indicator": 0,
+					"rate": 1,
+					"chest_movement": 0
                 },
                 "general": {
-                    "temperature": 975
+                    "temperature": 975,
+                    "temperature_enable": 0
                 }
             },
             "triggers": [
                 {
-                    "event_id": "aed",
-                    "scene_id": 5
+                    "scene_id": 5,
+                    "event_id": "aed"
                 }
             ]
         },
@@ -173,19 +202,49 @@
             },
             "init": {
                 "cardiac": {
-                    "pea": 0
+                    "rhythm": "sinus",
+					"vpc": "none",
+					"pea": 0,
+					"vpc_freq": 0,
+					"vfib_amplitude": "low",
+					"rate": 0,
+					"nibp_rate": 0,
+					"bps_sys": 0,
+					"bps_dia": 0,
+					"left_dorsal_pulse_strength": "none",
+					"right_dorsal_pulse_strength": "none",
+					"left_femoral_pulse_strength": "none",
+					"right_femoral_pulse_strength": "none",
+					"heart_sound_volume": 0,
+					"heart_sound": "normal",
+					"ecg_indicator": 0,
+					"bp_cuff": 0,
+					"arrest": 0
                 },
                 "respiration": {
-                    "rate": 1
+                    "left_lung_sound": "normal",
+					"left_lung_sound_volume": 0,
+					"right_lung_sound": "normal",
+					"right_lung_sound_volume": 0,
+					"inhalation_duration": 500,
+					"exhalation_duration": 500,
+					"spo2": 0,
+					"spo2_indicator": 0,
+					"etco2": 0,
+					"etco2_indicator": 0,
+					"rate": 1,
+					"chest_movement": 0
                 },
                 "general": {
-                    "temperature": 975
+                    "temperature": 975,
+                    "temperature_enable": 0
                 }
             },
             "triggers": [
                 {
-                    "event_id": "aed",
-                    "scene_id": 5
+                    "scene_id": 5,
+                    "cpr": { "duration": 7 },
+                    "test": "eq"
                 }
             ]
         }

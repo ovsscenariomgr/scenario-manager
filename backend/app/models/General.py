@@ -19,4 +19,4 @@ class SceneInitGeneral(General):
     scene_init = models.OneToOneField(SceneInit, on_delete=models.CASCADE, related_name='general')
 
 class ParameterTriggerGeneral(General):
-    trigger = models.OneToOneField(Trigger, on_delete=models.CASCADE, related_name='general')
+    trigger = models.OneToOneField(Trigger, on_delete=models.CASCADE, related_name='general', null=True, blank=True)

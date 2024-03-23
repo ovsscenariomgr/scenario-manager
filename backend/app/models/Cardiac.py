@@ -80,4 +80,4 @@ class SceneInitCardiac(Cardiac):
     scene_init = models.OneToOneField(SceneInit, on_delete=models.CASCADE, related_name='cardiac')
 
 class ParameterTriggerCardiac(Cardiac):
-    trigger = models.OneToOneField(Trigger, on_delete=models.CASCADE, related_name='cardiac')
+    trigger = models.OneToOneField(Trigger, on_delete=models.CASCADE, related_name='cardiac', null=True, blank=True)

@@ -51,4 +51,4 @@ class SceneInitRespiration(Respiration):
 
 class ParameterTriggerRespiration(Respiration):
     manual_count = models.IntegerField(default=0, validators=[MinValueValidator(0)]) # this is only for triggers..
-    trigger = models.OneToOneField(Trigger, on_delete=models.CASCADE, related_name='respiration')
+    trigger = models.OneToOneField(Trigger, on_delete=models.CASCADE, related_name='respiration', null=True, blank=True)
