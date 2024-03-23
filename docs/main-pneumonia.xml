@@ -1,0 +1,494 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<scenario>
+	<header>
+		<author>Armi Pigott, DVM, DACVECC</author>
+	
+		<title>
+			<name>S04 Sepsis 2023</name>
+			<top>5</top> // Position from top of page in pixels
+			<left>10</left> // Position from left of page in pixels
+		</title>
+		<date_of_creation>2023-08-29</date_of_creation>
+
+		<description>
+			Scenario depicting a dog with septic pneumonia
+		</description>
+	</header>
+
+	<profile>
+		<avatar>
+			<filename>stock-dog.jpg</filename>
+			<height_pct>100</height_pct>
+			<width_pct>50</width_pct>
+		</avatar>
+
+		<summary>
+		<description>	
+				Duke is a 5 year castrated male bulldog presented for 24 hours of progressive tachypnea, lethargy, and inappetence. Two nights ago he vomited up a pair of underwear. Yesterday morning he did not eat well, and yesterday evening he didn't eat at all. This morning he is breathing faster and harder than usual. He is brought to the treatment area on a gurney. He is conscious and responsive but very weak, and is breathing hard and fast.
+		</description>
+			<breed>Bulldog</breed>
+			<gender>Castrated male</gender>
+			<weight>35 kg</weight>
+			<species>Canine</species>
+			<symptoms>
+				
+			</symptoms>
+			<image>duke.jpg</image>
+		</summary>
+
+		<controls>
+			<color>#000000</color>
+			<control>
+				<title>Vocalizations</title>
+				<id>vocals-dog-control</id>
+				<top>125</top>
+				<left>300</left>
+			</control>
+			<control>
+				<title>Right Lung Sounds</title>
+				<id>right-lung-dog-control</id>
+				<top>180</top>
+				<left>80</left>
+			</control>
+			<control>
+				<title>Left Lung Sounds</title>
+				<id>left-lung-dog-control</id>
+				<top>180</top>
+				<left>320</left>
+			</control>
+			<control>
+				<title>Left Femoral Pulse</title>
+				<id>left-femoral-pulse-dog-control</id>
+				<top>275</top>
+				<left>320</left>
+			</control>
+			<control>
+				<title>Right Femoral Pulse</title>
+				<id>right-femoral-pulse-dog-control</id>
+				<top>275</top>
+				<left>75</left>
+			</control>
+			<control>
+				<title>Left Dorsal Pulse</title>
+				<id>left-dorsal-pulse-dog-control</id>
+				<top>310</top>
+				<left>325</left>
+			</control>
+			<control>
+				<title>Right Dorsal Pulse</title>
+				<id>right-dorsal-pulse-dog-control</id>
+				<top>310</top>
+				<left>85</left>
+			</control>
+			<control>
+				<title>Heart Sounds</title>
+				<id>heart-sound-dog-control</id>
+				<top>225</top>
+				<left>221</left>
+			</control>
+			<control>
+				<title>Chest Movement</title>
+				<id>chest-dog-control</id>
+				<top>210</top>
+				<left>325</left>
+			</control>
+			<control>
+				<title>CPR</title>
+				<id>button-cpr</id>
+				<top>20</top>
+				<left>450</left>
+			</control>
+			<control>
+				<title>ECG</title>
+				<id>button-ekg</id>
+				<top>350</top>
+				<left>0</left>
+			</control>
+			<control>
+				<title>SpO2</title>
+				<id>button-SpO2</id>
+				<top>350</top>
+				<left>55</left>
+			</control>
+			<control>
+				<title>ETCO2</title>
+				<id>button-CO2</id>
+				<top>350</top>
+				<left>395</left>
+			</control>
+			<control>
+				<title>Cuff</title>
+				<id>button-bpcuff</id>
+				<top>350</top>
+				<left>450</left>
+			</control>
+			<control>
+				<title>Palpate</title>
+				<id>button-palpate</id>
+				<top>20</top>
+				<left>390</left>
+			</control>
+			<control>
+				<title>Temp</title>
+				<id>button-Tperi</id>
+				<top>350</top>
+				<left>110</left>
+			</control>
+		</controls>
+	</profile>
+
+	<vocals>
+		<file>
+			<filename>AggressiveDogGrowlBark.wav</filename>
+			<title>Dog Bark Growl</title>
+		</file>
+	</vocals>
+
+	<media>
+		<file>
+			<filename>NormalMM.mp4</filename>
+			<title>MM Normal</title>
+		</file>
+		<file>
+			<filename>RedFastNA.mp4</filename>
+			<title>MM Red Fast CRT</title>
+		</file>
+		<file>
+			<filename>GameOver.jpeg</filename>
+			<title>Game Over</title>
+		</file>
+		<file>
+			<filename>GamePaused.jpeg</filename>
+			<title>Game Paused</title>
+		</file>
+		<file>
+			<filename>US_Consolidated_B-Lines.mp4</filename>
+			<title>US Consolidated B-Lines</title>
+		</file>
+		<file>
+			<filename>Normal_Heart.mp4</filename>
+			<title>Echo Normal Heart</title>
+		</file>
+		<file>
+			<filename>HyperdynamicLV.mp4</filename>
+			<title>Echo Hyperdynamic LV</title>
+		</file>
+		<file>
+			<filename>LA-Ao1-5.jpeg</filename>
+			<title>Echo LA-Ao 1.5</title>
+		</file>
+		<file>
+			<filename>US-Normal-Abd.jpeg</filename>
+			<title>US Normal Abd</title>
+		</file>
+		<file>
+			<filename>XR_Asp_Pneumonia.jpg</filename>
+			<title>Xray - L lat thorax</title>
+		</file>
+		<file>
+			<filename>POC_Labs.jpeg</filename>
+			<title>POC Labs</title>
+		</file>		
+	</media>
+	
+	<init>
+		<cardiac>
+			<rhythm>sinus</rhythm>
+			<vpc>none</vpc>
+			<pea>0</pea>
+			<vpc_freq>0</vpc_freq>
+			<vfib_amplitude>medium</vfib_amplitude>
+			<rate>180</rate>
+			<bps_sys>55</bps_sys>
+			<bps_dia>40</bps_dia>
+			<bp_cuff>0</bp_cuff>
+			<nibp_rate>180</nibp_rate>
+			<pulse_strength>weak</pulse_strength>
+			<heart_sound>normal</heart_sound>
+			<heart_sound_volume>7</heart_sound_volume>
+			<ecg_indicator>0</ecg_indicator>
+			<arrest>0</arrest>
+		</cardiac>
+		<respiration>
+			<left_lung_sound>coarse_crackles</left_lung_sound>
+			<left_lung_sound_volume>7</left_lung_sound_volume>
+			<right_lung_sound>coarse_crackles</right_lung_sound>
+			<right_lung_sound_volume>7</right_lung_sound_volume>
+			<spo2>86</spo2>
+			<spo2_indicator>0</spo2_indicator>
+			<etco2>36</etco2>
+			<etco2_indicator>0</etco2_indicator>
+			<rate>50</rate>
+			<chest_movement>1</chest_movement>
+		</respiration>			
+		<general>
+			<temperature>1038</temperature>
+			<temperature_enable>1</temperature_enable>
+		</general>
+		<initial_scene>1</initial_scene>
+		<record>1</record>
+	</init>	
+
+
+	<events>
+		<category>
+			<name>drugs</name>
+			<title>Drugs</title>
+			
+			<event>
+				<title>Dextrose</title>
+				<id>dextrose</id>
+				<priority>1</priority>
+			</event>
+
+			<event>
+				<title>Pressor</title>
+				<id>Pressor</id>
+				<priority>1</priority>
+			</event>
+
+			<event>
+				<title>Fluids</title>
+				<id>fluids</id>
+				<priority>1</priority>
+			</event>
+		
+		</category>
+
+		<category>
+			<name>interventions</name>
+			<title>Interventions</title>
+
+			<event>
+				<title>Oxygen</title>
+				<id>oxygen</id>
+				<priority>0</priority>
+			</event>	
+			<event>
+				<title>Defib</title>
+				<id>defib</id>
+				<priority>1</priority>
+			</event>
+		</category>
+
+	</events>
+
+	<scene>
+		<!-- Starting scene -->
+		<title>Initial State</title>
+		<id>0</id>
+		<init>
+			<cardiac>
+				<rhythm>sinus</rhythm>
+				<vpc>none</vpc>
+				<pea>0</pea>
+				<vpc_freq>0</vpc_freq>
+				<vfib_amplitude>medium</vfib_amplitude>
+				<rate>180</rate>
+				<bps_sys>55</bps_sys>
+				<bps_dia>40</bps_dia>
+				<bp_cuff>0</bp_cuff>
+				<nibp_rate>180</nibp_rate>
+				<pulse_strength>weak</pulse_strength>
+				<heart_sound>normal</heart_sound>
+				<heart_sound_volume>6</heart_sound_volume>
+				<ecg_indicator>0</ecg_indicator>
+				<arrest>0</arrest>
+			</cardiac>
+			<respiration>
+				<left_lung_sound>coarse_crackles</left_lung_sound>
+				<left_lung_sound_volume>7</left_lung_sound_volume>
+				<right_lung_sound>coarse_crackles</right_lung_sound>
+				<right_lung_sound_volume>7</right_lung_sound_volume>
+				<spo2>96</spo2>
+				<spo2_indicator>0</spo2_indicator>
+				<etco2>36</etco2>
+				<etco2_indicator>0</etco2_indicator>
+				<rate>40</rate>
+				<chest_movement>1</chest_movement>
+			</respiration>			
+			<general>
+				<temperature>1037</temperature>
+				<temperature_enable>1</temperature_enable>
+			</general>
+	</init>	
+
+		<!-- triggers to leave the scene -->
+		<!-- timeout to S1 - need dextrose or fluids -->
+		<timeout>
+			<timeout_value>1</timeout_value>
+			<scene_id>1</scene_id>
+		</timeout>	
+	</scene>
+
+	<scene>
+		<title>S1 Need dextrose and fluids</title>
+		<id>1</id>
+		<init>
+			<cardiac>
+				<rate>220</rate>
+				<bps_sys>40</bps_sys>
+				<bps_dia>35</bps_dia>
+				<nibp_rate>220</nibp_rate>
+				<transfer_time>150</transfer_time>
+			</cardiac>
+		</init>
+
+		<triggers>
+			<!-- jump to scene 2 if give dextrose. Scene 2 and 3 are the same with different exit triggers -->
+			<trigger>
+				<event_id>dextrose</event_id>
+				<scene_id>2</scene_id>				
+			</trigger>
+
+			<!-- Jump to scene 3 if give IV fluid bolus. Scene 2 and 3 are the same with different exit triggers -->
+			<trigger>
+				<event_id>fluids</event_id>
+				<scene_id>3</scene_id>				
+			</trigger>
+		</triggers>
+	</scene>
+
+	<scene>
+		<title>S2 Need Fluids</title>
+		<id>2</id>
+		<init>
+			<cardiac>
+				<rate>140</rate>
+				<bps_sys>70</bps_sys>
+				<bps_dia>40</bps_dia>
+				<nibp_rate>140</nibp_rate>
+				<transfer_time>150</transfer_time>
+			</cardiac>
+		</init>	
+
+		<triggers>
+			<!-- Jump to scene 4 Need Norepi CRI -->
+			<trigger>
+				<event_id>fluids</event_id>
+				<scene_id>4</scene_id>				
+			</trigger>
+		</triggers>
+	</scene>
+
+	<scene>
+		<title>S3- Need Dextrose</title>
+		<id>3</id>
+		<init>
+			<cardiac>
+				<rate>140</rate>
+				<bps_sys>70</bps_sys>
+				<bps_dia>40</bps_dia>
+				<nibp_rate>140</nibp_rate>
+				<transfer_time>150</transfer_time>
+			</cardiac>
+		</init>	
+
+		<triggers>
+			<!-- Jump to scene 4 delay to fallout of resuscitation -->
+			<trigger>
+				<event_id>dextrose</event_id>
+				<scene_id>4</scene_id>				
+			</trigger>
+		</triggers>
+	</scene>
+
+	<scene>
+		<title>S4- Delay to Fall-out</title>
+		<id>4</id>
+		<init>
+			<cardiac>
+				<rate>100</rate>
+				<bps_sys>91</bps_sys>
+				<bps_dia>58</bps_dia>
+				<nibp_rate>100</nibp_rate>
+				<pulse_strength>strong</pulse_strength>
+				<transfer_time>60</transfer_time>
+			</cardiac>
+			<respiration>
+				<spo2>9</spo2>
+				<rate>30</rate>
+			</respiration>	
+		</init>
+
+				<!-- timeout to scene 5 - fallout -->
+		<timeout>
+			<timeout_value>61</timeout_value>
+			<scene_id>5</scene_id>
+		</timeout>
+
+		<triggers>
+			<trigger>
+				<event_id>Pressor</event_id>
+				<scene_id>6</scene_id>				
+			</trigger>
+		</triggers>
+	</scene>
+
+	<scene>
+		<title>S5- Need Dextrose Pressor</title>
+		<id>5</id>
+		<init>
+			<cardiac>
+				<rate>170</rate>
+				<bps_sys>60</bps_sys>
+				<bps_dia>40</bps_dia>
+				<nibp_rate>170</nibp_rate>
+				<pulse_strength>weak</pulse_strength>
+				<transfer_time>120</transfer_time>
+			</cardiac>
+		</init>
+
+		<triggers>
+			<trigger>
+				<event_id>Pressor</event_id>
+				<scene_id>6</scene_id>				
+			</trigger>
+		</triggers>
+	</scene>	
+
+	<scene>
+		<title>S6- Needs Titration</title>
+		<id>6</id>
+		<init>
+			<cardiac>
+				<rate>150</rate>
+				<bps_sys>71</bps_sys>
+				<bps_dia>52</bps_dia>
+				<nibp_rate>150</nibp_rate>
+				<pulse_strength>weak</pulse_strength>
+				<transfer_time>90</transfer_time>
+			</cardiac>
+			<respiration>
+				<spo2>98</spo2>
+				<rate>20</rate>
+			</respiration>	
+		</init>
+		
+		<triggers>
+			<trigger>
+				<event_id>Pressor</event_id>
+				<scene_id>7</scene_id>				
+			</trigger>
+		</triggers>
+	</scene>
+	
+	<scene>
+		<title>S7- Delay to stable</title>
+		<id>7</id>
+		<init>
+			<cardiac>
+				<rate>100</rate>
+				<bps_sys>103</bps_sys>
+				<bps_dia>68</bps_dia>
+				<nibp_rate>100</nibp_rate>
+				<pulse_strength>strong</pulse_strength>
+				<transfer_time>90</transfer_time>
+			</cardiac>
+			<respiration>
+				<spo2>98</spo2>
+				<rate>20</rate>
+			</respiration>	
+		</init>
+	</scene>
+</scenario>

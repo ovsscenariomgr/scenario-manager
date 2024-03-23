@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
-from .Init import Init
+from .Init import ScenarioInit, SceneInit
+from .Trigger import Trigger
 
 # TODO: Items indicated as trendable would need to associate a modifier: <transfer_time>100</transfer_time> somehow
 class Cardiac(models.Model):
@@ -72,5 +73,11 @@ class Cardiac(models.Model):
     bp_cuff = models.IntegerField(choices=IlluminatedChoices.choices, default=IlluminatedChoices.NOT_ILLUMINATED)
     arrest = models.IntegerField(choices=IlluminatedChoices.choices, default=IlluminatedChoices.NOT_ILLUMINATED)
 
-class InitCardiac(Cardiac):
-    init = models.OneToOneField(Init, on_delete=models.CASCADE, related_name='cardiac')
+class ScenarioInitCardiac(Cardiac):
+    scenario_init = models.OneToOneField(ScenarioInit, on_delete=models.CASCADE, related_name='cardiac')
+
+class SceneInitCardiac(Cardiac):
+    scene_init = models.OneToOneField(SceneInit, on_delete=models.CASCADE, related_name='cardiac')
+
+class ParameterTriggerCardiac(Cardiac):
+    trigger = models.OneToOneField(Trigger, on_delete=models.CASCADE, related_name='cardiac', null=True, blank=True)

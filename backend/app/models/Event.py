@@ -2,13 +2,18 @@ from django.db import models
 from .Category import Category
 
 class Event(models.Model):
+    class PriorityChoices(models.IntegerChoices):
+        PRIORITY = 1
+        NON_PRIORITY = 0
+
     eventid = models.BigAutoField(primary_key=True)
     title = models.CharField(max_length=256, default='Morphine')
     id = models.CharField(max_length=256, default='opiate_morphine')
-    priority = models.IntegerField(default=0) # nullable
-    hotkey = models.CharField(max_length=1, blank=True, default='') # allow it to be blank? serialize as missing?
+    # TODO: Can multiple events be priority 1?
+    priority = models.IntegerField(default=PriorityChoices.NON_PRIORITY, choices=PriorityChoices.choices, null=True, blank=True)
+    hotkey = models.CharField(max_length=1, default='', null=True, blank=True) # TODO: validation of hotkey?
     # ForeignKey
-    # The XML spec should be:
+    # TODO: The XML spec should be:
     # <events><event>...</event></events>
-    # But... it's not, so this will ultimately have to get flattented in the Renderer.
+    # But... it's not, so this will ultimately have to get flattened in the Renderer.
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='events')

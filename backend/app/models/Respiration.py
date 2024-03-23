@@ -1,7 +1,8 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.core.exceptions import ValidationError
-from .Init import Init
+from .Init import ScenarioInit, SceneInit
+from .Trigger import Trigger
 
 # TODO: Items indicated as trendable would need to associate a modifier: <transfer_time>100</transfer_time> somehow
 class Respiration(models.Model):
@@ -35,7 +36,6 @@ class Respiration(models.Model):
     etco2_indicator = models.IntegerField(default=ConnectedChoices.NOT_CONNECTED, choices=ConnectedChoices.choices)
     rate = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(60)]) # Trendable
     chest_movement = models.IntegerField(default=MovementChoices.OFF, choices=MovementChoices.choices)
-    # manual_count = models.IntegerField(default=0, validators=[MinValueValidator(0)]) # is this just an api field? or part of xml spec
 
     def clean(self):
         if self.left_lung_sound == self.LungSoundChoices.SAME_AS_LEFT:
@@ -43,5 +43,12 @@ class Respiration(models.Model):
         if self.right_lung_sound == self.LungSoundChoices.SAME_AS_RIGHT:
             raise ValidationError("right_lung_sound cannot be assigned value: %s" % (self.LungSoundChoices.SAME_AS_RIGHT))
 
-class InitRespiration(Respiration):
-    init = models.OneToOneField(Init, on_delete=models.CASCADE, related_name='respiration')
+class ScenarioInitRespiration(Respiration):
+    scenario_init = models.OneToOneField(ScenarioInit, on_delete=models.CASCADE, related_name='respiration')
+
+class SceneInitRespiration(Respiration):
+    scene_init = models.OneToOneField(SceneInit, on_delete=models.CASCADE, related_name='respiration')
+
+class ParameterTriggerRespiration(Respiration):
+    manual_count = models.IntegerField(default=0, validators=[MinValueValidator(0)]) # this is only for triggers..
+    trigger = models.OneToOneField(Trigger, on_delete=models.CASCADE, related_name='respiration', null=True, blank=True)

@@ -4,6 +4,7 @@ from .Scenario import Scenario
 
 class Header(models.Model):
     author = models.CharField(max_length=256, default='ovsscenariomgr')
+    # title = OneToOneField(Title)
     date_of_creation = models.DateField(default=now)
     description = models.TextField(default='OVS Scenario Manager')
     # Foreign Key

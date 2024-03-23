@@ -1,16 +1,17 @@
 from .Avatar import Avatar
-from .Cardiac import Cardiac, InitCardiac
+from .Cardiac import Cardiac, ScenarioInitCardiac, SceneInitCardiac, ParameterTriggerCardiac
 from .Category import Category
 from .Control import Control
 from .Event import Event
-from .File import File
-from .General import General, InitGeneral
+from .File import File, MediaFile, VocalFile
+from .General import General, ScenarioInitGeneral, SceneInitGeneral, ParameterTriggerGeneral
 from .Header import Header
-from .Init import Init
-from .MediaFile import MediaFile
+from .Init import ScenarioInit, SceneInit
 from .Profile import Profile
-from .Respiration import Respiration, InitRespiration
+from .Respiration import Respiration, ScenarioInitRespiration, SceneInitRespiration, ParameterTriggerRespiration
 from .Scenario import Scenario
+from .Scene import Scene
 from .Summary import Summary
+from .Timeout import Timeout
 from .Title import Title
-from .VocalFile import VocalFile
+from .Trigger import Trigger

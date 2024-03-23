@@ -1,9 +1,20 @@
 from django.db import models
-from django.core.validators import MaxValueValidator, MinValueValidator
 from .Scenario import Scenario
+from .Scene import Scene
 
-class Init(models.Model):
+class ScenarioInit(models.Model):
+    # cardiac = OneToOneField(ScenarioInitCardiac)
+    # respiration = OneToOneField(ScenarioInitRespiration)
+    # general = OneToOneField(ScenarioInitGeneral)
     initial_scene = models.IntegerField(default=1)
     record = models.IntegerField(default=1)
     # Foreign Key
-    scenario = models.OneToOneField(Scenario, on_delete=models.CASCADE)
+    scenario = models.OneToOneField(Scenario, on_delete=models.CASCADE, related_name='init')
+
+class SceneInit(models.Model):
+    # cardiac = OneToOneField(SceneInitCardiac)
+    # respiration = OneToOneField(SceneInitRespiration)
+    # general = OneToOneField(SceneInitGeneral)
+    dummy_field = models.IntegerField(default=1)
+    # Foreign Key
+    scene = models.OneToOneField(Scene, on_delete=models.CASCADE, related_name='init')
