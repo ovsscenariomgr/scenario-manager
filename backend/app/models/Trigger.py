@@ -24,7 +24,7 @@ class Trigger(models.Model):
     # Test only part of CPR or Parameter Trigger
     test = models.CharField(max_length=7, choices=TestChoices.choices, default=TestChoices.NONE, null=True, blank=True)
     # CPR Duration. Will render/parse as <cpr><duration></duration></cpr>
-    cpr_duration = models.IntegerField(default=None, validators=[MinValueValidator(0)], null=True)
+    cpr_duration = models.IntegerField(default=None, validators=[MinValueValidator(0)], null=True, blank=True)
     # Parameter trigger, these one to one fields are nullable.
     # cardiac = OneToOneField(ParameterTriggerCardiac, null=True)
     # respiration = OneToOneField(ParameterTriggerRespiration, null=True)

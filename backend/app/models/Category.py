@@ -6,7 +6,7 @@ class Category(models.Model):
     title = models.CharField(max_length=64, default='Injected Drugs')
     # events = ForeignKey(Event)
     # Foreign Key
-    # This will have to get rendered as 'events' in the end XML
+    # TODO: This will have to get rendered as 'events' in the end XML, change
     scenario = models.ForeignKey(Scenario, on_delete=models.CASCADE, related_name='categories')
 
     class Meta:  
