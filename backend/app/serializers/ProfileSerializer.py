@@ -22,3 +22,7 @@ class ProfileSerializer(WritableNestedModelSerializer):
     #     color = rep.pop('color')
     #     rep['controls'].insert(1, color)
     #     return rep
+    
+    # TODO: to_internal_value()
+    # def to_internal_value(self, data):
+    #   return super(WritableNestedModelSerializer, self).to_internal_value(data)
