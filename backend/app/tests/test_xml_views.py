@@ -1,6 +1,6 @@
 import re
 import os
-from .test_setup import TestSetup
+from .test_setup_views import TestSetup
 xmlheaders={"accept": "application/xml"}
 class TestXMLViews(TestSetup):
 

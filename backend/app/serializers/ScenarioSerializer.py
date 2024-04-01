@@ -1,3 +1,4 @@
+from rest_framework import serializers
 from drf_writable_nested.serializers import WritableNestedModelSerializer
 from app.models import Scenario
 from .CategorySerializer import CategorySerializer
@@ -19,3 +20,14 @@ class ScenarioSerializer(WritableNestedModelSerializer):
     class Meta:
         model = Scenario
         fields = ('id', 'header', 'profile', 'vocals', 'media', 'init', 'categories', 'scenes',)
+
+    # Categories == Events in rendered scenario xml
+    def validate_categories(self, value):
+        if not len(value) > 0:
+            raise serializers.ValidationError('categories/events must contain at least one object')
+        return value
+
+    def validate_scenes(self, value):
+        if not len(value) > 0:
+            raise serializers.ValidationError('scenes must contain at least one object')
+        return value

@@ -1,6 +1,5 @@
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
-from django.utils.timezone import now
 from app.models import Scenario, Profile, Avatar, Summary, Control
 from app.serializers import ProfileSerializer, AvatarSerializer, SummarySerializer, ControlSerializer
 

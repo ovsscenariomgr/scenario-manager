@@ -1,6 +1,6 @@
 import os
 import json
-from .test_setup import TestSetup, replace_file_paths
+from .test_setup_views import TestSetup, replace_file_paths
 
 class TestJsonViews(TestSetup):
     def test_scenario_list(self):

@@ -23,9 +23,8 @@ class Control(models.Model):
         TEMP = 'button-Tperi'
 
     controlid = models.BigAutoField(primary_key=True)
-     # Should title be limited or not? Spec says it is free form...
-    title = models.CharField(max_length=256, default=IdChoices.VOCALIZATIONS)
-    id = models.CharField(max_length=256, choices=IdChoices.choices, default=IdChoices.VOCALIZATIONS)
+    title = models.CharField(max_length=256, default='Control Title')
+    id = models.CharField(max_length=32, choices=IdChoices.choices, default=IdChoices.VOCALIZATIONS)
     top = models.IntegerField(default=0, validators=[MinValueValidator(0)]) # Distance from top in pixels, should there be a max?
     left = models.IntegerField(default=0, validators=[MinValueValidator(0)]) # Distance from top in pixels, should there be a max?
     # Foreign Key
