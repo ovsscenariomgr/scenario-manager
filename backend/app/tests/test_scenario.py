@@ -62,3 +62,6 @@ class ScenarioTestCase(TestCase):
         serializer = ScenarioSerializer(data=self.serializer_data)
         self.assertFalse(serializer.is_valid())
         self.assertEqual(set(serializer.errors), set(['categories', 'scenes']))
+
+    def test_initial_scene_exists(self):
+        self.skipTest("TODO")
