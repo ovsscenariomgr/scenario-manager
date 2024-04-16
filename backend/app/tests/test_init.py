@@ -94,6 +94,17 @@ class InitTestCase(TestCase):
         self.assertEqual(set(serializer.errors['respiration']), set(range_fields))
         self.assertTrue(all([err[0].title() == 'Ensure This Value Is Greater Than Or Equal To 0.' for err in serializer.errors['respiration'].values()]))
 
+    def test_resp_lung_choices(self):
+        choice_fields = [('left_lung_sound', 'same_as_left'), ('right_lung_sound', 'same_as_right')]
+        for field, value in choice_fields:
+            with self.subTest(msg='Lung sounds', field=field, value=value):
+                resp = dict.fromkeys([field], value)
+                serializer_data = {'cardiac': {}, 'respiration': resp, 'general': {}}
+                serializer = ScenarioInitSerializer(data=serializer_data)
+                self.assertFalse(serializer.is_valid())
+                self.assertEqual(set(serializer.errors['respiration']), set([field]))
+                self.assertTrue(str(serializer.errors['respiration'][field][0]) == 'Cannot be assigned value: %s' % (value))
+
     def test_bad_general_choices(self):
         serializer_data = {'cardiac': {}, 'respiration': {}, 'general': {'temperature_enable': 'bad_choice'}}
         serializer = ScenarioInitSerializer(data=serializer_data)
