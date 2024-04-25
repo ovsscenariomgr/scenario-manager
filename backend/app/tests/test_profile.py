@@ -43,6 +43,44 @@ class ProfileTestCase(TestCase):
     #     serializer = AvatarSerializer(data=serializer_data)
     #     self.assertTrue(serializer.is_valid())
 
+    def test_valid_color_choices(self):
+        serializer_data = {
+            'avatar': {},
+            'summary': {
+                'breed': 'beagle',
+                'gender': 'male',
+                'weight': '40kg',
+                'species': 'canine'
+            },
+            'controls': []
+        }
+        colors = ['black', '#000000', 'purple']
+        for color in colors:
+            with self.subTest(msg='Valid Color', color=color):
+                serializer_data['color'] = color
+                serializer = ProfileSerializer(data=serializer_data)
+                self.assertTrue(serializer.is_valid())
+
+    def test_invalid_color_choices(self):
+        serializer_data = {
+            'avatar': {},
+            'summary': {
+                'breed': 'beagle',
+                'gender': 'male',
+                'weight': '40kg',
+                'species': 'canine'
+            },
+            'controls': []
+        }
+        colors = ['burnt', '%220032', '#A_Z011']
+        for color in colors:
+            with self.subTest(msg='Invalid Color', color=color):
+                serializer_data['color'] = color
+                serializer = ProfileSerializer(data=serializer_data)
+                self.assertFalse(serializer.is_valid())
+                self.assertEqual(set(serializer.errors), set(['color']))
+                self.assertTrue(str(serializer.errors['color'][0]) == '%s is not an HTML5 compatible specifier for color' % color)
+
     def test_avatar_dimensions(self):
         serializer_data = {'filename': 'image.jpg', 'height_pct': 101, 'width_pct': -1}
         serializer = AvatarSerializer(data=serializer_data)
