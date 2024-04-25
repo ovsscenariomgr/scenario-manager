@@ -33,6 +33,18 @@ class HeaderTestCase(TestCase):
     def test_nested_deserializer_validation(self):
         serializer = HeaderSerializer(data=self.serializer_data)
         self.assertTrue(serializer.is_valid())
+
+    def test_nested_deserializer_title_required(self):
+        self.serializer_data.pop('title')
+        serializer = HeaderSerializer(data=self.serializer_data)
+        self.assertFalse(serializer.is_valid())
+        self.assertEqual(set(serializer.errors), set(['title']))
+    
+    def test_title_top_left(self):
+        self.serializer_data['title'] = {'name': 'name', 'top': -1, 'left': -1}
+        serializer = HeaderSerializer(data=self.serializer_data)
+        self.assertFalse(serializer.is_valid())
+        self.assertEqual(set(serializer.errors['title']), set(['top', 'left']))
     
     # TODO: save() throws NULL constraint because of Scenario parent missing???
     # def test_nested_deserializer_save(self):
