@@ -15,3 +15,7 @@ Application to manage Open Vet Sim scenario archives.
     1. login with credentials:
         1. username: test
         2. password: test
+
+## Tests
+1. From backend dir:
+    * coverage run --source='.' manage.py test && coverage html
