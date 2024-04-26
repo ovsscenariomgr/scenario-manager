@@ -1,15 +1,12 @@
 from rest_framework import serializers
-from app.models import File, MediaFile, VocalFile
+from app.models import MediaFile, VocalFile
 
-class FileSerializer(serializers.ModelSerializer):
+class MediaSerializer(serializers.ModelSerializer):
     class Meta:
-        model = File
+        model = MediaFile
         fields = ('filename', 'title',)
 
-class MediaSerializer(FileSerializer):
-    class Meta(FileSerializer.Meta):
-        model = MediaFile
-
-class VocalSerializer(FileSerializer):
-    class Meta(FileSerializer.Meta):
+class VocalSerializer(serializers.ModelSerializer):
+    class Meta:
         model = VocalFile
+        fields = ('filename', 'title',)

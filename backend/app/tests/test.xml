@@ -12,7 +12,6 @@
 	</header>
 	<profile>
 		<avatar>
-			<filename>images/linus.jpg</filename>
 			<height_pct>100</height_pct>
 			<width_pct>50</width_pct>
 		</avatar>
@@ -23,7 +22,6 @@
 			<weight>35 kg</weight>
 			<species>Canine</species>
 			<symptoms>Should symptoms be nullable?</symptoms>
-			<image>images/linus.jpg</image>
 		</summary>
 		<controls>
 			<control>
@@ -41,18 +39,8 @@
 		</controls>
 		<color>#000000</color>
 	</profile>
-	<vocals>
-		<file>
-			<filename>vocals/purr.wav</filename>
-			<title>Purring</title>
-		</file>
-	</vocals>
-	<media>
-		<file>
-			<filename>media/logo.jpeg</filename>
-			<title>OVS Logo</title>
-		</file>
-	</media>
+	<vocals></vocals>
+	<media></media>
 	<init>
 		<cardiac>
 			<rhythm>sinus</rhythm>

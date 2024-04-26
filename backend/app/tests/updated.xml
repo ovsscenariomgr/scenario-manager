@@ -12,7 +12,6 @@
 	</header>
 	<profile>
 		<avatar>
-			<filename>stock-dog.jpg</filename>
 			<height_pct>100</height_pct>
 			<width_pct>50</width_pct>
 		</avatar>
@@ -23,7 +22,6 @@
 			<weight>50 kg</weight>
 			<species>Canine</species>
 			<symptoms>Too much food. Chonky.</symptoms>
-			<image>duke.jpg</image>
 		</summary>
 		<controls>
 			<control>
@@ -41,26 +39,8 @@
 		</controls>
 		<color>#111111</color>
 	</profile>
-	<vocals>
-		<file>
-			<filename>vocals/purr.wav</filename>
-			<title>Purring</title>
-		</file>
-		<file>
-			<filename>vocals/purr.wav</filename>
-			<title>Moar purring</title>
-		</file>
-	</vocals>
-	<media>
-		<file>
-			<filename>media/logo.jpeg</filename>
-			<title>OVS Logo</title>
-		</file>
-		<file>
-			<filename>media/logo.jpeg</filename>
-			<title>Extra Logo</title>
-		</file>
-	</media>
+	<vocals></vocals>
+	<media></media>
 	<init>
 		<cardiac>
 			<rhythm>asystole</rhythm>

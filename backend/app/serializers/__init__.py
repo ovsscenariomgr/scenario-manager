@@ -3,7 +3,7 @@ from .CardiacSerializer import CardiacSerializer, ScenarioInitCardiacSerializer,
 from .CategorySerializer import CategorySerializer
 from .ControlSerializer import ControlSerializer
 from .EventSerializer import EventSerializer
-from .FileSerializer import FileSerializer, MediaSerializer, VocalSerializer
+from .FileSerializer import MediaSerializer, VocalSerializer
 from .GeneralSerializer import GeneralSerializer, ScenarioInitGeneralSerializer, SceneInitGeneralSerializer
 from .HeaderSerializer import HeaderSerializer
 from .InitSerializer import ScenarioInitSerializer, SceneInitSerializer

@@ -11,7 +11,6 @@
     },
     "profile": {
         "avatar": {
-            "filename": "images/linus.jpg",
             "height_pct": 100,
             "width_pct": 50
         },
@@ -21,8 +20,7 @@
             "gender": "test",
             "weight": "test",
             "species": "test",
-            "symptoms": "test",
-            "image": "images/linus.jpg"
+            "symptoms": "test"
         },
         "color": "#000000",
         "controls": [
@@ -34,18 +32,8 @@
             }
         ]
     },
-    "vocals": [
-        {
-            "filename": "vocals/purr.wav",
-            "title": "Purring"
-        }
-    ],
-    "media": [
-        {
-            "filename": "media/logo.jpeg",
-            "title": "OVS Logo"
-        }
-    ],
+    "vocals": [],
+    "media": [],
     "init": {
         "cardiac": {
 			"rhythm": "sinus",
