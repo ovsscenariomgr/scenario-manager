@@ -1,9 +1,8 @@
-import io
-from PIL import Image
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
 from app.models import Scenario, Profile, Avatar, Summary, Control
 from app.serializers import ProfileSerializer, AvatarSerializer, SummarySerializer, ControlSerializer
+from .test_setup import generate_image_bytes
 
 class ProfileTestCase(TestCase):
     def setUp(self) -> None:
@@ -27,14 +26,6 @@ class ProfileTestCase(TestCase):
 
         self.control_attrs = {'title': 'vocals', 'id': 'vocals-dog-control', 'top': 50, 'left': 50}
         self.control = Control.objects.create(profile=self.profile, **self.control_attrs)
-
-    def generate_image_file(self):
-        file = io.BytesIO()
-        image = Image.new('RGBA', size=(1, 1), color=(0, 0, 0))
-        image.save(file, 'png')
-        file.name = 'test.png'
-        file.seek(0)
-        return file.read()
 
     def test_profile_serialization(self):
         serializer = ProfileSerializer(instance=self.profile)
@@ -93,7 +84,7 @@ class ProfileTestCase(TestCase):
 
     def test_avatar_dimensions(self):
         serializer_data = {
-            'filename': SimpleUploadedFile("test.png", self.generate_image_file(), content_type='image/png'),
+            'filename': SimpleUploadedFile("test.png", generate_image_bytes(), content_type='image/png'),
             'height_pct': 101,
             'width_pct': -1
         }
@@ -104,7 +95,7 @@ class ProfileTestCase(TestCase):
     def test_summary_required_fields(self):
         serializer_data = {
             'description': 'test',
-            'image': SimpleUploadedFile("test.png", self.generate_image_file(), content_type='image/png')
+            'image': SimpleUploadedFile("test.png", generate_image_bytes(), content_type='image/png')
         }
         serializer = SummarySerializer(data=serializer_data)
         self.assertFalse(serializer.is_valid())

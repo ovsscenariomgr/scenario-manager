@@ -4,7 +4,7 @@ from app.models import MediaFile, VocalFile
 class MediaSerializer(serializers.ModelSerializer):
     class Meta:
         model = MediaFile
-        fields = ('scenario', 'filename', 'title',)
+        fields = ('scenario', 'filename', 'title',) # Scenario field necessary here for creation
 
     def to_representation(self, instance):
         rep = super().to_representation(instance)
