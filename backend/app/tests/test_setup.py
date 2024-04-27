@@ -26,6 +26,7 @@ class TestSetup(APITestCase):
         self.scenario_detail = reverse('scenario_detail', kwargs={'pk': 1})
         self.scenario_vocals = reverse('scenario_vocals', kwargs={'pk': 1})
         self.scenario_media = reverse('scenario_media', kwargs={'pk': 1})
+        self.scenario_images = reverse('scenario_images', kwargs={'pk': 1})
 
         self.img_file = SimpleUploadedFile(name='test.jpg', content=generate_image_bytes(), content_type='multipart/form-data')
         self.wav_file = SimpleUploadedFile(name='test.wav', content=generate_wav_bytes(), content_type='multipart/form-data')
