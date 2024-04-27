@@ -52,7 +52,7 @@ class ScenarioMedia(views.APIView):
     def get(self, request, pk, format=None):
         scenario = get_object_or_404(Scenario, pk=pk)
         qs = MediaFile.objects.filter(scenario_id=scenario.pk)
-        serializer = VocalSerializer(qs, many=True)
+        serializer = MediaSerializer(qs, many=True)
         return Response(serializer.data)
 
     def put(self, request, pk, format=None):
