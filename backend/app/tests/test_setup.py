@@ -44,7 +44,7 @@ class TestSetup(APITestCase):
     def tearDown(self):
         for dir in ['images', 'media', 'vocals']:
             file_dir = Path(__file__).resolve().parent.parent.parent.joinpath('files', dir)
-            files = glob.glob(os.path.join(file_dir, 'test.*'))
+            files = glob.glob(os.path.join(file_dir, 'test*'))
             for f in files:
                 os.remove(f)
 

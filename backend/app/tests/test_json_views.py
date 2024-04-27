@@ -69,3 +69,12 @@ class TestJsonViews(TestSetup):
         self.assertEqual(len(resp.data['media']), 1)
         self.assertEqual(resp.data['media'][0]['title'], data['title'])
         # self.assertEqual(os.path.basename(resp.data['media'][0]['filename']), os.path.basename(data['filename'].name))
+
+    def test_add_images(self):
+        resp = self.client.post(self.scenario_list, self.json, format="json")
+        self.assertEqual(resp.status_code, 201)
+        data = {'avatar': self.img_file, 'summary': self.img_file}
+        resp = self.client.patch(self.scenario_images, data, format='multipart')
+        self.assertEqual(resp.status_code, 200)
+        self.assertIn('test', resp.data['profile']['avatar']['filename'])
+        self.assertIn('test', resp.data['profile']['summary']['image'])
