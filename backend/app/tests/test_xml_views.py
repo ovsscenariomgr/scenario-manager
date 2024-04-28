@@ -58,7 +58,7 @@ class TestXMLViews(TestSetup):
         parsed = ScenarioXMLParser().parse(BytesIO(resp.content))
         self.assertEqual(len(parsed['vocals']), 1)
         self.assertEqual(parsed['vocals'][0]['title'], data['title'])
-        self.assertEqual(resp.data['vocals'][0]['filename'], os.path.basename(data['filename'].name))
+        self.assertEqual(parsed['vocals'][0]['filename'], os.path.basename(data['filename'].name))
 
     def test_add_media(self):
         resp = self.client.post(self.scenario_list, self.xml, content_type='application/xml')
@@ -74,4 +74,14 @@ class TestXMLViews(TestSetup):
         parsed = ScenarioXMLParser().parse(BytesIO(resp.content))
         self.assertEqual(len(parsed['media']), 1)
         self.assertEqual(parsed['media'][0]['title'], data['title'])
-        self.assertEqual(resp.data['media'][0]['filename'], os.path.basename(data['filename'].name))
+        self.assertEqual(parsed['media'][0]['filename'], os.path.basename(data['filename'].name))
+
+    def test_add_images(self):
+        resp = self.client.post(self.scenario_list, self.xml, content_type='application/xml')
+        self.assertEqual(resp.status_code, 201)
+        data = {'avatar': self.img_file, 'summary': self.img_file}
+        resp = self.client.patch(self.scenario_images, data, format='multipart')
+        self.assertEqual(resp.status_code, 200)
+        parsed = ScenarioXMLParser().parse(BytesIO(resp.content))
+        self.assertEqual(parsed['profile']['avatar']['filename'], os.path.basename(data['avatar'].name))
+        self.assertEqual(parsed['profile']['summary']['image'], os.path.basename(data['summary'].name))
