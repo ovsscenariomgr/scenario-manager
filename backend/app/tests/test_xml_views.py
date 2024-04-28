@@ -1,7 +1,9 @@
 import re
 import os
-from .test_setup_views import TestSetup
-xmlheaders={"accept": "application/xml"}
+from io import BytesIO
+from ..parsers import ScenarioXMLParser
+from .test_setup import TestSetup
+
 class TestXMLViews(TestSetup):
 
     def test_scenario_list(self):
@@ -21,26 +23,65 @@ class TestXMLViews(TestSetup):
         self.assertEqual(resp.status_code, 400)
 
     def test_scenario_create_with_data(self):
-        # NOTE: The fields order in the serializer effects render order, so the test.xml has to be in the same order for assertContains
-        # TODO: replace this hacky shit with actual xml parse.
-        expected = re.sub(r'[\n\t]*', '', self.xml).replace("<?xml version='1.0' encoding='utf-8'?><scenario>", '<scenario><id>1</id>')
         resp = self.client.post(self.scenario_list, self.xml, content_type='application/xml')
-        # print(resp.content)
-        self.assertContains(resp, expected, status_code=201)
+        self.assertEqual(resp.status_code, 201)
+        parsed = ScenarioXMLParser().parse(BytesIO(resp.content))
+        self.assertEqual(parsed['id'], 1)
         # Should be able to retrieve anonymously
         self.client.logout()
         resp = self.client.get(self.scenario_detail)
-        self.assertContains(resp, expected)
+        self.assertEqual(resp.status_code, 200)
 
     def test_scenario_update(self):
-        # NOTE: The fields order in the serializer effects render order, so the test.xml has to be in the same order for assertContains
-        # TODO: replace this hacky shit with actual xml parse.
         with open(os.path.join(os.path.dirname(__file__), 'updated.xml'), 'r+') as file:
             updated_xml = file.read()
-        expected = re.sub(r'[\n\t]*', '', updated_xml).replace("<?xml version='1.0' encoding='utf-8'?><scenario>", '<scenario><id>1</id>')
         resp = self.client.post(self.scenario_list, self.xml, content_type='application/xml')
-        # print(resp.content)
         self.assertEqual(resp.status_code, 201)
         resp = self.client.put(self.scenario_detail, updated_xml, content_type='application/xml')
-        # print(resp.content)
-        self.assertContains(resp, expected)
+        self.assertEqual(resp.status_code, 200)
+        parsed = ScenarioXMLParser().parse(BytesIO(resp.content))
+        self.assertEqual(parsed['header']['author'], 'new author')
+        self.assertEqual(len(parsed['categories'][0]['events']), 2)
+        self.assertEqual(len(parsed['scenes']), 2)
+
+    def test_add_vocal(self):
+        resp = self.client.post(self.scenario_list, self.xml, content_type='application/xml')
+        self.assertEqual(resp.status_code, 201)
+        data = {'title': 'test', 'filename': self.wav_file}
+        resp = self.client.put(self.scenario_vocals, data, format='multipart')
+        self.assertEqual(resp.status_code, 201)
+        self.assertEqual(resp.data['filename'], os.path.basename(data['filename'].name))
+        self.assertEqual(resp.data['title'], data['title'])
+        # Verify vocal added to scenario
+        resp = self.client.get(self.scenario_detail)
+        self.assertEqual(resp.status_code, 200)
+        parsed = ScenarioXMLParser().parse(BytesIO(resp.content))
+        self.assertEqual(len(parsed['vocals']), 1)
+        self.assertEqual(parsed['vocals'][0]['title'], data['title'])
+        self.assertEqual(parsed['vocals'][0]['filename'], os.path.basename(data['filename'].name))
+
+    def test_add_media(self):
+        resp = self.client.post(self.scenario_list, self.xml, content_type='application/xml')
+        self.assertEqual(resp.status_code, 201)
+        data = {'title': 'test', 'filename': self.media_file}
+        resp = self.client.put(self.scenario_media, data, format='multipart')
+        self.assertEqual(resp.status_code, 201)
+        self.assertEqual(resp.data['filename'], os.path.basename(data['filename'].name))
+        self.assertEqual(resp.data['title'], data['title'])
+        # Verify media added to scenario
+        resp = self.client.get(self.scenario_detail)
+        self.assertEqual(resp.status_code, 200)
+        parsed = ScenarioXMLParser().parse(BytesIO(resp.content))
+        self.assertEqual(len(parsed['media']), 1)
+        self.assertEqual(parsed['media'][0]['title'], data['title'])
+        self.assertEqual(parsed['media'][0]['filename'], os.path.basename(data['filename'].name))
+
+    def test_add_images(self):
+        resp = self.client.post(self.scenario_list, self.xml, content_type='application/xml')
+        self.assertEqual(resp.status_code, 201)
+        data = {'avatar': self.img_file, 'summary': self.img_file}
+        resp = self.client.patch(self.scenario_images, data, format='multipart')
+        self.assertEqual(resp.status_code, 200)
+        parsed = ScenarioXMLParser().parse(BytesIO(resp.content))
+        self.assertEqual(parsed['profile']['avatar']['filename'], os.path.basename(data['avatar'].name))
+        self.assertEqual(parsed['profile']['summary']['image'], os.path.basename(data['summary'].name))

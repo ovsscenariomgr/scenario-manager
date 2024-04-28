@@ -3,7 +3,7 @@ from .Cardiac import Cardiac, ScenarioInitCardiac, SceneInitCardiac, ParameterTr
 from .Category import Category
 from .Control import Control
 from .Event import Event
-from .File import File, MediaFile, VocalFile
+from .File import MediaFile, VocalFile
 from .General import General, ScenarioInitGeneral, SceneInitGeneral, ParameterTriggerGeneral
 from .Header import Header
 from .Init import ScenarioInit, SceneInit

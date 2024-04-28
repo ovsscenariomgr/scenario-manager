@@ -151,6 +151,7 @@ REST_FRAMEWORK = {
     'TEST_REQUEST_RENDERER_CLASSES': [
         'rest_framework_xml.renderers.XMLRenderer', # Need to set this to custom ScenarioXMLRenderer
         'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.MultiPartRenderer'
     ]
 }
 

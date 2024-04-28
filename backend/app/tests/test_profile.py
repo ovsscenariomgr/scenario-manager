@@ -2,6 +2,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
 from app.models import Scenario, Profile, Avatar, Summary, Control
 from app.serializers import ProfileSerializer, AvatarSerializer, SummarySerializer, ControlSerializer
+from .test_setup import generate_image_bytes
 
 class ProfileTestCase(TestCase):
     def setUp(self) -> None:
@@ -82,13 +83,20 @@ class ProfileTestCase(TestCase):
                 self.assertTrue(str(serializer.errors['color'][0]) == '%s is not an HTML5 compatible specifier for color' % color)
 
     def test_avatar_dimensions(self):
-        serializer_data = {'filename': 'image.jpg', 'height_pct': 101, 'width_pct': -1}
+        serializer_data = {
+            'filename': SimpleUploadedFile("test.png", generate_image_bytes(), content_type='image/png'),
+            'height_pct': 101,
+            'width_pct': -1
+        }
         serializer = AvatarSerializer(data=serializer_data)
         self.assertFalse(serializer.is_valid())
         self.assertEqual(set(serializer.errors), set(['height_pct', 'width_pct']))
 
     def test_summary_required_fields(self):
-        serializer_data = {"description": "test", "image": "image.jpg" }
+        serializer_data = {
+            'description': 'test',
+            'image': SimpleUploadedFile("test.png", generate_image_bytes(), content_type='image/png')
+        }
         serializer = SummarySerializer(data=serializer_data)
         self.assertFalse(serializer.is_valid())
         self.assertEqual(set(serializer.errors), set(['breed', 'gender', 'weight', 'species']))

@@ -1,15 +1,25 @@
+import os
 from rest_framework import serializers
-from app.models import File, MediaFile, VocalFile
+from app.models import MediaFile, VocalFile
 
-class FileSerializer(serializers.ModelSerializer):
+class MediaSerializer(serializers.ModelSerializer):
     class Meta:
-        model = File
-        fields = ('filename', 'title',)
-
-class MediaSerializer(FileSerializer):
-    class Meta(FileSerializer.Meta):
         model = MediaFile
+        fields = ('scenario', 'filename', 'title',) # Scenario field necessary here for creation
 
-class VocalSerializer(FileSerializer):
-    class Meta(FileSerializer.Meta):
+    def to_representation(self, instance):
+        rep = super().to_representation(instance)
+        rep.pop('scenario')
+        rep.update(filename=os.path.basename(rep.get('filename')))
+        return rep
+
+class VocalSerializer(serializers.ModelSerializer):
+    class Meta:
         model = VocalFile
+        fields = ('scenario', 'filename', 'title',)
+
+    def to_representation(self, instance):
+        rep = super().to_representation(instance)
+        rep.pop('scenario')
+        rep.update(filename=os.path.basename(rep.get('filename')))
+        return rep
