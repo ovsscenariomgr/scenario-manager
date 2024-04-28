@@ -1,3 +1,4 @@
+import os
 from app.models import Summary
 from rest_framework import serializers
 
@@ -12,6 +13,8 @@ class SummarySerializer(serializers.ModelSerializer):
              # If image is empty, don't serialize the field
             if not rep['image']:
                 rep.pop('image')
+            else:
+                rep.update(image=os.path.basename(rep.get('image')))
         except KeyError:
             pass
         return rep

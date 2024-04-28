@@ -1,4 +1,5 @@
 from django.db import models
+from app.storage import OverwriteStorage
 from .Profile import Profile
 
 class Summary(models.Model):
@@ -9,6 +10,6 @@ class Summary(models.Model):
     species = models.CharField(max_length=64) # Make this a choices field?
     symptoms = models.TextField(default='Scenario Symptoms')
     # image = models.CharField(max_length=256, default='images/linus.jpg')
-    image = models.ImageField(upload_to='images', null=True)
+    image = models.ImageField(upload_to='images', storage=OverwriteStorage(), null=True)
     # Foreign Key
     profile = models.OneToOneField(Profile, on_delete=models.CASCADE)

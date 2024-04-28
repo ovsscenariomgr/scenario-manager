@@ -21,8 +21,7 @@ class VocalMediaTestCase(TestCase):
     def test_vocal_serialization(self):
         serializer = VocalSerializer(instance=self.vocal)
         self.assertEqual(self.vocal.title, serializer.data['title'])
-        # TODO: this needs to assert the right vocals/scenario path
-        self.assertEqual(os.path.basename(self.vocal.filename.name), os.path.basename(serializer.data['filename']))
+        self.assertEqual(os.path.basename(self.vocal.filename.name), serializer.data['filename'])
         self.assertEqual(self.vocal.scenario_id, self.scenario.id)
 
     def test_vocal_deserialization(self):
@@ -34,8 +33,7 @@ class VocalMediaTestCase(TestCase):
     def test_media_serialization(self):
         serializer = MediaSerializer(instance=self.media)
         self.assertEqual(self.media.title, serializer.data['title'])
-        # TODO: this needs to assert the right media/scenario path
-        self.assertEqual(os.path.basename(self.media.filename.name), os.path.basename(serializer.data['filename']))
+        self.assertEqual(os.path.basename(self.media.filename.name), serializer.data['filename'])
         self.assertEqual(self.media.scenario_id, self.scenario.id)
 
     def test_media_deserialization(self):

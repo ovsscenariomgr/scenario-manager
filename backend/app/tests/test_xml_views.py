@@ -50,7 +50,7 @@ class TestXMLViews(TestSetup):
         data = {'title': 'test', 'filename': self.wav_file}
         resp = self.client.put(self.scenario_vocals, data, format='multipart')
         self.assertEqual(resp.status_code, 201)
-        self.assertEqual(os.path.dirname(resp.data['filename']), '/files/vocals')
+        self.assertEqual(resp.data['filename'], os.path.basename(data['filename'].name))
         self.assertEqual(resp.data['title'], data['title'])
         # Verify vocal added to scenario
         resp = self.client.get(self.scenario_detail)
@@ -58,7 +58,7 @@ class TestXMLViews(TestSetup):
         parsed = ScenarioXMLParser().parse(BytesIO(resp.content))
         self.assertEqual(len(parsed['vocals']), 1)
         self.assertEqual(parsed['vocals'][0]['title'], data['title'])
-        # self.assertEqual(os.path.basename(resp.data['vocals'][0]['filename']), os.path.basename(data['filename'].name))
+        self.assertEqual(resp.data['vocals'][0]['filename'], os.path.basename(data['filename'].name))
 
     def test_add_media(self):
         resp = self.client.post(self.scenario_list, self.xml, content_type='application/xml')
@@ -66,7 +66,7 @@ class TestXMLViews(TestSetup):
         data = {'title': 'test', 'filename': self.media_file}
         resp = self.client.put(self.scenario_media, data, format='multipart')
         self.assertEqual(resp.status_code, 201)
-        self.assertEqual(os.path.dirname(resp.data['filename']), '/files/media')
+        self.assertEqual(resp.data['filename'], os.path.basename(data['filename'].name))
         self.assertEqual(resp.data['title'], data['title'])
         # Verify media added to scenario
         resp = self.client.get(self.scenario_detail)
@@ -74,4 +74,4 @@ class TestXMLViews(TestSetup):
         parsed = ScenarioXMLParser().parse(BytesIO(resp.content))
         self.assertEqual(len(parsed['media']), 1)
         self.assertEqual(parsed['media'][0]['title'], data['title'])
-        # self.assertEqual(os.path.basename(parsed['media'][0]['filename']), os.path.basename(data['filename'].name))
+        self.assertEqual(resp.data['media'][0]['filename'], os.path.basename(data['filename'].name))

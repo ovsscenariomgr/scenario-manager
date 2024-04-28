@@ -1,3 +1,4 @@
+import os
 from rest_framework import serializers
 from app.models import MediaFile, VocalFile
 
@@ -9,6 +10,7 @@ class MediaSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         rep = super().to_representation(instance)
         rep.pop('scenario')
+        rep.update(filename=os.path.basename(rep.get('filename')))
         return rep
 
 class VocalSerializer(serializers.ModelSerializer):
@@ -19,4 +21,5 @@ class VocalSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         rep = super().to_representation(instance)
         rep.pop('scenario')
+        rep.update(filename=os.path.basename(rep.get('filename')))
         return rep
