@@ -56,9 +56,9 @@ class TestXMLViews(TestSetup):
         resp = self.client.get(self.scenario_detail)
         self.assertEqual(resp.status_code, 200)
         parsed = ScenarioXMLParser().parse(BytesIO(resp.content))
-        self.assertEqual(len(parsed['vocals']), 1)
-        self.assertEqual(parsed['vocals'][0]['title'], data['title'])
-        self.assertEqual(parsed['vocals'][0]['filename'], os.path.basename(data['filename'].name))
+        self.assertEqual(len(parsed['vocalfiles']), 1)
+        self.assertEqual(parsed['vocalfiles'][0]['title'], data['title'])
+        self.assertEqual(parsed['vocalfiles'][0]['filename'], os.path.basename(data['filename'].name))
 
     def test_add_media(self):
         resp = self.client.post(self.scenario_list, self.xml, content_type='application/xml')
@@ -72,9 +72,9 @@ class TestXMLViews(TestSetup):
         resp = self.client.get(self.scenario_detail)
         self.assertEqual(resp.status_code, 200)
         parsed = ScenarioXMLParser().parse(BytesIO(resp.content))
-        self.assertEqual(len(parsed['media']), 1)
-        self.assertEqual(parsed['media'][0]['title'], data['title'])
-        self.assertEqual(parsed['media'][0]['filename'], os.path.basename(data['filename'].name))
+        self.assertEqual(len(parsed['mediafiles']), 1)
+        self.assertEqual(parsed['mediafiles'][0]['title'], data['title'])
+        self.assertEqual(parsed['mediafiles'][0]['filename'], os.path.basename(data['filename'].name))
 
     def test_add_images(self):
         resp = self.client.post(self.scenario_list, self.xml, content_type='application/xml')

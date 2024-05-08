@@ -11,15 +11,15 @@ from .SceneSerializer import SceneSerializer
 class ScenarioSerializer(WritableNestedModelSerializer):
     header = HeaderSerializer()
     profile = ProfileSerializer()
-    vocals = VocalSerializer(many=True)
-    media = MediaSerializer(many=True)
+    vocalfiles = VocalSerializer(many=True) # rendered as 'vocals'
+    mediafiles = MediaSerializer(many=True) # rendered as 'media'
     init = ScenarioInitSerializer()
-    eventgroups = EventGroupSerializer(many=True)
+    eventgroups = EventGroupSerializer(many=True) # rendered as 'events'
     scenes = SceneSerializer(many=True)
 
     class Meta:
         model = Scenario
-        fields = ('id', 'header', 'profile', 'vocals', 'media', 'init', 'eventgroups', 'scenes',)
+        fields = ('id', 'header', 'profile', 'vocalfiles', 'mediafiles', 'init', 'eventgroups', 'scenes',)
 
     # Categories == Events in rendered scenario xml
     def validate_eventgroups(self, value):

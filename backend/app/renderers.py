@@ -4,10 +4,15 @@ from django.utils.encoding import force_str
 from django.utils.xmlutils import SimplerXMLGenerator
 
 class ScenarioXMLRenderer(XMLRenderer):
-    # Override XML tag names
-    root_tag_name = "scenario"
+    """
+    Renderer which serializes to XML.
+    """
 
-    # item_tag_name is overridden by key value to _to_xml
+    media_type = "application/xml"
+    format = "xml"
+    charset = "utf-8"
+    item_tag_name = "list-item"
+    root_tag_name = "scenario"
 
     def render(self, data, accepted_media_type=None, renderer_context=None):
         """
