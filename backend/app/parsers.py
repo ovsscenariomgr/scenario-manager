@@ -1,7 +1,7 @@
 from rest_framework_xml.parsers import XMLParser
 
 class ScenarioXMLParser(XMLParser):
-    list_item_tags = ['control', 'file', 'category', 'event', 'scene', 'trigger']
+    list_item_tags = ['control', 'file', 'eventgroup', 'event', 'scene', 'trigger']
 
     def _xml_convert(self, element):
         """
@@ -11,7 +11,7 @@ class ScenarioXMLParser(XMLParser):
         children = list(element)
 
         if len(children) == 0:
-            if element.tag in ['vocals', 'media', 'controls', 'categories', 'events', 'scenes', 'triggers']:
+            if element.tag in ['vocals', 'media', 'controls', 'eventgroups', 'events', 'scenes', 'triggers']:
                 return []
             return self._type_convert(element.text)
         else:

@@ -37,8 +37,6 @@ class ScenarioXMLRenderer(XMLRenderer):
                 # creates list like <controls><control>...</control></controls>
                 if key in ['vocals', 'media']:
                     singular_key = 'file'
-                elif key == 'categories': # This needs to be events
-                    singular_key = 'category'
                 else:
                     singular_key = key[:-1]
                 xml.startElement(singular_key, {})

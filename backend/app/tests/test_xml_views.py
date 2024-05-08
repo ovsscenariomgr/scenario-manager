@@ -41,7 +41,7 @@ class TestXMLViews(TestSetup):
         self.assertEqual(resp.status_code, 200)
         parsed = ScenarioXMLParser().parse(BytesIO(resp.content))
         self.assertEqual(parsed['header']['author'], 'new author')
-        self.assertEqual(len(parsed['categories'][0]['events']), 2)
+        self.assertEqual(len(parsed['eventgroups'][0]['events']), 2)
         self.assertEqual(len(parsed['scenes']), 2)
 
     def test_add_vocal(self):

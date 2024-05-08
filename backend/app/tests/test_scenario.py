@@ -27,7 +27,7 @@ class ScenarioTestCase(TestCase):
                 'respiration': {},
                 'general': {}
             },
-            'categories': [{
+            'eventgroups': [{
                 'events': []
             }],
             'scenes': [{
@@ -56,12 +56,12 @@ class ScenarioTestCase(TestCase):
         self.assertFalse(serializer.is_valid())
         self.assertEqual(set(serializer.errors), set(keys))
 
-    def test_scenes_and_categories_must_have_at_least_one(self):
-        self.serializer_data['categories'] = []
+    def test_scenes_and_eventgroups_must_have_at_least_one(self):
+        self.serializer_data['eventgroups'] = []
         self.serializer_data['scenes'] = []
         serializer = ScenarioSerializer(data=self.serializer_data)
         self.assertFalse(serializer.is_valid())
-        self.assertEqual(set(serializer.errors), set(['categories', 'scenes']))
+        self.assertEqual(set(serializer.errors), set(['eventgroups', 'scenes']))
 
     def test_initial_scene_exists(self):
         self.skipTest("TODO")

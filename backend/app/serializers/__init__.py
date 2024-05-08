@@ -1,7 +1,7 @@
 from .AvatarSerializer import AvatarSerializer
 from .CardiacSerializer import CardiacSerializer, ScenarioInitCardiacSerializer, SceneInitCardiacSerializer
-from .CategorySerializer import CategorySerializer
 from .ControlSerializer import ControlSerializer
+from .EventGroupSerializer import EventGroupSerializer
 from .EventSerializer import EventSerializer
 from .FileSerializer import MediaSerializer, VocalSerializer
 from .GeneralSerializer import GeneralSerializer, ScenarioInitGeneralSerializer, SceneInitGeneralSerializer

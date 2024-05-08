@@ -1,5 +1,5 @@
 from django.db import models
-from .Category import Category
+from .EventGroup import EventGroup
 
 class Event(models.Model):
     class PriorityChoices(models.IntegerChoices):
@@ -16,4 +16,4 @@ class Event(models.Model):
     # TODO: The XML spec should be:
     # <events><event>...</event></events>
     # But... it's not, so this will ultimately have to get flattened in the Renderer.
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='events')
+    eventgroup = models.ForeignKey(EventGroup, on_delete=models.CASCADE, related_name='events')
