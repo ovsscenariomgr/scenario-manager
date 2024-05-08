@@ -1,8 +1,8 @@
 from .Avatar import Avatar
 from .Cardiac import Cardiac, ScenarioInitCardiac, SceneInitCardiac, ParameterTriggerCardiac
-from .Category import Category
 from .Control import Control
 from .Event import Event
+from .EventGroup import EventGroup
 from .File import MediaFile, VocalFile
 from .General import General, ScenarioInitGeneral, SceneInitGeneral, ParameterTriggerGeneral
 from .Header import Header

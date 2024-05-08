@@ -83,8 +83,8 @@
 		<initial_scene>1</initial_scene>
 		<record>1</record>
 	</init>
-	<categories>
-		<category>
+	<eventgroups>
+		<eventgroup>
 			<name>drugs</name>
 			<title>Drugs</title>
 			<events>
@@ -99,8 +99,8 @@
 					<priority>0</priority>
 				</event>
 			</events>
-		</category>
-		<category>
+		</eventgroup>
+		<eventgroup>
 			<name>interventions</name>
 			<title>Interventions</title>
 			<events>
@@ -115,8 +115,8 @@
 					<priority>1</priority>
 				</event>
 			</events>
-		</category>
-	</categories>
+		</eventgroup>
+	</eventgroups>
 	<scenes>
 		<scene>
 			<title>Opening Scene</title>

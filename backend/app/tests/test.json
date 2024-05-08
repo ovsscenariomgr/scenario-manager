@@ -76,7 +76,7 @@
         "initial_scene": 1,
         "record": 1
     },
-    "categories": [
+    "eventgroups": [
         {
             "name": "drugs",
             "title": "Drugs",
