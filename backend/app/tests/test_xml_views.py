@@ -1,7 +1,7 @@
 import re
 import os
 from io import BytesIO
-from ..parsers import ScenarioXMLParser
+from ..parsers import ScenarioXMLParser, OvsXMLParser
 from .test_setup import TestSetup
 
 class TestXMLViews(TestSetup):
@@ -85,3 +85,15 @@ class TestXMLViews(TestSetup):
         parsed = ScenarioXMLParser().parse(BytesIO(resp.content))
         self.assertEqual(parsed['profile']['avatar']['filename'], os.path.basename(data['avatar'].name))
         self.assertEqual(parsed['profile']['summary']['image'], os.path.basename(data['summary'].name))
+
+    def test_scenario_export(self):
+        resp = self.client.post(self.scenario_list, self.xml, content_type='application/xml')
+        self.assertEqual(resp.status_code, 201)
+        # Export as OVS spec
+        resp = self.client.get(self.scenario_export, content_type='application/ovsxml')
+        self.assertEqual(resp.status_code, 200)
+        parsed = OvsXMLParser().parse(BytesIO(resp.content))
+        self.assertEqual(parsed['id'], 1)
+        self.assertEqual(len(parsed['events']), 2)
+        self.assertEqual(len(parsed['vocals']), 0)
+        self.assertEqual(len(parsed['media']), 0)
