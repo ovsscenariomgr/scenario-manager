@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from app.models import Scenario, VocalFile, MediaFile, Profile
 from app.serializers import ScenarioSerializer, VocalSerializer, MediaSerializer
-from app.renderers import ScenarioXMLRenderer
+from app.renderers import ScenarioXMLRenderer, OvsXMLRenderer
 from app.parsers import ScenarioXMLParser
 
 @permission_classes([permissions.IsAuthenticatedOrReadOnly])
@@ -24,6 +24,11 @@ class ScenarioDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Scenario.objects.all()
     serializer_class = ScenarioSerializer
 
+@permission_classes([permissions.IsAuthenticatedOrReadOnly])
+@renderer_classes([OvsXMLRenderer])
+class ScenarioExport(generics.RetrieveAPIView):
+    queryset = Scenario.objects.all()
+    serializer_class = ScenarioSerializer
 
 @permission_classes([permissions.IsAuthenticatedOrReadOnly])
 @parser_classes([MultiPartParser, FormParser])

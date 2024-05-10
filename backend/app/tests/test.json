@@ -32,8 +32,8 @@
             }
         ]
     },
-    "vocals": [],
-    "media": [],
+    "vocalfiles": [],
+    "mediafiles": [],
     "init": {
         "cardiac": {
 			"rhythm": "sinus",

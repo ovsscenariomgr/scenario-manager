@@ -20,8 +20,8 @@ class ScenarioTestCase(TestCase):
                 },
                 'controls': []
             },
-            'vocals': [],
-            'media': [],
+            'vocalfiles': [],
+            'mediafiles': [],
             'init': {
                 'cardiac': {},
                 'respiration': {},

@@ -13,7 +13,5 @@ class Event(models.Model):
     priority = models.IntegerField(default=PriorityChoices.NON_PRIORITY, choices=PriorityChoices.choices, null=True, blank=True)
     hotkey = models.CharField(max_length=1, default='', null=True, blank=True) # TODO: validation of hotkey?
     # ForeignKey
-    # TODO: The XML spec should be:
-    # <events><event>...</event></events>
-    # But... it's not, so this will ultimately have to get flattened in the Renderer.
+    # "flattened" in OvsXMLRenderer so <events></events> is removed
     eventgroup = models.ForeignKey(EventGroup, on_delete=models.CASCADE, related_name='events')

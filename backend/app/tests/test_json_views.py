@@ -50,9 +50,9 @@ class TestJsonViews(TestSetup):
         # Verify vocal added to scenario
         resp = self.client.get(self.scenario_detail, format="json")
         self.assertEqual(resp.status_code, 200)
-        self.assertEqual(len(resp.data['vocals']), 1)
-        self.assertEqual(resp.data['vocals'][0]['title'], data['title'])
-        self.assertEqual(resp.data['vocals'][0]['filename'], os.path.basename(data['filename'].name))
+        self.assertEqual(len(resp.data['vocalfiles']), 1)
+        self.assertEqual(resp.data['vocalfiles'][0]['title'], data['title'])
+        self.assertEqual(resp.data['vocalfiles'][0]['filename'], os.path.basename(data['filename'].name))
 
     def test_add_media(self):
         resp = self.client.post(self.scenario_list, self.json, format="json")
@@ -66,9 +66,9 @@ class TestJsonViews(TestSetup):
         # Verify vocal added to scenario
         resp = self.client.get(self.scenario_detail, format="json")
         self.assertEqual(resp.status_code, 200)
-        self.assertEqual(len(resp.data['media']), 1)
-        self.assertEqual(resp.data['media'][0]['title'], data['title'])
-        self.assertEqual(resp.data['media'][0]['filename'], os.path.basename(data['filename'].name))
+        self.assertEqual(len(resp.data['mediafiles']), 1)
+        self.assertEqual(resp.data['mediafiles'][0]['title'], data['title'])
+        self.assertEqual(resp.data['mediafiles'][0]['filename'], os.path.basename(data['filename'].name))
 
     def test_add_images(self):
         resp = self.client.post(self.scenario_list, self.json, format="json")

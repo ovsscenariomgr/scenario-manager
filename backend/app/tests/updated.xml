@@ -39,8 +39,8 @@
 		</controls>
 		<color>#111111</color>
 	</profile>
-	<vocals></vocals>
-	<media></media>
+	<vocalfiles></vocalfiles>
+	<mediafiles></mediafiles>
 	<init>
 		<cardiac>
 			<rhythm>asystole</rhythm>
