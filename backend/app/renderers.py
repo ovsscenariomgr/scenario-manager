@@ -84,6 +84,9 @@ class OvsXMLRenderer(ScenarioXMLRenderer):
     
     # "Flatten" events and scenes when rendering to XML because OVS XML spec 1.9 is poorly designed.
     flatten_keys = ['events', 'scenes']
+
+    # holder for controls color
+    controls_color = None
     
     def _startElement(self, xml, key, attrs):
         if key in self.flatten_keys:
@@ -98,3 +101,31 @@ class OvsXMLRenderer(ScenarioXMLRenderer):
             pass
         else:
             xml.endElement(self.ovs_key_map.get(key, key))
+
+    def _to_xml(self, xml, data, key=None):
+        if isinstance(data, (list, tuple)):
+            if key == 'controls':
+                # ...and put it into the controls list
+                self._startElement(xml, 'color', {})
+                self._to_xml(xml, self.controls_color, 'color')
+                self._endElement(xml, 'color')
+            for item in data:
+                xml.startElement(self._singular_key(key), {})
+                self._to_xml(xml, item)
+                xml.endElement(self._singular_key(key))
+
+        elif isinstance(data, dict):
+            for key, value in data.items():
+                if key == 'profile':
+                    # Remove color from proile...
+                    self.controls_color = value.pop('color', None)
+                self._startElement(xml, key, {})
+                self._to_xml(xml, value, key)
+                self._endElement(xml, key)
+
+        elif data is None:
+            # Don't output any value
+            pass
+
+        else:
+            xml.characters(force_str(data))

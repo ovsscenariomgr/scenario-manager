@@ -94,6 +94,7 @@ class TestXMLViews(TestSetup):
         self.assertEqual(resp.status_code, 200)
         parsed = OvsXMLParser().parse(BytesIO(resp.content))
         self.assertEqual(parsed['id'], 1)
+        self.assertEqual(parsed['profile']['controls']['color'], '#000000')
         self.assertEqual(len(parsed['events']), 2)
         self.assertEqual(len(parsed['vocals']), 0)
         self.assertEqual(len(parsed['media']), 0)
