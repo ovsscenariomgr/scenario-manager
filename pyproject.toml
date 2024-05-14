@@ -1,0 +1,14 @@
+[project]
+name = "ovs-scenario-manager"
+version = "0.1.0"
+description = "Application to manage Open Vet Sim scenario archives."
+readme = "README.md"
+requires-python = ">=3.12"
+license = {file = "LICENSE"}
+keywords = ["Open Vet Sim"]
+authors = [{ name = "David Haak", email = "dh749@cornell.edu" }]
+maintainers = [{ name = "David Haak", email = "dh749@cornell.edu" }]
+
+[project.urls]
+"Homepage" = "https://github.com/ovsscenariomgr/scenario-manager"
+"Bug Reports" = "https://github.com/ovsscenariomgr/scenario-manager/issues"

@@ -1,0 +1,32 @@
+name: Bump Version
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+
+jobs:
+  bump-version:
+    name: Bump the Semantic Version
+    if: github.event.pull_request.merged == true
+    concurrency: ${{ github.workflow }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Version before version bump
+        run: cat ./pyproject.toml
+      - name: Bump version and create changelog
+        uses: TriPSs/conventional-changelog-action@v5
+        with:
+          github-token: ${{ secrets.github_token }}
+          version-file: pyproject.toml
+          version-path: project.version
+          release-count: 50
+          skip-on-empty: false
+          preset: conventionalcommits
+      - name: Version after version bump
+        run: cat ./pyproject.toml
