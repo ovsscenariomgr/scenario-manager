@@ -152,6 +152,7 @@ REST_FRAMEWORK = {
         'rest_framework_xml.renderers.XMLRenderer', # Need to set this to custom ScenarioXMLRenderer
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.MultiPartRenderer'
-    ]
+    ],
+    'UPLOADED_FILES_USE_URL': False
 }
 
