@@ -45,14 +45,14 @@ class TestJsonViews(TestSetup):
         data = {'title': 'Purrrrr', 'filename': self.wav_file}
         resp = self.client.put(self.scenario_vocals, data, format='multipart')
         self.assertEqual(resp.status_code, 201)
-        self.assertEqual(resp.data['filename'], os.path.basename(data['filename'].name))
+        self.assertEqual(resp.data['filename'], self.scenario_file_path('vocals', data['filename'].name))
         self.assertEqual(resp.data['title'], data['title'])
         # Verify vocal added to scenario
         resp = self.client.get(self.scenario_detail, format="json")
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(len(resp.data['vocalfiles']), 1)
         self.assertEqual(resp.data['vocalfiles'][0]['title'], data['title'])
-        self.assertEqual(resp.data['vocalfiles'][0]['filename'], os.path.basename(data['filename'].name))
+        self.assertEqual(resp.data['vocalfiles'][0]['filename'], self.scenario_file_path('vocals', data['filename'].name))
 
     def test_add_media(self):
         resp = self.client.post(self.scenario_list, self.json, format="json")
@@ -61,14 +61,14 @@ class TestJsonViews(TestSetup):
         data = {'title': 'Media', 'filename': self.media_file}
         resp = self.client.put(self.scenario_media, data, format='multipart')
         self.assertEqual(resp.status_code, 201)
-        self.assertEqual(resp.data['filename'], os.path.basename(data['filename'].name))
+        self.assertEqual(resp.data['filename'], self.scenario_file_path('media', data['filename'].name))
         self.assertEqual(resp.data['title'], data['title'])
         # Verify vocal added to scenario
         resp = self.client.get(self.scenario_detail, format="json")
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(len(resp.data['mediafiles']), 1)
         self.assertEqual(resp.data['mediafiles'][0]['title'], data['title'])
-        self.assertEqual(resp.data['mediafiles'][0]['filename'], os.path.basename(data['filename'].name))
+        self.assertEqual(resp.data['mediafiles'][0]['filename'], self.scenario_file_path('media', data['filename'].name))
 
     def test_add_images(self):
         resp = self.client.post(self.scenario_list, self.json, format="json")
@@ -76,5 +76,5 @@ class TestJsonViews(TestSetup):
         data = {'avatar': self.img_file, 'summary': self.img_file}
         resp = self.client.patch(self.scenario_images, data, format='multipart')
         self.assertEqual(resp.status_code, 200)
-        self.assertEqual(resp.data['profile']['avatar']['filename'], os.path.basename(data['avatar'].name))
-        self.assertEqual(resp.data['profile']['summary']['image'], os.path.basename(data['summary'].name))
+        self.assertEqual(resp.data['profile']['avatar']['filename'], self.scenario_file_path('images', data['avatar'].name))
+        self.assertEqual(resp.data['profile']['summary']['image'], self.scenario_file_path('images', data['summary'].name))
