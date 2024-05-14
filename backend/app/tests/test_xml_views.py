@@ -87,7 +87,20 @@ class TestXMLViews(TestSetup):
         self.assertEqual(parsed['profile']['summary']['image'], self.scenario_file_path('images', data['summary'].name))
 
     def test_scenario_export(self):
+        # Create scenario
         resp = self.client.post(self.scenario_list, self.xml, content_type='application/xml')
+        self.assertEqual(resp.status_code, 201)
+        # Add images
+        img_data = {'avatar': self.img_file, 'summary': self.img_file}
+        resp = self.client.patch(self.scenario_images, img_data, format='multipart')
+        self.assertEqual(resp.status_code, 200)
+        # Add media
+        media_data = {'title': 'test', 'filename': self.media_file}
+        resp = self.client.put(self.scenario_media, media_data, format='multipart')
+        self.assertEqual(resp.status_code, 201)
+        # Add vocals
+        vocal_data = {'title': 'test', 'filename': self.wav_file}
+        resp = self.client.put(self.scenario_vocals, vocal_data, format='multipart')
         self.assertEqual(resp.status_code, 201)
         # Export as OVS spec
         resp = self.client.get(self.scenario_export, content_type='application/ovsxml')
@@ -95,6 +108,10 @@ class TestXMLViews(TestSetup):
         parsed = OvsXMLParser().parse(BytesIO(resp.content))
         self.assertEqual(parsed['id'], 1)
         self.assertEqual(parsed['profile']['controls']['color'], '#000000')
+        self.assertEqual(parsed['profile']['avatar']['filename'], img_data['avatar'].name) # Should just be file basename
+        self.assertEqual(parsed['profile']['summary']['image'], img_data['summary'].name) # Should just be file basename
         self.assertEqual(len(parsed['events']), 2)
-        self.assertEqual(len(parsed['vocals']), 0)
-        self.assertEqual(len(parsed['media']), 0)
+        self.assertEqual(len(parsed['vocals']), 1)
+        self.assertEqual(parsed['vocals'][0]['filename'], vocal_data['filename'].name)
+        self.assertEqual(len(parsed['media']), 1)
+        self.assertEqual(parsed['media'][0]['filename'], media_data['filename'].name)

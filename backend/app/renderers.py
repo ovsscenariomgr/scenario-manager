@@ -1,3 +1,4 @@
+import os
 from io import StringIO
 from rest_framework_xml.renderers import XMLRenderer
 from django.utils.encoding import force_str
@@ -84,6 +85,8 @@ class OvsXMLRenderer(ScenarioXMLRenderer):
     
     # "Flatten" events and scenes when rendering to XML because OVS XML spec 1.9 is poorly designed.
     flatten_keys = ['events', 'scenes']
+    # Filename keys
+    filename_keys = ['filename', 'image']
 
     # holder for controls color
     controls_color = None
@@ -113,7 +116,6 @@ class OvsXMLRenderer(ScenarioXMLRenderer):
                 xml.startElement(self._singular_key(key), {})
                 self._to_xml(xml, item)
                 xml.endElement(self._singular_key(key))
-
         elif isinstance(data, dict):
             for key, value in data.items():
                 if key == 'profile':
@@ -122,10 +124,11 @@ class OvsXMLRenderer(ScenarioXMLRenderer):
                 self._startElement(xml, key, {})
                 self._to_xml(xml, value, key)
                 self._endElement(xml, key)
-
         elif data is None:
             # Don't output any value
             pass
-
         else:
-            xml.characters(force_str(data))
+            if key in self.filename_keys:
+                xml.characters(os.path.basename(force_str(data)))
+            else:
+                xml.characters(force_str(data))
