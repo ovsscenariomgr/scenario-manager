@@ -13,8 +13,6 @@ class AvatarSerializer(serializers.ModelSerializer):
              # If filename is empty, don't serialize the field
             if not rep['filename']:
                 rep.pop('filename')
-            else:
-                rep.update(filename=os.path.basename(rep.get('filename')))
         except KeyError:
             pass
         return rep

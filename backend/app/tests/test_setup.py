@@ -50,3 +50,6 @@ class TestSetup(APITestCase):
                 os.remove(f)
 
         return super().tearDown()
+    
+    def scenario_file_path(self, dir, filename):
+        return '%s/%s/%s' % ('1', dir, filename)
