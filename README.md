@@ -23,11 +23,12 @@ Application to manage Open Vet Sim scenario archives.
 ## `OvsXMLRenderer` export notes 
 1. `<profile>`
     1. `<avatar>`
-        1. filename is truncated to file path basename
+        1. `filename` property is truncated to file path basename
     2. `<summary>`
-        1. image is truncated to file path basename
+        1. `image` property is truncated to file path basename
 2. `<vocals>` and `<media>` stored as `<vocalfiles>` and `<mediafiles>` respectively
-    1. filename is truncated to file path basename
+    1. `<vocalfile>` and `<mediafile>` singular are converted to just `<file>`
+    1. `filename` property is truncated to file path basename
 3. `<events>`
     1. Stored as `<eventgroups>` in database
     2. `<eventgroup>` is converted to `<category>`
