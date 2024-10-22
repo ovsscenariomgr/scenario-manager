@@ -129,6 +129,8 @@ class OvsXMLRenderer(ScenarioXMLRenderer):
             pass
         else:
             if key in self.filename_keys:
+                # Ovs XML only wants filenames, not storage path
+                # images/media/vocals directories are part of zip and assumed by simulator
                 xml.characters(os.path.basename(force_str(data)))
             else:
                 xml.characters(force_str(data))
