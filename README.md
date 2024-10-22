@@ -20,6 +20,9 @@ Application to manage Open Vet Sim scenario archives.
 1. From backend dir:
     * coverage run --source='.' manage.py test && coverage html
 
+## Linting
+1. `ruff check ./backend`
+
 ## `OvsXMLRenderer` export notes 
 1. `<profile>`
     1. `<avatar>`
