@@ -19,3 +19,21 @@ Application to manage Open Vet Sim scenario archives.
 ## Tests
 1. From backend dir:
     * coverage run --source='.' manage.py test && coverage html
+
+## Linting
+1. `ruff check ./backend`
+
+## `OvsXMLRenderer` export notes 
+1. `<profile>`
+    1. `<avatar>`
+        1. `filename` property is truncated to file path basename
+    2. `<summary>`
+        1. `image` property is truncated to file path basename
+2. `<vocals>` and `<media>` stored as `<vocalfiles>` and `<mediafiles>` respectively
+    1. `<vocalfile>` and `<mediafile>` singular are converted to just `<file>`
+    1. `filename` property is truncated to file path basename
+3. `<events>`
+    1. Stored as `<eventgroups>` in database
+    2. `<eventgroup>` is converted to `<category>`
+    3. `<eventgroup>/<category>` child `<events>` tag is removed and only `<event>`s rendered
+4. `<scenes>` parent tag is removed and only `<scene>`s are rendered.
