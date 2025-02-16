@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "version": "0.0.1",
+  "version": "0.2.2",
   "description": "Application to manage Open Vet Sim scenario archives.",
   "productName": "OVS Scenario Manager",
   "author": "David Haak <dh749@cornell.edu>",
@@ -36,7 +36,7 @@
     "vue-tsc": "^2.0.29"
   },
   "engines": {
-    "node": "^20 || ^18 || ^16",
+    "node": "^22 || ^20 || ^18",
     "npm": ">= 6.13.4",
     "yarn": ">= 1.21.1"
   }
