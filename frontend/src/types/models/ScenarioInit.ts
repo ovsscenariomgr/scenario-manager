@@ -2,7 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { RecordEnum } from './RecordEnum';
+import type { OnOffEnum } from './OnOffEnum';
 import type { ScenarioInitCardiac } from './ScenarioInitCardiac';
 import type { ScenarioInitGeneral } from './ScenarioInitGeneral';
 import type { ScenarioInitRespiration } from './ScenarioInitRespiration';
@@ -14,6 +14,6 @@ export type ScenarioInit = {
   respiration: ScenarioInitRespiration;
   general: ScenarioInitGeneral;
   initial_scene?: number;
-  record?: RecordEnum;
+  record?: OnOffEnum;
 };
 

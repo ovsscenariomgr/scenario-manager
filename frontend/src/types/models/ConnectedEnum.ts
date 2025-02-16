@@ -3,10 +3,10 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * * `0` - Off
- * * `1` - On
+ * * `0` - Not Connected
+ * * `1` - Connected
  */
-export enum PeaEnum {
+export enum ConnectedEnum {
   '_0' = 0,
   '_1' = 1,
 }

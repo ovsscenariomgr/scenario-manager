@@ -2,9 +2,9 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { TemperatureEnableEnum } from './TemperatureEnableEnum';
+import type { OnOffEnum } from './OnOffEnum';
 export type SceneInitGeneral = {
   temperature?: number;
-  temperature_enable?: TemperatureEnableEnum;
+  temperature_enable?: OnOffEnum;
 };
 

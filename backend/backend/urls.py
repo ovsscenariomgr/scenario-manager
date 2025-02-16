@@ -5,7 +5,7 @@ from django.urls import include, path, re_path
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 urlpatterns = [
-    re_path('^api/v1/', include('app.urls', namespace='v1')),
+    re_path(r'^api/v1/', include('app.urls', namespace='v1')),
     path('grappelli/', include('grappelli.urls')),
     path('_nested_admin/', include('nested_admin.urls')),
     path('admin/', admin.site.urls),

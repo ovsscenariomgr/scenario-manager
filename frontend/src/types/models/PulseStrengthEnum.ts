@@ -8,7 +8,7 @@
  * * `medium` - Medium
  * * `strong` - Strong
  */
-export enum LeftDorsalPulseStrengthEnum {
+export enum PulseStrengthEnum {
   NONE = 'none',
   WEAK = 'weak',
   MEDIUM = 'medium',

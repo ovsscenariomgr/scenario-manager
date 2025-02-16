@@ -3,10 +3,10 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * * `0` - Off
- * * `1` - On
+ * * `0` - Not Illuminated
+ * * `1` - Illuminated
  */
-export enum TemperatureEnableEnum {
+export enum IlluminatedEnum {
   '_0' = 0,
   '_1' = 1,
 }

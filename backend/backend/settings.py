@@ -141,7 +141,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticatedOrReadOnly'
     ],
-    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.URLPathVersioning',
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',
     # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     # 'PAGE_SIZE': 10,
     'DEFAULT_PARSER_CLASSES': [
@@ -164,10 +164,10 @@ REST_FRAMEWORK = {
 }
 
 # CORS
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:9000',
-    'http://localhost:8080'
-]
+_cors_local_hosts = ['localhost', '127.0.0.1']
+_cors_local_ports = [':9000', ':8080', ':80', '']
+_CORS_LOCAL = ['http://{host}{port}'.format(host=host, port=port) for host in _cors_local_hosts for port in _cors_local_ports]
+CORS_ALLOWED_ORIGINS = [] + _CORS_LOCAL
 
 SPECTACULAR_SETTINGS = {
     'TITLE': 'OpenVetSim Scenario Manager',
@@ -176,5 +176,12 @@ SPECTACULAR_SETTINGS = {
     'SERVE_INCLUDE_SCHEMA': False,
     # OTHER SETTINGS
     'COMPONENT_SPLIT_REQUEST': False,
-    'ENUM_ADD_EXPLICIT_BLANK_NULL_CHOICE': False
+    'ENUM_ADD_EXPLICIT_BLANK_NULL_CHOICE': False,
+    'ENUM_NAME_OVERRIDES': {
+        'IlluminatedEnum': 'app.models.Cardiac.IlluminatedChoices',
+        'PulseStrengthEnum': 'app.models.Cardiac.PulseStrengthChoices',
+        'LungSoundEnum': 'app.models.Respiration.LungSoundChoices',
+        'ConnectedEnum': 'app.models.Respiration.ConnectedChoices',
+        'OnOffEnum': 'app.models.CommonChoices.OnOffChoices'
+    }
 }

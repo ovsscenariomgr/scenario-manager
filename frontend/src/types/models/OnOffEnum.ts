@@ -6,7 +6,7 @@
  * * `0` - Off
  * * `1` - On
  */
-export enum ChestMovementEnum {
+export enum OnOffEnum {
   '_0' = 0,
   '_1' = 1,
 }

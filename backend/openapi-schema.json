@@ -45,10 +45,114 @@
                 }
             }
         },
+        "/api/v1/export/{id}{format}": {
+            "get": {
+                "operationId": "v1_export_formatted_retrieve",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                ".xml"
+                            ]
+                        },
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "v1"
+                ],
+                "security": [
+                    {
+                        "cookieAuth": []
+                    },
+                    {
+                        "basicAuth": []
+                    },
+                    {}
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/ovsxml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Scenario"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            }
+        },
         "/api/v1/images/{id}": {
             "patch": {
                 "operationId": "v1_images_partial_update",
                 "parameters": [
+                    {
+                        "in": "query",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "json",
+                                "xml"
+                            ]
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "v1"
+                ],
+                "security": [
+                    {
+                        "cookieAuth": []
+                    },
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "No response body"
+                    }
+                }
+            }
+        },
+        "/api/v1/images/{id}{format}": {
+            "patch": {
+                "operationId": "v1_images_formatted_partial_update",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                ".json",
+                                ".xml"
+                            ]
+                        },
+                        "required": true
+                    },
                     {
                         "in": "query",
                         "name": "format",
@@ -170,6 +274,113 @@
                 }
             }
         },
+        "/api/v1/media/{id}{format}": {
+            "get": {
+                "operationId": "v1_media_formatted_retrieve",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                ".json",
+                                ".xml"
+                            ]
+                        },
+                        "required": true
+                    },
+                    {
+                        "in": "query",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "json",
+                                "xml"
+                            ]
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "v1"
+                ],
+                "security": [
+                    {
+                        "cookieAuth": []
+                    },
+                    {
+                        "basicAuth": []
+                    },
+                    {}
+                ],
+                "responses": {
+                    "200": {
+                        "description": "No response body"
+                    }
+                }
+            },
+            "put": {
+                "operationId": "v1_media_formatted_update",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                ".json",
+                                ".xml"
+                            ]
+                        },
+                        "required": true
+                    },
+                    {
+                        "in": "query",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "json",
+                                "xml"
+                            ]
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "v1"
+                ],
+                "security": [
+                    {
+                        "cookieAuth": []
+                    },
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "No response body"
+                    }
+                }
+            }
+        },
         "/api/v1/scenarios": {
             "get": {
                 "operationId": "v1_scenarios_list",
@@ -225,6 +436,142 @@
             "post": {
                 "operationId": "v1_scenarios_create",
                 "parameters": [
+                    {
+                        "in": "query",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "json",
+                                "xml"
+                            ]
+                        }
+                    }
+                ],
+                "tags": [
+                    "v1"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/xml": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Scenario"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Scenario"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "security": [
+                    {
+                        "cookieAuth": []
+                    },
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Scenario"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Scenario"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/api/v1/scenarios{format}": {
+            "get": {
+                "operationId": "v1_scenarios_formatted_list",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                ".json",
+                                ".xml"
+                            ]
+                        },
+                        "required": true
+                    },
+                    {
+                        "in": "query",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "json",
+                                "xml"
+                            ]
+                        }
+                    }
+                ],
+                "tags": [
+                    "v1"
+                ],
+                "security": [
+                    {
+                        "cookieAuth": []
+                    },
+                    {
+                        "basicAuth": []
+                    },
+                    {}
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/xml": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Scenario"
+                                    }
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Scenario"
+                                    }
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "operationId": "v1_scenarios_formatted_create",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                ".json",
+                                ".xml"
+                            ]
+                        },
+                        "required": true
+                    },
                     {
                         "in": "query",
                         "name": "format",
@@ -510,6 +857,282 @@
                 }
             }
         },
+        "/api/v1/scenarios/{id}{format}": {
+            "get": {
+                "operationId": "v1_scenarios_formatted_retrieve",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                ".json",
+                                ".xml"
+                            ]
+                        },
+                        "required": true
+                    },
+                    {
+                        "in": "query",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "json",
+                                "xml"
+                            ]
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "v1"
+                ],
+                "security": [
+                    {
+                        "cookieAuth": []
+                    },
+                    {
+                        "basicAuth": []
+                    },
+                    {}
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Scenario"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Scenario"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            },
+            "put": {
+                "operationId": "v1_scenarios_formatted_update",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                ".json",
+                                ".xml"
+                            ]
+                        },
+                        "required": true
+                    },
+                    {
+                        "in": "query",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "json",
+                                "xml"
+                            ]
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "v1"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/xml": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Scenario"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Scenario"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "security": [
+                    {
+                        "cookieAuth": []
+                    },
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Scenario"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Scenario"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            },
+            "patch": {
+                "operationId": "v1_scenarios_formatted_partial_update",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                ".json",
+                                ".xml"
+                            ]
+                        },
+                        "required": true
+                    },
+                    {
+                        "in": "query",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "json",
+                                "xml"
+                            ]
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "v1"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/xml": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PatchedScenario"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PatchedScenario"
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "cookieAuth": []
+                    },
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Scenario"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Scenario"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "v1_scenarios_formatted_destroy",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                ".json",
+                                ".xml"
+                            ]
+                        },
+                        "required": true
+                    },
+                    {
+                        "in": "query",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "json",
+                                "xml"
+                            ]
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "v1"
+                ],
+                "security": [
+                    {
+                        "cookieAuth": []
+                    },
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No response body"
+                    }
+                }
+            }
+        },
         "/api/v1/vocals/{id}": {
             "get": {
                 "operationId": "v1_vocals_retrieve",
@@ -592,18 +1215,117 @@
                     }
                 }
             }
+        },
+        "/api/v1/vocals/{id}{format}": {
+            "get": {
+                "operationId": "v1_vocals_formatted_retrieve",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                ".json",
+                                ".xml"
+                            ]
+                        },
+                        "required": true
+                    },
+                    {
+                        "in": "query",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "json",
+                                "xml"
+                            ]
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "v1"
+                ],
+                "security": [
+                    {
+                        "cookieAuth": []
+                    },
+                    {
+                        "basicAuth": []
+                    },
+                    {}
+                ],
+                "responses": {
+                    "200": {
+                        "description": "No response body"
+                    }
+                }
+            },
+            "put": {
+                "operationId": "v1_vocals_formatted_update",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                ".json",
+                                ".xml"
+                            ]
+                        },
+                        "required": true
+                    },
+                    {
+                        "in": "query",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "json",
+                                "xml"
+                            ]
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "v1"
+                ],
+                "security": [
+                    {
+                        "cookieAuth": []
+                    },
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "No response body"
+                    }
+                }
+            }
         }
     },
     "components": {
         "schemas": {
-            "ArrestEnum": {
-                "enum": [
-                    0,
-                    1
-                ],
-                "type": "integer",
-                "description": "* `0` - Not Illuminated\n* `1` - Illuminated"
-            },
             "Avatar": {
                 "type": "object",
                 "properties": {
@@ -623,13 +1345,13 @@
                     }
                 }
             },
-            "ChestMovementEnum": {
+            "ConnectedEnum": {
                 "enum": [
                     0,
                     1
                 ],
                 "type": "integer",
-                "description": "* `0` - Off\n* `1` - On"
+                "description": "* `0` - Not Connected\n* `1` - Connected"
             },
             "Control": {
                 "type": "object",
@@ -650,14 +1372,6 @@
                         "minimum": 0
                     }
                 }
-            },
-            "Etco2IndicatorEnum": {
-                "enum": [
-                    0,
-                    1
-                ],
-                "type": "integer",
-                "description": "* `0` - Not Connected\n* `1` - Connected"
             },
             "Event": {
                 "type": "object",
@@ -766,27 +1480,15 @@
                 "type": "string",
                 "description": "* `vocals-dog-control` - Vocalizations\n* `right-lung-dog-control` - Right Lung Sound\n* `left-lung-dog-control` - Left Lung Sound\n* `left-femoral-pulse-dog-control` - Left Femoral Pulse\n* `right-femoral-pulse-dog-control` - Right Femoral Pulse\n* `left-dorsal-pulse-dog-control` - Left Dorsal Pulse\n* `right-dorsal-pulse-dog-control` - Right Dorsal Pulse\n* `heart-sound-dog-control` - Heart Sounds\n* `chest-dog-control` - Chest Movement\n* `button-cpr` - Cpr\n* `button-ekg` - Ekg\n* `button-SpO2` - Spo2\n* `button-CO2` - Etco2\n* `button-cuff` - Cuff\n* `button-palpate` - Palpate\n* `button-Tperi` - Temp"
             },
-            "LeftDorsalPulseStrengthEnum": {
+            "IlluminatedEnum": {
                 "enum": [
-                    "none",
-                    "weak",
-                    "medium",
-                    "strong"
+                    0,
+                    1
                 ],
-                "type": "string",
-                "description": "* `none` - None\n* `weak` - Weak\n* `medium` - Medium\n* `strong` - Strong"
+                "type": "integer",
+                "description": "* `0` - Not Illuminated\n* `1` - Illuminated"
             },
-            "LeftFemoralPulseStrengthEnum": {
-                "enum": [
-                    "none",
-                    "weak",
-                    "medium",
-                    "strong"
-                ],
-                "type": "string",
-                "description": "* `none` - None\n* `weak` - Weak\n* `medium` - Medium\n* `strong` - Strong"
-            },
-            "LeftLungSoundEnum": {
+            "LungSoundEnum": {
                 "enum": [
                     "normal",
                     "coarse_crackles",
@@ -819,6 +1521,14 @@
                     "scenario"
                 ]
             },
+            "OnOffEnum": {
+                "enum": [
+                    0,
+                    1
+                ],
+                "type": "integer",
+                "description": "* `0` - Off\n* `1` - On"
+            },
             "ParameterTriggerCardiac": {
                 "type": "object",
                 "properties": {
@@ -829,7 +1539,7 @@
                         "$ref": "#/components/schemas/VpcEnum"
                     },
                     "pea": {
-                        "$ref": "#/components/schemas/PeaEnum"
+                        "$ref": "#/components/schemas/OnOffEnum"
                     },
                     "vpc_freq": {
                         "type": "integer",
@@ -860,16 +1570,16 @@
                         "minimum": 0
                     },
                     "left_dorsal_pulse_strength": {
-                        "$ref": "#/components/schemas/LeftDorsalPulseStrengthEnum"
+                        "$ref": "#/components/schemas/PulseStrengthEnum"
                     },
                     "right_dorsal_pulse_strength": {
-                        "$ref": "#/components/schemas/RightDorsalPulseStrengthEnum"
+                        "$ref": "#/components/schemas/PulseStrengthEnum"
                     },
                     "left_femoral_pulse_strength": {
-                        "$ref": "#/components/schemas/LeftFemoralPulseStrengthEnum"
+                        "$ref": "#/components/schemas/PulseStrengthEnum"
                     },
                     "right_femoral_pulse_strength": {
-                        "$ref": "#/components/schemas/RightFemoralPulseStrengthEnum"
+                        "$ref": "#/components/schemas/PulseStrengthEnum"
                     },
                     "heart_sound_volume": {
                         "type": "integer",
@@ -880,13 +1590,13 @@
                         "$ref": "#/components/schemas/HeartSoundEnum"
                     },
                     "ecg_indicator": {
-                        "$ref": "#/components/schemas/ArrestEnum"
+                        "$ref": "#/components/schemas/IlluminatedEnum"
                     },
                     "bp_cuff": {
-                        "$ref": "#/components/schemas/ArrestEnum"
+                        "$ref": "#/components/schemas/IlluminatedEnum"
                     },
                     "arrest": {
-                        "$ref": "#/components/schemas/ArrestEnum"
+                        "$ref": "#/components/schemas/IlluminatedEnum"
                     }
                 }
             },
@@ -899,7 +1609,7 @@
                         "minimum": 0
                     },
                     "temperature_enable": {
-                        "$ref": "#/components/schemas/TemperatureEnableEnum"
+                        "$ref": "#/components/schemas/OnOffEnum"
                     }
                 }
             },
@@ -907,7 +1617,7 @@
                 "type": "object",
                 "properties": {
                     "left_lung_sound": {
-                        "$ref": "#/components/schemas/LeftLungSoundEnum"
+                        "$ref": "#/components/schemas/LungSoundEnum"
                     },
                     "left_lung_sound_volume": {
                         "type": "integer",
@@ -915,7 +1625,7 @@
                         "minimum": 0
                     },
                     "right_lung_sound": {
-                        "$ref": "#/components/schemas/RightLungSoundEnum"
+                        "$ref": "#/components/schemas/LungSoundEnum"
                     },
                     "right_lung_sound_volume": {
                         "type": "integer",
@@ -936,7 +1646,7 @@
                         "minimum": 0
                     },
                     "spo2_indicator": {
-                        "$ref": "#/components/schemas/Spo2IndicatorEnum"
+                        "$ref": "#/components/schemas/ConnectedEnum"
                     },
                     "etco2": {
                         "type": "integer",
@@ -944,7 +1654,7 @@
                         "minimum": 0
                     },
                     "etco2_indicator": {
-                        "$ref": "#/components/schemas/Etco2IndicatorEnum"
+                        "$ref": "#/components/schemas/ConnectedEnum"
                     },
                     "rate": {
                         "type": "integer",
@@ -952,7 +1662,7 @@
                         "minimum": 0
                     },
                     "chest_movement": {
-                        "$ref": "#/components/schemas/ChestMovementEnum"
+                        "$ref": "#/components/schemas/OnOffEnum"
                     }
                 }
             },
@@ -999,14 +1709,6 @@
                     }
                 }
             },
-            "PeaEnum": {
-                "enum": [
-                    0,
-                    1
-                ],
-                "type": "integer",
-                "description": "* `0` - Off\n* `1` - On"
-            },
             "PriorityEnum": {
                 "enum": [
                     1,
@@ -1042,13 +1744,15 @@
                     "summary"
                 ]
             },
-            "RecordEnum": {
+            "PulseStrengthEnum": {
                 "enum": [
-                    0,
-                    1
+                    "none",
+                    "weak",
+                    "medium",
+                    "strong"
                 ],
-                "type": "integer",
-                "description": "* `0` - Off\n* `1` - On"
+                "type": "string",
+                "description": "* `none` - None\n* `weak` - Weak\n* `medium` - Medium\n* `strong` - Strong"
             },
             "RhythmEnum": {
                 "enum": [
@@ -1062,40 +1766,6 @@
                 ],
                 "type": "string",
                 "description": "* `sinus` - Sinus rhythm\n* `afib` - Atrial fibrillation\n* `vfib` - Ventricular fibrillation\n* `vtach1` - Ventricular tachycardia 1\n* `vtach2` - Ventricular tachycardia 2\n* `ront` - R-on-T\n* `asystole` - Asystole"
-            },
-            "RightDorsalPulseStrengthEnum": {
-                "enum": [
-                    "none",
-                    "weak",
-                    "medium",
-                    "strong"
-                ],
-                "type": "string",
-                "description": "* `none` - None\n* `weak` - Weak\n* `medium` - Medium\n* `strong` - Strong"
-            },
-            "RightFemoralPulseStrengthEnum": {
-                "enum": [
-                    "none",
-                    "weak",
-                    "medium",
-                    "strong"
-                ],
-                "type": "string",
-                "description": "* `none` - None\n* `weak` - Weak\n* `medium` - Medium\n* `strong` - Strong"
-            },
-            "RightLungSoundEnum": {
-                "enum": [
-                    "normal",
-                    "coarse_crackles",
-                    "fine_crackles",
-                    "wheezes",
-                    "stridor",
-                    "stertor",
-                    "same_as_right",
-                    "same_as_left"
-                ],
-                "type": "string",
-                "description": "* `normal` - Normal\n* `coarse_crackles` - Coarse Crackles\n* `fine_crackles` - Fine Crackles\n* `wheezes` - Wheezes\n* `stridor` - Stridor\n* `stertor` - Stertor\n* `same_as_right` - Same As Right\n* `same_as_left` - Same As Left"
             },
             "Scenario": {
                 "type": "object",
@@ -1167,7 +1837,7 @@
                         "type": "integer"
                     },
                     "record": {
-                        "$ref": "#/components/schemas/RecordEnum"
+                        "$ref": "#/components/schemas/OnOffEnum"
                     }
                 },
                 "required": [
@@ -1186,7 +1856,7 @@
                         "$ref": "#/components/schemas/VpcEnum"
                     },
                     "pea": {
-                        "$ref": "#/components/schemas/PeaEnum"
+                        "$ref": "#/components/schemas/OnOffEnum"
                     },
                     "vpc_freq": {
                         "type": "integer",
@@ -1217,16 +1887,16 @@
                         "minimum": 0
                     },
                     "left_dorsal_pulse_strength": {
-                        "$ref": "#/components/schemas/LeftDorsalPulseStrengthEnum"
+                        "$ref": "#/components/schemas/PulseStrengthEnum"
                     },
                     "right_dorsal_pulse_strength": {
-                        "$ref": "#/components/schemas/RightDorsalPulseStrengthEnum"
+                        "$ref": "#/components/schemas/PulseStrengthEnum"
                     },
                     "left_femoral_pulse_strength": {
-                        "$ref": "#/components/schemas/LeftFemoralPulseStrengthEnum"
+                        "$ref": "#/components/schemas/PulseStrengthEnum"
                     },
                     "right_femoral_pulse_strength": {
-                        "$ref": "#/components/schemas/RightFemoralPulseStrengthEnum"
+                        "$ref": "#/components/schemas/PulseStrengthEnum"
                     },
                     "heart_sound_volume": {
                         "type": "integer",
@@ -1237,13 +1907,13 @@
                         "$ref": "#/components/schemas/HeartSoundEnum"
                     },
                     "ecg_indicator": {
-                        "$ref": "#/components/schemas/ArrestEnum"
+                        "$ref": "#/components/schemas/IlluminatedEnum"
                     },
                     "bp_cuff": {
-                        "$ref": "#/components/schemas/ArrestEnum"
+                        "$ref": "#/components/schemas/IlluminatedEnum"
                     },
                     "arrest": {
-                        "$ref": "#/components/schemas/ArrestEnum"
+                        "$ref": "#/components/schemas/IlluminatedEnum"
                     }
                 }
             },
@@ -1256,7 +1926,7 @@
                         "minimum": 0
                     },
                     "temperature_enable": {
-                        "$ref": "#/components/schemas/TemperatureEnableEnum"
+                        "$ref": "#/components/schemas/OnOffEnum"
                     }
                 }
             },
@@ -1264,7 +1934,7 @@
                 "type": "object",
                 "properties": {
                     "left_lung_sound": {
-                        "$ref": "#/components/schemas/LeftLungSoundEnum"
+                        "$ref": "#/components/schemas/LungSoundEnum"
                     },
                     "left_lung_sound_volume": {
                         "type": "integer",
@@ -1272,7 +1942,7 @@
                         "minimum": 0
                     },
                     "right_lung_sound": {
-                        "$ref": "#/components/schemas/RightLungSoundEnum"
+                        "$ref": "#/components/schemas/LungSoundEnum"
                     },
                     "right_lung_sound_volume": {
                         "type": "integer",
@@ -1293,7 +1963,7 @@
                         "minimum": 0
                     },
                     "spo2_indicator": {
-                        "$ref": "#/components/schemas/Spo2IndicatorEnum"
+                        "$ref": "#/components/schemas/ConnectedEnum"
                     },
                     "etco2": {
                         "type": "integer",
@@ -1301,7 +1971,7 @@
                         "minimum": 0
                     },
                     "etco2_indicator": {
-                        "$ref": "#/components/schemas/Etco2IndicatorEnum"
+                        "$ref": "#/components/schemas/ConnectedEnum"
                     },
                     "rate": {
                         "type": "integer",
@@ -1309,7 +1979,7 @@
                         "minimum": 0
                     },
                     "chest_movement": {
-                        "$ref": "#/components/schemas/ChestMovementEnum"
+                        "$ref": "#/components/schemas/OnOffEnum"
                     }
                 }
             },
@@ -1378,7 +2048,7 @@
                         "$ref": "#/components/schemas/VpcEnum"
                     },
                     "pea": {
-                        "$ref": "#/components/schemas/PeaEnum"
+                        "$ref": "#/components/schemas/OnOffEnum"
                     },
                     "vpc_freq": {
                         "type": "integer",
@@ -1409,16 +2079,16 @@
                         "minimum": 0
                     },
                     "left_dorsal_pulse_strength": {
-                        "$ref": "#/components/schemas/LeftDorsalPulseStrengthEnum"
+                        "$ref": "#/components/schemas/PulseStrengthEnum"
                     },
                     "right_dorsal_pulse_strength": {
-                        "$ref": "#/components/schemas/RightDorsalPulseStrengthEnum"
+                        "$ref": "#/components/schemas/PulseStrengthEnum"
                     },
                     "left_femoral_pulse_strength": {
-                        "$ref": "#/components/schemas/LeftFemoralPulseStrengthEnum"
+                        "$ref": "#/components/schemas/PulseStrengthEnum"
                     },
                     "right_femoral_pulse_strength": {
-                        "$ref": "#/components/schemas/RightFemoralPulseStrengthEnum"
+                        "$ref": "#/components/schemas/PulseStrengthEnum"
                     },
                     "heart_sound_volume": {
                         "type": "integer",
@@ -1429,13 +2099,13 @@
                         "$ref": "#/components/schemas/HeartSoundEnum"
                     },
                     "ecg_indicator": {
-                        "$ref": "#/components/schemas/ArrestEnum"
+                        "$ref": "#/components/schemas/IlluminatedEnum"
                     },
                     "bp_cuff": {
-                        "$ref": "#/components/schemas/ArrestEnum"
+                        "$ref": "#/components/schemas/IlluminatedEnum"
                     },
                     "arrest": {
-                        "$ref": "#/components/schemas/ArrestEnum"
+                        "$ref": "#/components/schemas/IlluminatedEnum"
                     }
                 }
             },
@@ -1448,7 +2118,7 @@
                         "minimum": 0
                     },
                     "temperature_enable": {
-                        "$ref": "#/components/schemas/TemperatureEnableEnum"
+                        "$ref": "#/components/schemas/OnOffEnum"
                     }
                 }
             },
@@ -1456,7 +2126,7 @@
                 "type": "object",
                 "properties": {
                     "left_lung_sound": {
-                        "$ref": "#/components/schemas/LeftLungSoundEnum"
+                        "$ref": "#/components/schemas/LungSoundEnum"
                     },
                     "left_lung_sound_volume": {
                         "type": "integer",
@@ -1464,7 +2134,7 @@
                         "minimum": 0
                     },
                     "right_lung_sound": {
-                        "$ref": "#/components/schemas/RightLungSoundEnum"
+                        "$ref": "#/components/schemas/LungSoundEnum"
                     },
                     "right_lung_sound_volume": {
                         "type": "integer",
@@ -1485,7 +2155,7 @@
                         "minimum": 0
                     },
                     "spo2_indicator": {
-                        "$ref": "#/components/schemas/Spo2IndicatorEnum"
+                        "$ref": "#/components/schemas/ConnectedEnum"
                     },
                     "etco2": {
                         "type": "integer",
@@ -1493,7 +2163,7 @@
                         "minimum": 0
                     },
                     "etco2_indicator": {
-                        "$ref": "#/components/schemas/Etco2IndicatorEnum"
+                        "$ref": "#/components/schemas/ConnectedEnum"
                     },
                     "rate": {
                         "type": "integer",
@@ -1501,17 +2171,9 @@
                         "minimum": 0
                     },
                     "chest_movement": {
-                        "$ref": "#/components/schemas/ChestMovementEnum"
+                        "$ref": "#/components/schemas/OnOffEnum"
                     }
                 }
-            },
-            "Spo2IndicatorEnum": {
-                "enum": [
-                    0,
-                    1
-                ],
-                "type": "integer",
-                "description": "* `0` - Not Connected\n* `1` - Connected"
             },
             "Summary": {
                 "type": "object",
@@ -1549,14 +2211,6 @@
                     "species",
                     "weight"
                 ]
-            },
-            "TemperatureEnableEnum": {
-                "enum": [
-                    0,
-                    1
-                ],
-                "type": "integer",
-                "description": "* `0` - Off\n* `1` - On"
             },
             "TestEnum": {
                 "enum": [

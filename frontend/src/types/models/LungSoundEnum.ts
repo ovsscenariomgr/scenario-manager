@@ -12,7 +12,7 @@
  * * `same_as_right` - Same As Right
  * * `same_as_left` - Same As Left
  */
-export enum LeftLungSoundEnum {
+export enum LungSoundEnum {
   NORMAL = 'normal',
   COARSE_CRACKLES = 'coarse_crackles',
   FINE_CRACKLES = 'fine_crackles',

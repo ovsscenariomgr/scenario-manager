@@ -1,4 +1,4 @@
-default: clean build run
+default: cleanv build run
 
 build:
 	docker compose build

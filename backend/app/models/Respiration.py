@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from .Init import ScenarioInit, SceneInit
 from .Trigger import Trigger
+from .CommonChoices import OnOffChoices
 from ..validators import validate_left_lung_sound, validate_right_lung_sound
 
 # TODO: Items indicated as trendable would need to associate a modifier: <transfer_time>100</transfer_time> somehow
@@ -19,10 +20,6 @@ class Respiration(models.Model):
     class ConnectedChoices(models.IntegerChoices):
         NOT_CONNECTED = 0
         CONNECTED = 1
-    
-    class MovementChoices(models.IntegerChoices):
-        OFF = 0
-        ON = 1
 
     left_lung_sound = models.CharField(max_length=16, choices=LungSoundChoices.choices, default=LungSoundChoices.NORMAL, validators=[validate_left_lung_sound])
     left_lung_sound_volume = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(10)])
@@ -35,7 +32,7 @@ class Respiration(models.Model):
     etco2 = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(150)]) # Trendable
     etco2_indicator = models.IntegerField(default=ConnectedChoices.NOT_CONNECTED, choices=ConnectedChoices.choices)
     rate = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(60)]) # Trendable
-    chest_movement = models.IntegerField(default=MovementChoices.OFF, choices=MovementChoices.choices)
+    chest_movement = models.IntegerField(default=OnOffChoices.OFF, choices=OnOffChoices.choices)
 
 class ScenarioInitRespiration(Respiration):
     scenario_init = models.OneToOneField(ScenarioInit, on_delete=models.CASCADE, related_name='respiration')
