@@ -6,6 +6,9 @@
       :todos="todos"
       :meta="meta"
     ></example-component>
+    <scenario-table-component>
+      
+    </scenario-table-component>
   </q-page>
 </template>
 
@@ -13,6 +16,7 @@
 import { ref } from 'vue';
 import { Todo, Meta } from 'components/models';
 import ExampleComponent from 'components/ExampleComponent.vue';
+import ScenarioTableComponent from 'src/components/ScenarioTableComponent.vue';
 
 defineOptions({
   name: 'IndexPage'

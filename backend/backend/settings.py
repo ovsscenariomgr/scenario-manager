@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'grappelli',
     'nested_admin',
     'django.contrib.admin',
@@ -41,10 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_xml',
+    'drf_spectacular',
     'app.apps.AppConfig'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -138,6 +141,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticatedOrReadOnly'
     ],
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.URLPathVersioning',
     # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     # 'PAGE_SIZE': 10,
     'DEFAULT_PARSER_CLASSES': [
@@ -153,6 +157,24 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.MultiPartRenderer'
     ],
+    # Swagger Docs
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    # Don't give full url for files
     'UPLOADED_FILES_USE_URL': False
 }
 
+# CORS
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:9000',
+    'http://localhost:8080'
+]
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'OpenVetSim Scenario Manager',
+    'DESCRIPTION': 'OpenVetSim Scenario Manager',
+    'VERSION': '0.2.2',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # OTHER SETTINGS
+    'COMPONENT_SPLIT_REQUEST': False,
+    'ENUM_ADD_EXPLICIT_BLANK_NULL_CHOICE': False
+}

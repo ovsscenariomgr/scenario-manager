@@ -23,6 +23,10 @@ Application to manage Open Vet Sim scenario archives.
 ## Linting
 1. `ruff check ./backend`
 
+## Types Generation
+1. `cd backend; ./manage.py spectacular --file ./schema.json --format openapi-json --api-version v1`
+2. `cd frontend; npx openapi-typescript-codegen --input ~/tmp/schema.json --output ./src/types`
+
 ## `OvsXMLRenderer` export notes 
 1. `<profile>`
     1. `<avatar>`

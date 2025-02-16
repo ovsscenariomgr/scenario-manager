@@ -1,0 +1,1702 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "OpenVetSim Scenario Manager",
+        "version": "0.2.2 (v1)",
+        "description": "OpenVetSim Scenario Manager"
+    },
+    "paths": {
+        "/api/v1/export/{id}": {
+            "get": {
+                "operationId": "v1_export_retrieve",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "v1"
+                ],
+                "security": [
+                    {
+                        "cookieAuth": []
+                    },
+                    {
+                        "basicAuth": []
+                    },
+                    {}
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/ovsxml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Scenario"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/api/v1/images/{id}": {
+            "patch": {
+                "operationId": "v1_images_partial_update",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "json",
+                                "xml"
+                            ]
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "v1"
+                ],
+                "security": [
+                    {
+                        "cookieAuth": []
+                    },
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "No response body"
+                    }
+                }
+            }
+        },
+        "/api/v1/media/{id}": {
+            "get": {
+                "operationId": "v1_media_retrieve",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "json",
+                                "xml"
+                            ]
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "v1"
+                ],
+                "security": [
+                    {
+                        "cookieAuth": []
+                    },
+                    {
+                        "basicAuth": []
+                    },
+                    {}
+                ],
+                "responses": {
+                    "200": {
+                        "description": "No response body"
+                    }
+                }
+            },
+            "put": {
+                "operationId": "v1_media_update",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "json",
+                                "xml"
+                            ]
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "v1"
+                ],
+                "security": [
+                    {
+                        "cookieAuth": []
+                    },
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "No response body"
+                    }
+                }
+            }
+        },
+        "/api/v1/scenarios": {
+            "get": {
+                "operationId": "v1_scenarios_list",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "json",
+                                "xml"
+                            ]
+                        }
+                    }
+                ],
+                "tags": [
+                    "v1"
+                ],
+                "security": [
+                    {
+                        "cookieAuth": []
+                    },
+                    {
+                        "basicAuth": []
+                    },
+                    {}
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/xml": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Scenario"
+                                    }
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Scenario"
+                                    }
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "operationId": "v1_scenarios_create",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "json",
+                                "xml"
+                            ]
+                        }
+                    }
+                ],
+                "tags": [
+                    "v1"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/xml": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Scenario"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Scenario"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "security": [
+                    {
+                        "cookieAuth": []
+                    },
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Scenario"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Scenario"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/api/v1/scenarios/{id}": {
+            "get": {
+                "operationId": "v1_scenarios_retrieve",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "json",
+                                "xml"
+                            ]
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "v1"
+                ],
+                "security": [
+                    {
+                        "cookieAuth": []
+                    },
+                    {
+                        "basicAuth": []
+                    },
+                    {}
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Scenario"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Scenario"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            },
+            "put": {
+                "operationId": "v1_scenarios_update",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "json",
+                                "xml"
+                            ]
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "v1"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/xml": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Scenario"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Scenario"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "security": [
+                    {
+                        "cookieAuth": []
+                    },
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Scenario"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Scenario"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            },
+            "patch": {
+                "operationId": "v1_scenarios_partial_update",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "json",
+                                "xml"
+                            ]
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "v1"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/xml": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PatchedScenario"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PatchedScenario"
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "cookieAuth": []
+                    },
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Scenario"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Scenario"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "v1_scenarios_destroy",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "json",
+                                "xml"
+                            ]
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "v1"
+                ],
+                "security": [
+                    {
+                        "cookieAuth": []
+                    },
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No response body"
+                    }
+                }
+            }
+        },
+        "/api/v1/vocals/{id}": {
+            "get": {
+                "operationId": "v1_vocals_retrieve",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "json",
+                                "xml"
+                            ]
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "v1"
+                ],
+                "security": [
+                    {
+                        "cookieAuth": []
+                    },
+                    {
+                        "basicAuth": []
+                    },
+                    {}
+                ],
+                "responses": {
+                    "200": {
+                        "description": "No response body"
+                    }
+                }
+            },
+            "put": {
+                "operationId": "v1_vocals_update",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "json",
+                                "xml"
+                            ]
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "v1"
+                ],
+                "security": [
+                    {
+                        "cookieAuth": []
+                    },
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "No response body"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ArrestEnum": {
+                "enum": [
+                    0,
+                    1
+                ],
+                "type": "integer",
+                "description": "* `0` - Not Illuminated\n* `1` - Illuminated"
+            },
+            "Avatar": {
+                "type": "object",
+                "properties": {
+                    "filename": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "height_pct": {
+                        "type": "integer",
+                        "maximum": 100,
+                        "minimum": 0
+                    },
+                    "width_pct": {
+                        "type": "integer",
+                        "maximum": 100,
+                        "minimum": 0
+                    }
+                }
+            },
+            "ChestMovementEnum": {
+                "enum": [
+                    0,
+                    1
+                ],
+                "type": "integer",
+                "description": "* `0` - Off\n* `1` - On"
+            },
+            "Control": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "maxLength": 256
+                    },
+                    "id": {
+                        "$ref": "#/components/schemas/IdEnum"
+                    },
+                    "top": {
+                        "type": "integer",
+                        "minimum": 0
+                    },
+                    "left": {
+                        "type": "integer",
+                        "minimum": 0
+                    }
+                }
+            },
+            "Etco2IndicatorEnum": {
+                "enum": [
+                    0,
+                    1
+                ],
+                "type": "integer",
+                "description": "* `0` - Not Connected\n* `1` - Connected"
+            },
+            "Event": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "maxLength": 256
+                    },
+                    "id": {
+                        "type": "string",
+                        "maxLength": 256
+                    },
+                    "priority": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/PriorityEnum"
+                            }
+                        ],
+                        "nullable": true
+                    },
+                    "hotkey": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 1
+                    }
+                }
+            },
+            "EventGroup": {
+                "type": "object",
+                "description": "Adds nested create feature",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "maxLength": 64
+                    },
+                    "title": {
+                        "type": "string",
+                        "maxLength": 64
+                    },
+                    "events": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Event"
+                        }
+                    }
+                },
+                "required": [
+                    "events"
+                ]
+            },
+            "Header": {
+                "type": "object",
+                "description": "Adds nested create feature",
+                "properties": {
+                    "author": {
+                        "type": "string",
+                        "maxLength": 256
+                    },
+                    "title": {
+                        "$ref": "#/components/schemas/Title"
+                    },
+                    "date_of_creation": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "title"
+                ]
+            },
+            "HeartSoundEnum": {
+                "enum": [
+                    "normal",
+                    "systolic_murmur",
+                    "pansystolic_murmur",
+                    "holosystolic_murmur",
+                    "continuous_murmur",
+                    "diastolic_murmur",
+                    "gallop"
+                ],
+                "type": "string",
+                "description": "* `normal` - Normal\n* `systolic_murmur` - Systolic Murmur\n* `pansystolic_murmur` - Pansystolic Murmur\n* `holosystolic_murmur` - Holosystolic Murmur\n* `continuous_murmur` - Continuous Murmur\n* `diastolic_murmur` - Diastolic Murmur\n* `gallop` - Gallop"
+            },
+            "IdEnum": {
+                "enum": [
+                    "vocals-dog-control",
+                    "right-lung-dog-control",
+                    "left-lung-dog-control",
+                    "left-femoral-pulse-dog-control",
+                    "right-femoral-pulse-dog-control",
+                    "left-dorsal-pulse-dog-control",
+                    "right-dorsal-pulse-dog-control",
+                    "heart-sound-dog-control",
+                    "chest-dog-control",
+                    "button-cpr",
+                    "button-ekg",
+                    "button-SpO2",
+                    "button-CO2",
+                    "button-cuff",
+                    "button-palpate",
+                    "button-Tperi"
+                ],
+                "type": "string",
+                "description": "* `vocals-dog-control` - Vocalizations\n* `right-lung-dog-control` - Right Lung Sound\n* `left-lung-dog-control` - Left Lung Sound\n* `left-femoral-pulse-dog-control` - Left Femoral Pulse\n* `right-femoral-pulse-dog-control` - Right Femoral Pulse\n* `left-dorsal-pulse-dog-control` - Left Dorsal Pulse\n* `right-dorsal-pulse-dog-control` - Right Dorsal Pulse\n* `heart-sound-dog-control` - Heart Sounds\n* `chest-dog-control` - Chest Movement\n* `button-cpr` - Cpr\n* `button-ekg` - Ekg\n* `button-SpO2` - Spo2\n* `button-CO2` - Etco2\n* `button-cuff` - Cuff\n* `button-palpate` - Palpate\n* `button-Tperi` - Temp"
+            },
+            "LeftDorsalPulseStrengthEnum": {
+                "enum": [
+                    "none",
+                    "weak",
+                    "medium",
+                    "strong"
+                ],
+                "type": "string",
+                "description": "* `none` - None\n* `weak` - Weak\n* `medium` - Medium\n* `strong` - Strong"
+            },
+            "LeftFemoralPulseStrengthEnum": {
+                "enum": [
+                    "none",
+                    "weak",
+                    "medium",
+                    "strong"
+                ],
+                "type": "string",
+                "description": "* `none` - None\n* `weak` - Weak\n* `medium` - Medium\n* `strong` - Strong"
+            },
+            "LeftLungSoundEnum": {
+                "enum": [
+                    "normal",
+                    "coarse_crackles",
+                    "fine_crackles",
+                    "wheezes",
+                    "stridor",
+                    "stertor",
+                    "same_as_right",
+                    "same_as_left"
+                ],
+                "type": "string",
+                "description": "* `normal` - Normal\n* `coarse_crackles` - Coarse Crackles\n* `fine_crackles` - Fine Crackles\n* `wheezes` - Wheezes\n* `stridor` - Stridor\n* `stertor` - Stertor\n* `same_as_right` - Same As Right\n* `same_as_left` - Same As Left"
+            },
+            "Media": {
+                "type": "object",
+                "properties": {
+                    "scenario": {
+                        "type": "integer"
+                    },
+                    "filename": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string",
+                        "maxLength": 256
+                    }
+                },
+                "required": [
+                    "filename",
+                    "scenario"
+                ]
+            },
+            "ParameterTriggerCardiac": {
+                "type": "object",
+                "properties": {
+                    "rhythm": {
+                        "$ref": "#/components/schemas/RhythmEnum"
+                    },
+                    "vpc": {
+                        "$ref": "#/components/schemas/VpcEnum"
+                    },
+                    "pea": {
+                        "$ref": "#/components/schemas/PeaEnum"
+                    },
+                    "vpc_freq": {
+                        "type": "integer",
+                        "maximum": 100,
+                        "minimum": 0
+                    },
+                    "vfib_amplitude": {
+                        "$ref": "#/components/schemas/VfibAmplitudeEnum"
+                    },
+                    "rate": {
+                        "type": "integer",
+                        "maximum": 300,
+                        "minimum": 0
+                    },
+                    "nibp_rate": {
+                        "type": "integer",
+                        "maximum": 300,
+                        "minimum": 0
+                    },
+                    "bps_sys": {
+                        "type": "integer",
+                        "maximum": 300,
+                        "minimum": 0
+                    },
+                    "bps_dia": {
+                        "type": "integer",
+                        "maximum": 290,
+                        "minimum": 0
+                    },
+                    "left_dorsal_pulse_strength": {
+                        "$ref": "#/components/schemas/LeftDorsalPulseStrengthEnum"
+                    },
+                    "right_dorsal_pulse_strength": {
+                        "$ref": "#/components/schemas/RightDorsalPulseStrengthEnum"
+                    },
+                    "left_femoral_pulse_strength": {
+                        "$ref": "#/components/schemas/LeftFemoralPulseStrengthEnum"
+                    },
+                    "right_femoral_pulse_strength": {
+                        "$ref": "#/components/schemas/RightFemoralPulseStrengthEnum"
+                    },
+                    "heart_sound_volume": {
+                        "type": "integer",
+                        "maximum": 10,
+                        "minimum": 0
+                    },
+                    "heart_sound": {
+                        "$ref": "#/components/schemas/HeartSoundEnum"
+                    },
+                    "ecg_indicator": {
+                        "$ref": "#/components/schemas/ArrestEnum"
+                    },
+                    "bp_cuff": {
+                        "$ref": "#/components/schemas/ArrestEnum"
+                    },
+                    "arrest": {
+                        "$ref": "#/components/schemas/ArrestEnum"
+                    }
+                }
+            },
+            "ParameterTriggerGeneral": {
+                "type": "object",
+                "properties": {
+                    "temperature": {
+                        "type": "integer",
+                        "maximum": 1100,
+                        "minimum": 0
+                    },
+                    "temperature_enable": {
+                        "$ref": "#/components/schemas/TemperatureEnableEnum"
+                    }
+                }
+            },
+            "ParameterTriggerRespiration": {
+                "type": "object",
+                "properties": {
+                    "left_lung_sound": {
+                        "$ref": "#/components/schemas/LeftLungSoundEnum"
+                    },
+                    "left_lung_sound_volume": {
+                        "type": "integer",
+                        "maximum": 10,
+                        "minimum": 0
+                    },
+                    "right_lung_sound": {
+                        "$ref": "#/components/schemas/RightLungSoundEnum"
+                    },
+                    "right_lung_sound_volume": {
+                        "type": "integer",
+                        "maximum": 10,
+                        "minimum": 0
+                    },
+                    "inhalation_duration": {
+                        "type": "integer",
+                        "minimum": 0
+                    },
+                    "exhalation_duration": {
+                        "type": "integer",
+                        "minimum": 0
+                    },
+                    "spo2": {
+                        "type": "integer",
+                        "maximum": 100,
+                        "minimum": 0
+                    },
+                    "spo2_indicator": {
+                        "$ref": "#/components/schemas/Spo2IndicatorEnum"
+                    },
+                    "etco2": {
+                        "type": "integer",
+                        "maximum": 150,
+                        "minimum": 0
+                    },
+                    "etco2_indicator": {
+                        "$ref": "#/components/schemas/Etco2IndicatorEnum"
+                    },
+                    "rate": {
+                        "type": "integer",
+                        "maximum": 60,
+                        "minimum": 0
+                    },
+                    "chest_movement": {
+                        "$ref": "#/components/schemas/ChestMovementEnum"
+                    }
+                }
+            },
+            "PatchedScenario": {
+                "type": "object",
+                "description": "Adds nested create feature",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "header": {
+                        "$ref": "#/components/schemas/Header"
+                    },
+                    "profile": {
+                        "$ref": "#/components/schemas/Profile"
+                    },
+                    "vocalfiles": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Vocal"
+                        }
+                    },
+                    "mediafiles": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Media"
+                        }
+                    },
+                    "init": {
+                        "$ref": "#/components/schemas/ScenarioInit"
+                    },
+                    "eventgroups": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/EventGroup"
+                        }
+                    },
+                    "scenes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Scene"
+                        }
+                    }
+                }
+            },
+            "PeaEnum": {
+                "enum": [
+                    0,
+                    1
+                ],
+                "type": "integer",
+                "description": "* `0` - Off\n* `1` - On"
+            },
+            "PriorityEnum": {
+                "enum": [
+                    1,
+                    0
+                ],
+                "type": "integer",
+                "description": "* `1` - Priority\n* `0` - Non Priority"
+            },
+            "Profile": {
+                "type": "object",
+                "description": "Adds nested create feature",
+                "properties": {
+                    "avatar": {
+                        "$ref": "#/components/schemas/Avatar"
+                    },
+                    "summary": {
+                        "$ref": "#/components/schemas/Summary"
+                    },
+                    "controls": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Control"
+                        }
+                    },
+                    "color": {
+                        "type": "string",
+                        "maxLength": 7
+                    }
+                },
+                "required": [
+                    "avatar",
+                    "controls",
+                    "summary"
+                ]
+            },
+            "RecordEnum": {
+                "enum": [
+                    0,
+                    1
+                ],
+                "type": "integer",
+                "description": "* `0` - Off\n* `1` - On"
+            },
+            "RhythmEnum": {
+                "enum": [
+                    "sinus",
+                    "afib",
+                    "vfib",
+                    "vtach1",
+                    "vtach2",
+                    "ront",
+                    "asystole"
+                ],
+                "type": "string",
+                "description": "* `sinus` - Sinus rhythm\n* `afib` - Atrial fibrillation\n* `vfib` - Ventricular fibrillation\n* `vtach1` - Ventricular tachycardia 1\n* `vtach2` - Ventricular tachycardia 2\n* `ront` - R-on-T\n* `asystole` - Asystole"
+            },
+            "RightDorsalPulseStrengthEnum": {
+                "enum": [
+                    "none",
+                    "weak",
+                    "medium",
+                    "strong"
+                ],
+                "type": "string",
+                "description": "* `none` - None\n* `weak` - Weak\n* `medium` - Medium\n* `strong` - Strong"
+            },
+            "RightFemoralPulseStrengthEnum": {
+                "enum": [
+                    "none",
+                    "weak",
+                    "medium",
+                    "strong"
+                ],
+                "type": "string",
+                "description": "* `none` - None\n* `weak` - Weak\n* `medium` - Medium\n* `strong` - Strong"
+            },
+            "RightLungSoundEnum": {
+                "enum": [
+                    "normal",
+                    "coarse_crackles",
+                    "fine_crackles",
+                    "wheezes",
+                    "stridor",
+                    "stertor",
+                    "same_as_right",
+                    "same_as_left"
+                ],
+                "type": "string",
+                "description": "* `normal` - Normal\n* `coarse_crackles` - Coarse Crackles\n* `fine_crackles` - Fine Crackles\n* `wheezes` - Wheezes\n* `stridor` - Stridor\n* `stertor` - Stertor\n* `same_as_right` - Same As Right\n* `same_as_left` - Same As Left"
+            },
+            "Scenario": {
+                "type": "object",
+                "description": "Adds nested create feature",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "header": {
+                        "$ref": "#/components/schemas/Header"
+                    },
+                    "profile": {
+                        "$ref": "#/components/schemas/Profile"
+                    },
+                    "vocalfiles": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Vocal"
+                        }
+                    },
+                    "mediafiles": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Media"
+                        }
+                    },
+                    "init": {
+                        "$ref": "#/components/schemas/ScenarioInit"
+                    },
+                    "eventgroups": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/EventGroup"
+                        }
+                    },
+                    "scenes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Scene"
+                        }
+                    }
+                },
+                "required": [
+                    "eventgroups",
+                    "header",
+                    "id",
+                    "init",
+                    "mediafiles",
+                    "profile",
+                    "scenes",
+                    "vocalfiles"
+                ]
+            },
+            "ScenarioInit": {
+                "type": "object",
+                "description": "Adds nested create feature",
+                "properties": {
+                    "cardiac": {
+                        "$ref": "#/components/schemas/ScenarioInitCardiac"
+                    },
+                    "respiration": {
+                        "$ref": "#/components/schemas/ScenarioInitRespiration"
+                    },
+                    "general": {
+                        "$ref": "#/components/schemas/ScenarioInitGeneral"
+                    },
+                    "initial_scene": {
+                        "type": "integer"
+                    },
+                    "record": {
+                        "$ref": "#/components/schemas/RecordEnum"
+                    }
+                },
+                "required": [
+                    "cardiac",
+                    "general",
+                    "respiration"
+                ]
+            },
+            "ScenarioInitCardiac": {
+                "type": "object",
+                "properties": {
+                    "rhythm": {
+                        "$ref": "#/components/schemas/RhythmEnum"
+                    },
+                    "vpc": {
+                        "$ref": "#/components/schemas/VpcEnum"
+                    },
+                    "pea": {
+                        "$ref": "#/components/schemas/PeaEnum"
+                    },
+                    "vpc_freq": {
+                        "type": "integer",
+                        "maximum": 100,
+                        "minimum": 0
+                    },
+                    "vfib_amplitude": {
+                        "$ref": "#/components/schemas/VfibAmplitudeEnum"
+                    },
+                    "rate": {
+                        "type": "integer",
+                        "maximum": 300,
+                        "minimum": 0
+                    },
+                    "nibp_rate": {
+                        "type": "integer",
+                        "maximum": 300,
+                        "minimum": 0
+                    },
+                    "bps_sys": {
+                        "type": "integer",
+                        "maximum": 300,
+                        "minimum": 0
+                    },
+                    "bps_dia": {
+                        "type": "integer",
+                        "maximum": 290,
+                        "minimum": 0
+                    },
+                    "left_dorsal_pulse_strength": {
+                        "$ref": "#/components/schemas/LeftDorsalPulseStrengthEnum"
+                    },
+                    "right_dorsal_pulse_strength": {
+                        "$ref": "#/components/schemas/RightDorsalPulseStrengthEnum"
+                    },
+                    "left_femoral_pulse_strength": {
+                        "$ref": "#/components/schemas/LeftFemoralPulseStrengthEnum"
+                    },
+                    "right_femoral_pulse_strength": {
+                        "$ref": "#/components/schemas/RightFemoralPulseStrengthEnum"
+                    },
+                    "heart_sound_volume": {
+                        "type": "integer",
+                        "maximum": 10,
+                        "minimum": 0
+                    },
+                    "heart_sound": {
+                        "$ref": "#/components/schemas/HeartSoundEnum"
+                    },
+                    "ecg_indicator": {
+                        "$ref": "#/components/schemas/ArrestEnum"
+                    },
+                    "bp_cuff": {
+                        "$ref": "#/components/schemas/ArrestEnum"
+                    },
+                    "arrest": {
+                        "$ref": "#/components/schemas/ArrestEnum"
+                    }
+                }
+            },
+            "ScenarioInitGeneral": {
+                "type": "object",
+                "properties": {
+                    "temperature": {
+                        "type": "integer",
+                        "maximum": 1100,
+                        "minimum": 0
+                    },
+                    "temperature_enable": {
+                        "$ref": "#/components/schemas/TemperatureEnableEnum"
+                    }
+                }
+            },
+            "ScenarioInitRespiration": {
+                "type": "object",
+                "properties": {
+                    "left_lung_sound": {
+                        "$ref": "#/components/schemas/LeftLungSoundEnum"
+                    },
+                    "left_lung_sound_volume": {
+                        "type": "integer",
+                        "maximum": 10,
+                        "minimum": 0
+                    },
+                    "right_lung_sound": {
+                        "$ref": "#/components/schemas/RightLungSoundEnum"
+                    },
+                    "right_lung_sound_volume": {
+                        "type": "integer",
+                        "maximum": 10,
+                        "minimum": 0
+                    },
+                    "inhalation_duration": {
+                        "type": "integer",
+                        "minimum": 0
+                    },
+                    "exhalation_duration": {
+                        "type": "integer",
+                        "minimum": 0
+                    },
+                    "spo2": {
+                        "type": "integer",
+                        "maximum": 100,
+                        "minimum": 0
+                    },
+                    "spo2_indicator": {
+                        "$ref": "#/components/schemas/Spo2IndicatorEnum"
+                    },
+                    "etco2": {
+                        "type": "integer",
+                        "maximum": 150,
+                        "minimum": 0
+                    },
+                    "etco2_indicator": {
+                        "$ref": "#/components/schemas/Etco2IndicatorEnum"
+                    },
+                    "rate": {
+                        "type": "integer",
+                        "maximum": 60,
+                        "minimum": 0
+                    },
+                    "chest_movement": {
+                        "$ref": "#/components/schemas/ChestMovementEnum"
+                    }
+                }
+            },
+            "Scene": {
+                "type": "object",
+                "description": "Adds nested create feature",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "maxLength": 256
+                    },
+                    "id": {
+                        "type": "integer",
+                        "minimum": 0
+                    },
+                    "triggers_needed": {
+                        "type": "integer",
+                        "minimum": 0
+                    },
+                    "timeout": {
+                        "$ref": "#/components/schemas/Timeout"
+                    },
+                    "init": {
+                        "$ref": "#/components/schemas/SceneInit"
+                    },
+                    "triggers": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Trigger"
+                        }
+                    }
+                },
+                "required": [
+                    "init",
+                    "timeout",
+                    "triggers"
+                ]
+            },
+            "SceneInit": {
+                "type": "object",
+                "description": "Adds nested create feature",
+                "properties": {
+                    "cardiac": {
+                        "$ref": "#/components/schemas/SceneInitCardiac"
+                    },
+                    "respiration": {
+                        "$ref": "#/components/schemas/SceneInitRespiration"
+                    },
+                    "general": {
+                        "$ref": "#/components/schemas/SceneInitGeneral"
+                    }
+                },
+                "required": [
+                    "cardiac",
+                    "general",
+                    "respiration"
+                ]
+            },
+            "SceneInitCardiac": {
+                "type": "object",
+                "properties": {
+                    "rhythm": {
+                        "$ref": "#/components/schemas/RhythmEnum"
+                    },
+                    "vpc": {
+                        "$ref": "#/components/schemas/VpcEnum"
+                    },
+                    "pea": {
+                        "$ref": "#/components/schemas/PeaEnum"
+                    },
+                    "vpc_freq": {
+                        "type": "integer",
+                        "maximum": 100,
+                        "minimum": 0
+                    },
+                    "vfib_amplitude": {
+                        "$ref": "#/components/schemas/VfibAmplitudeEnum"
+                    },
+                    "rate": {
+                        "type": "integer",
+                        "maximum": 300,
+                        "minimum": 0
+                    },
+                    "nibp_rate": {
+                        "type": "integer",
+                        "maximum": 300,
+                        "minimum": 0
+                    },
+                    "bps_sys": {
+                        "type": "integer",
+                        "maximum": 300,
+                        "minimum": 0
+                    },
+                    "bps_dia": {
+                        "type": "integer",
+                        "maximum": 290,
+                        "minimum": 0
+                    },
+                    "left_dorsal_pulse_strength": {
+                        "$ref": "#/components/schemas/LeftDorsalPulseStrengthEnum"
+                    },
+                    "right_dorsal_pulse_strength": {
+                        "$ref": "#/components/schemas/RightDorsalPulseStrengthEnum"
+                    },
+                    "left_femoral_pulse_strength": {
+                        "$ref": "#/components/schemas/LeftFemoralPulseStrengthEnum"
+                    },
+                    "right_femoral_pulse_strength": {
+                        "$ref": "#/components/schemas/RightFemoralPulseStrengthEnum"
+                    },
+                    "heart_sound_volume": {
+                        "type": "integer",
+                        "maximum": 10,
+                        "minimum": 0
+                    },
+                    "heart_sound": {
+                        "$ref": "#/components/schemas/HeartSoundEnum"
+                    },
+                    "ecg_indicator": {
+                        "$ref": "#/components/schemas/ArrestEnum"
+                    },
+                    "bp_cuff": {
+                        "$ref": "#/components/schemas/ArrestEnum"
+                    },
+                    "arrest": {
+                        "$ref": "#/components/schemas/ArrestEnum"
+                    }
+                }
+            },
+            "SceneInitGeneral": {
+                "type": "object",
+                "properties": {
+                    "temperature": {
+                        "type": "integer",
+                        "maximum": 1100,
+                        "minimum": 0
+                    },
+                    "temperature_enable": {
+                        "$ref": "#/components/schemas/TemperatureEnableEnum"
+                    }
+                }
+            },
+            "SceneInitRespiration": {
+                "type": "object",
+                "properties": {
+                    "left_lung_sound": {
+                        "$ref": "#/components/schemas/LeftLungSoundEnum"
+                    },
+                    "left_lung_sound_volume": {
+                        "type": "integer",
+                        "maximum": 10,
+                        "minimum": 0
+                    },
+                    "right_lung_sound": {
+                        "$ref": "#/components/schemas/RightLungSoundEnum"
+                    },
+                    "right_lung_sound_volume": {
+                        "type": "integer",
+                        "maximum": 10,
+                        "minimum": 0
+                    },
+                    "inhalation_duration": {
+                        "type": "integer",
+                        "minimum": 0
+                    },
+                    "exhalation_duration": {
+                        "type": "integer",
+                        "minimum": 0
+                    },
+                    "spo2": {
+                        "type": "integer",
+                        "maximum": 100,
+                        "minimum": 0
+                    },
+                    "spo2_indicator": {
+                        "$ref": "#/components/schemas/Spo2IndicatorEnum"
+                    },
+                    "etco2": {
+                        "type": "integer",
+                        "maximum": 150,
+                        "minimum": 0
+                    },
+                    "etco2_indicator": {
+                        "$ref": "#/components/schemas/Etco2IndicatorEnum"
+                    },
+                    "rate": {
+                        "type": "integer",
+                        "maximum": 60,
+                        "minimum": 0
+                    },
+                    "chest_movement": {
+                        "$ref": "#/components/schemas/ChestMovementEnum"
+                    }
+                }
+            },
+            "Spo2IndicatorEnum": {
+                "enum": [
+                    0,
+                    1
+                ],
+                "type": "integer",
+                "description": "* `0` - Not Connected\n* `1` - Connected"
+            },
+            "Summary": {
+                "type": "object",
+                "properties": {
+                    "description": {
+                        "type": "string"
+                    },
+                    "breed": {
+                        "type": "string",
+                        "maxLength": 64
+                    },
+                    "gender": {
+                        "type": "string",
+                        "maxLength": 64
+                    },
+                    "weight": {
+                        "type": "string",
+                        "maxLength": 6
+                    },
+                    "species": {
+                        "type": "string",
+                        "maxLength": 64
+                    },
+                    "symptoms": {
+                        "type": "string"
+                    },
+                    "image": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "required": [
+                    "breed",
+                    "gender",
+                    "species",
+                    "weight"
+                ]
+            },
+            "TemperatureEnableEnum": {
+                "enum": [
+                    0,
+                    1
+                ],
+                "type": "integer",
+                "description": "* `0` - Off\n* `1` - On"
+            },
+            "TestEnum": {
+                "enum": [
+                    "eq",
+                    "gt",
+                    "lt",
+                    "lte",
+                    "gte",
+                    "inside",
+                    "outside"
+                ],
+                "type": "string",
+                "description": "* `eq` - Eq\n* `gt` - Gt\n* `lt` - Lt\n* `lte` - Lte\n* `gte` - Gte\n* `inside` - Inside\n* `outside` - Outside\n* `` - None"
+            },
+            "Timeout": {
+                "type": "object",
+                "properties": {
+                    "timeout_value": {
+                        "type": "integer",
+                        "minimum": 0
+                    },
+                    "scene_id": {
+                        "type": "integer",
+                        "minimum": 0
+                    }
+                }
+            },
+            "Title": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "maxLength": 256
+                    },
+                    "top": {
+                        "type": "integer",
+                        "minimum": 0
+                    },
+                    "left": {
+                        "type": "integer",
+                        "minimum": 0
+                    }
+                }
+            },
+            "Trigger": {
+                "type": "object",
+                "description": "Adds nested create feature",
+                "properties": {
+                    "group": {
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "scene_id": {
+                        "type": "integer",
+                        "minimum": 0
+                    },
+                    "event_id": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 64
+                    },
+                    "test": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/TestEnum"
+                            }
+                        ],
+                        "nullable": true
+                    },
+                    "cpr_duration": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "nullable": true
+                    },
+                    "cardiac": {
+                        "$ref": "#/components/schemas/ParameterTriggerCardiac"
+                    },
+                    "respiration": {
+                        "$ref": "#/components/schemas/ParameterTriggerRespiration"
+                    },
+                    "general": {
+                        "$ref": "#/components/schemas/ParameterTriggerGeneral"
+                    }
+                }
+            },
+            "VfibAmplitudeEnum": {
+                "enum": [
+                    "low",
+                    "medium",
+                    "high"
+                ],
+                "type": "string",
+                "description": "* `low` - Low\n* `medium` - Medium\n* `high` - High"
+            },
+            "Vocal": {
+                "type": "object",
+                "properties": {
+                    "scenario": {
+                        "type": "integer"
+                    },
+                    "filename": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string",
+                        "maxLength": 256
+                    }
+                },
+                "required": [
+                    "filename",
+                    "scenario"
+                ]
+            },
+            "VpcEnum": {
+                "enum": [
+                    "none",
+                    "1-1",
+                    "1-2",
+                    "1-3",
+                    "2-1",
+                    "2-2",
+                    "2-3",
+                    "3-1",
+                    "3-2",
+                    "3-3"
+                ],
+                "type": "string",
+                "description": "* `none` - None\n* `1-1` - Vtach1 Singlet\n* `1-2` - Vtach1 Couplet\n* `1-3` - Vtach1 Triplet\n* `2-1` - Vtach2 Singlet\n* `2-2` - Vtach2 Couplet\n* `2-3` - Vtach2 Triplet\n* `3-1` - Vtach3 Singlet\n* `3-2` - Vtach3 Couplet\n* `3-3` - Vtach3 Triplet"
+            }
+        },
+        "securitySchemes": {
+            "basicAuth": {
+                "type": "http",
+                "scheme": "basic"
+            },
+            "cookieAuth": {
+                "type": "apiKey",
+                "in": "cookie",
+                "name": "sessionid"
+            }
+        }
+    }
+}
