@@ -10,12 +10,21 @@
           aria-label="Menu"
           @click="toggleLeftDrawer"
         />
-
-        <q-toolbar-title>
+        <q-toolbar-title class="text-primary">
           OVS Scenario Manager
         </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
+        <div class="q-pa-sm">
+          <q-toggle
+            v-model="darkMode"
+            dark
+            label="Dark Mode"
+            color="grey"
+            :icon="$q.dark.isActive ? 'bi-moon' : 'bi-brightness-high'"
+            @click="$q.dark.toggle()"
+          />
+        </div>
+        <q-separator dark vertical />
+        <div class="q-pa-sm">Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
 
@@ -98,7 +107,9 @@ const linksList: EssentialLinkProps[] = [
   }
 ];
 
-const leftDrawerOpen = ref(false);
+const leftDrawerOpen = ref(false)
+
+const darkMode = ref(false)
 
 function toggleLeftDrawer () {
   leftDrawerOpen.value = !leftDrawerOpen.value;

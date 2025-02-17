@@ -3,7 +3,7 @@
     <q-table
       title="Scenarios"
       :columns="columns"
-      :rows="scenarios"
+      :rows="rows"
       row-key="id"
     />
   </div>
@@ -13,7 +13,7 @@
 import { ref, onMounted } from 'vue'
 import { api } from 'boot/axios'
 import { QTableProps, useQuasar } from 'quasar'
-import { Scenario } from '../types'
+import { Scenario, Header } from '../types'
 
 defineOptions({
   name: 'ScenarioTableComponent'
@@ -33,31 +33,59 @@ const columns: QTableProps['columns'] = [
   },
   {
     name: 'title',
-    label: 'Scenario Title',
+    label: 'Title',
     align: 'left',
     field: row => row.header.title.name,
+    sortable: true
+  },
+  {
+    name: 'author',
+    label: 'Author',
+    align: 'left',
+    field: row => row.header.author,
+    sortable: true
+  },
+  {
+    name: 'description',
+    label: 'Description',
+    align: 'left',
+    field: row => row.header.description,
+    sortable: true
+  },
+  {
+    name: 'date_of_creation',
+    label: 'Created Date',
+    align: 'left',
+    field: row => row.header.date_of_creation,
     sortable: true
   }
 ]
 
-const scenarios = ref<Scenario[]>([])
+interface TableRow {
+  id: number,
+  header: Header,
+}
 
-function getScenarios() {
+const rows = ref<TableRow[]>([])
+
+function getScenarioHeaders() {
   api
-  .get<Scenario[]>('http://localhost:8000/api/v1/scenarios', { headers: { 'Content-Type': 'application/json' }})
-  .then((response) => scenarios.value = response.data)
+  .get<Scenario[]>('/api/v1/scenarios', { headers: { 'Content-Type': 'application/json' }})
+  .then((response) => {
+    rows.value = response.data.map(({ id, header }) => ({ id, header }))
+  })
   .catch(() => {
     $q.notify({
       color: 'negative',
       position: 'top',
-      message: 'Loading failed',
+      message: 'Could not fetch scenarios, is backend running?',
       icon: 'report_problem'
     })
   })
 }
 
 onMounted(() => {
-  getScenarios()
+  getScenarioHeaders()
 })
 
 </script>
