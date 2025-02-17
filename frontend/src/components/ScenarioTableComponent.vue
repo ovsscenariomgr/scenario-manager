@@ -3,23 +3,22 @@
     <q-table
       title="Scenarios"
       :columns="columns"
-      :rows="rows"
+      :rows="store.getScenarioHeaders"
       row-key="id"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { api } from 'boot/axios'
-import { QTableProps, useQuasar } from 'quasar'
-import { Scenario, Header } from '../types'
+import { onMounted } from 'vue'
+import { QTableProps } from 'quasar'
+import { scenarioStore } from '../stores/scenario-store'
 
 defineOptions({
   name: 'ScenarioTableComponent'
 });
 
-const $q = useQuasar()
+const store = scenarioStore()
 
 const columns: QTableProps['columns'] = [
   {
@@ -61,31 +60,8 @@ const columns: QTableProps['columns'] = [
   }
 ]
 
-interface TableRow {
-  id: number,
-  header: Header,
-}
-
-const rows = ref<TableRow[]>([])
-
-function getScenarioHeaders() {
-  api
-  .get<Scenario[]>('/api/v1/scenarios', { headers: { 'Content-Type': 'application/json' }})
-  .then((response) => {
-    rows.value = response.data.map(({ id, header }) => ({ id, header }))
-  })
-  .catch(() => {
-    $q.notify({
-      color: 'negative',
-      position: 'top',
-      message: 'Could not fetch scenarios, is backend running?',
-      icon: 'report_problem'
-    })
-  })
-}
-
 onMounted(() => {
-  getScenarioHeaders()
+  store.fetchScenarios()
 })
 
 </script>
