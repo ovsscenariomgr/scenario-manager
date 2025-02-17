@@ -28,6 +28,7 @@ export type { ScenarioInit } from './models/ScenarioInit';
 export type { ScenarioInitCardiac } from './models/ScenarioInitCardiac';
 export type { ScenarioInitGeneral } from './models/ScenarioInitGeneral';
 export type { ScenarioInitRespiration } from './models/ScenarioInitRespiration';
+export type { ScenarioTableRow } from './ScenarioTableRow';
 export type { Scene } from './models/Scene';
 export type { SceneInit } from './models/SceneInit';
 export type { SceneInitCardiac } from './models/SceneInitCardiac';
