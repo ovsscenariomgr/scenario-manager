@@ -1,11 +1,14 @@
 from rest_framework import generics, permissions, views, status
-from rest_framework.decorators import renderer_classes, parser_classes, permission_classes
+from rest_framework.decorators import renderer_classes, parser_classes, permission_classes, authentication_classes
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser, MultiPartParser, FormParser
 from rest_framework.response import Response
+from django.contrib.auth import login
+from django.contrib.sessions.models import Session
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from app.models import Scenario, VocalFile, MediaFile, Profile
-from app.serializers import ScenarioSerializer, VocalSerializer, MediaSerializer
+from app.serializers import ScenarioSerializer, VocalSerializer, MediaSerializer, LoginSerializer, UserSerializer
 from app.renderers import ScenarioXMLRenderer, OvsXMLRenderer
 from app.parsers import ScenarioXMLParser
 
@@ -93,3 +96,36 @@ class ScenarioImages(views.APIView):
         scenario.refresh_from_db()
         serializer = ScenarioSerializer(instance=scenario)
         return Response(serializer.data)
+
+@permission_classes([])
+class AuthCheck(views.APIView):
+
+    def get(self, request):
+        if request.user.is_authenticated:
+            user = UserSerializer(request.user, context={'request': request})
+            return Response({"isAuthenticated": True, "user": user.data})
+        else:
+            return Response({"isAuthenticated": False})
+
+@permission_classes([permissions.AllowAny])
+@authentication_classes([])
+class LoginView(views.APIView):
+
+    def post(self, request):
+        serializer = LoginSerializer(data=request.data)
+
+        if serializer.is_valid():
+            user = serializer.validated_data
+            login(request, user)
+            return Response({"detail": "Login successful."}, status=status.HTTP_200_OK)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+def expire_session_view(request, session_key):
+    try:
+        session = Session.objects.get(session_key=session_key)
+        session.delete()
+    except Session.DoesNotExist:
+        pass
+    return HttpResponseRedirect('/admin/sessions/session/')

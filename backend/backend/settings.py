@@ -169,6 +169,12 @@ _cors_local_ports = [':9000', ':8080', ':80', '']
 _CORS_LOCAL = ['http://{host}{port}'.format(host=host, port=port) for host in _cors_local_hosts for port in _cors_local_ports]
 CORS_ALLOWED_ORIGINS = [] + _CORS_LOCAL
 
+# CSRF
+CSRF_TRUSTED_ORIGINS = ['http://localhost:8080']
+CSRF_COOKIE_NAME = 'csrftoken'
+SESSION_COOKIE_AGE = 1200
+SESSION_SAVE_EVERY_REQUEST = True
+
 SPECTACULAR_SETTINGS = {
     'TITLE': 'OpenVetSim Scenario Manager',
     'DESCRIPTION': 'OpenVetSim Scenario Manager',
