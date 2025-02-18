@@ -4,6 +4,7 @@ services:
     build: 
       context: ./backend
       dockerfile: Dockerfile
+    hostname: backend
     entrypoint: /docker-entrypoint.sh
     command: python manage.py runserver 0.0.0.0:8000
     restart: always
@@ -15,14 +16,17 @@ services:
       - "8000:8000"
     env_file:
       - ./backend/.env
-  frontend:
+  nginx:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+    hostname: nginx
     ports:
       - "80:80"
     volumes:
-      - .:/app
+      - ./frontend/nginx-conf.d:/etc/nginx/conf.d 
+    depends_on:
+      - backend
 volumes:
   appdata:
   appfiles:

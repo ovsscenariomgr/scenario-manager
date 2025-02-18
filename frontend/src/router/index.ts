@@ -7,6 +7,7 @@ import {
 } from 'vue-router';
 
 import routes from './routes';
+import { useAppAuthStore } from '../stores/app-auth-store';
 
 /*
  * If not building with SSR mode, you can
@@ -30,6 +31,13 @@ export default route(function (/* { store, ssrContext } */) {
     // quasar.conf.js -> build -> vueRouterMode
     // quasar.conf.js -> build -> publicPath
     history: createHistory(process.env.VUE_ROUTER_BASE),
+  });
+
+  const appAuthStore = useAppAuthStore();
+
+  // Before each route, check if the user is logged in
+  Router.beforeEach(async () => {
+      await appAuthStore.authCheck();
   });
 
   return Router;

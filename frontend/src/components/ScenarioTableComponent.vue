@@ -1,6 +1,14 @@
 <template>
+  <!-- <pre>{{ appAuthStore.user }}</pre> -->
+  <q-btn
+    v-if="!appAuthStore.loggedOut"
+    label="Logout"
+    color="primary"
+    @click="appAuthStore.logout()"
+  />
   <div class="q-pa-md">
     <q-table
+      v-if="!appAuthStore.loggedOut"
       title="Scenarios"
       :columns="columns"
       :rows="store.getScenarioHeaders"
@@ -13,6 +21,9 @@
 import { onMounted } from 'vue'
 import { QTableProps } from 'quasar'
 import { scenarioStore } from '../stores/scenario-store'
+import { useAppAuthStore } from '../stores/app-auth-store'
+
+const appAuthStore = useAppAuthStore()
 
 defineOptions({
   name: 'ScenarioTableComponent'

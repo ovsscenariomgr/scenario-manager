@@ -51,12 +51,14 @@
     <q-page-container>
       <router-view />
     </q-page-container>
+    <LoginForm></LoginForm>
   </q-layout>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
 import EssentialLink, { EssentialLinkProps } from 'components/EssentialLink.vue';
+import LoginForm from 'components/auth/LoginForm.vue';
 
 defineOptions({
   name: 'MainLayout'

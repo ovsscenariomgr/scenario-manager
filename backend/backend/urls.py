@@ -9,7 +9,7 @@ urlpatterns = [
     path('auth/', include('app.urls.auth', namespace='auth')),
     path('grappelli/', include('grappelli.urls')),
     path('_nested_admin/', include('nested_admin.urls')),
-    # path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('admin/', admin.site.urls),
     path('docs/schema/', SpectacularAPIView.as_view(api_version='v1'), name='schema'),
     path('docs/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),

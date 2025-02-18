@@ -1,8 +1,6 @@
 <template>
   <q-page padding>
-    <scenario-table-component>
-
-    </scenario-table-component>
+    <scenario-table-component></scenario-table-component>
   </q-page>
 </template>
 

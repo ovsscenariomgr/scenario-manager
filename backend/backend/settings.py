@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from corsheaders.defaults import default_headers
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -164,14 +165,24 @@ REST_FRAMEWORK = {
 }
 
 # CORS
-_cors_local_hosts = ['localhost', '127.0.0.1']
-_cors_local_ports = [':9000', ':8080', ':80', '']
-_CORS_LOCAL = ['http://{host}{port}'.format(host=host, port=port) for host in _cors_local_hosts for port in _cors_local_ports]
-CORS_ALLOWED_ORIGINS = [] + _CORS_LOCAL
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = (*default_headers,)
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^http://(?:localhost|127\.0\.0\.1|nginx)(?::\d+)?$",
+    r"^https://(?:localhost|127\.0\.0\.1|nginx)(?::\d+)?$",
+]
 
 # CSRF
-CSRF_TRUSTED_ORIGINS = ['http://localhost:8080']
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost',
+    'http://localhost:9000',
+    'http://127.0.0.1',
+    'http://127.0.0.1:9000',
+    'http://nginx'
+]
 CSRF_COOKIE_NAME = 'csrftoken'
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_AGE = 1200
 SESSION_SAVE_EVERY_REQUEST = True
 

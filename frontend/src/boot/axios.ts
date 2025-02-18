@@ -14,9 +14,32 @@ declare module 'vue' {
 // good idea to move this instance creation inside of the
 // "export default () => {}" function below (which runs individually
 // for each client)
-const api = axios.create({ baseURL: 'http://localhost:8000' });
+const api = axios.create({
+  baseURL: process.env.BACKEND_URL,
+  withCredentials: true,
+  xsrfCookieName: 'csrftoken',
+});
+
+// Helper function to get CSRF token from cookie
+function getCookie(name: string): string | null {
+  const value = '; ' + document.cookie;
+  const parts = value.split('; ' + name + '=');
+  if (parts.length === 2) return parts.pop()?.split(';').shift() || null;
+  return null;
+}
 
 export default boot(({ app }) => {
+    // Set the X-CSRFToken header for all POST/PUT requests
+    api.interceptors.request.use((config) => {
+      if (config.method?.toLowerCase() === 'post' || config.method?.toLowerCase() === 'put') {
+          const csrfToken = getCookie('csrftoken');
+          if (csrfToken) {
+              config.headers['X-CSRFToken'] = csrfToken;
+          }
+      }
+      return config;
+    });
+
   // for use inside Vue files (Options API) through this.$axios and this.$api
 
   app.config.globalProperties.$axios = axios;
