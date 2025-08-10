@@ -1,7 +1,7 @@
 /* generated using openapi-typescript-codegen -- do not edit */
 /* istanbul ignore file */
 /* tslint:disable */
-/* eslint-disable */
+ 
 import type { ParameterTriggerCardiac } from './ParameterTriggerCardiac';
 import type { ParameterTriggerGeneral } from './ParameterTriggerGeneral';
 import type { ParameterTriggerRespiration } from './ParameterTriggerRespiration';

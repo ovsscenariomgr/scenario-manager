@@ -1,7 +1,7 @@
 /* generated using openapi-typescript-codegen -- do not edit */
 /* istanbul ignore file */
 /* tslint:disable */
-/* eslint-disable */
+ 
 import type { EventGroup } from './EventGroup';
 import type { Header } from './Header';
 import type { Media } from './Media';

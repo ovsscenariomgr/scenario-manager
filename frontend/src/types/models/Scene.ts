@@ -1,7 +1,7 @@
 /* generated using openapi-typescript-codegen -- do not edit */
 /* istanbul ignore file */
 /* tslint:disable */
-/* eslint-disable */
+ 
 import type { SceneInit } from './SceneInit';
 import type { Timeout } from './Timeout';
 import type { Trigger } from './Trigger';

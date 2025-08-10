@@ -1,7 +1,7 @@
 /* generated using openapi-typescript-codegen -- do not edit */
 /* istanbul ignore file */
 /* tslint:disable */
-/* eslint-disable */
+ 
 import type { HeartSoundEnum } from './HeartSoundEnum';
 import type { IlluminatedEnum } from './IlluminatedEnum';
 import type { OnOffEnum } from './OnOffEnum';

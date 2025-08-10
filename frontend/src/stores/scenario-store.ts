@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { api } from 'boot/axios'
 import { Notify } from 'quasar'
-import { Scenario, ScenarioTableRow } from '../types'
+import type { Scenario, ScenarioTableRow } from '../types'
 
 export const scenarioStore = defineStore('scenarios', {
   state: () => ({

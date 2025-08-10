@@ -80,6 +80,8 @@ function submitLogin() {
       if (appAuthStore.error === '') {
           Object.assign(loginModel, { ...defaultModel });
       }
+  }).catch((error) => {
+    console.error(error)
   });
 }
 </script>
