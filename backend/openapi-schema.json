@@ -8,7 +8,7 @@
     "paths": {
         "/api/v1/export/{id}": {
             "get": {
-                "operationId": "v1_export_retrieve",
+                "operationId": "api_v1_export_retrieve",
                 "parameters": [
                     {
                         "in": "path",
@@ -20,7 +20,7 @@
                     }
                 ],
                 "tags": [
-                    "v1"
+                    "api"
                 ],
                 "security": [
                     {
@@ -47,7 +47,7 @@
         },
         "/api/v1/export/{id}{format}": {
             "get": {
-                "operationId": "v1_export_formatted_retrieve",
+                "operationId": "api_v1_export_formatted_retrieve",
                 "parameters": [
                     {
                         "in": "path",
@@ -70,7 +70,7 @@
                     }
                 ],
                 "tags": [
-                    "v1"
+                    "api"
                 ],
                 "security": [
                     {
@@ -97,7 +97,7 @@
         },
         "/api/v1/images/{id}": {
             "patch": {
-                "operationId": "v1_images_partial_update",
+                "operationId": "api_v1_images_partial_update",
                 "parameters": [
                     {
                         "in": "query",
@@ -120,7 +120,7 @@
                     }
                 ],
                 "tags": [
-                    "v1"
+                    "api"
                 ],
                 "security": [
                     {
@@ -139,7 +139,7 @@
         },
         "/api/v1/images/{id}{format}": {
             "patch": {
-                "operationId": "v1_images_formatted_partial_update",
+                "operationId": "api_v1_images_formatted_partial_update",
                 "parameters": [
                     {
                         "in": "path",
@@ -174,7 +174,7 @@
                     }
                 ],
                 "tags": [
-                    "v1"
+                    "api"
                 ],
                 "security": [
                     {
@@ -193,7 +193,7 @@
         },
         "/api/v1/media/{id}": {
             "get": {
-                "operationId": "v1_media_retrieve",
+                "operationId": "api_v1_media_retrieve",
                 "parameters": [
                     {
                         "in": "query",
@@ -216,7 +216,7 @@
                     }
                 ],
                 "tags": [
-                    "v1"
+                    "api"
                 ],
                 "security": [
                     {
@@ -234,7 +234,7 @@
                 }
             },
             "put": {
-                "operationId": "v1_media_update",
+                "operationId": "api_v1_media_update",
                 "parameters": [
                     {
                         "in": "query",
@@ -257,7 +257,7 @@
                     }
                 ],
                 "tags": [
-                    "v1"
+                    "api"
                 ],
                 "security": [
                     {
@@ -276,7 +276,7 @@
         },
         "/api/v1/media/{id}{format}": {
             "get": {
-                "operationId": "v1_media_formatted_retrieve",
+                "operationId": "api_v1_media_formatted_retrieve",
                 "parameters": [
                     {
                         "in": "path",
@@ -311,7 +311,7 @@
                     }
                 ],
                 "tags": [
-                    "v1"
+                    "api"
                 ],
                 "security": [
                     {
@@ -329,7 +329,7 @@
                 }
             },
             "put": {
-                "operationId": "v1_media_formatted_update",
+                "operationId": "api_v1_media_formatted_update",
                 "parameters": [
                     {
                         "in": "path",
@@ -364,7 +364,7 @@
                     }
                 ],
                 "tags": [
-                    "v1"
+                    "api"
                 ],
                 "security": [
                     {
@@ -383,7 +383,7 @@
         },
         "/api/v1/scenarios": {
             "get": {
-                "operationId": "v1_scenarios_list",
+                "operationId": "api_v1_scenarios_list",
                 "parameters": [
                     {
                         "in": "query",
@@ -398,7 +398,7 @@
                     }
                 ],
                 "tags": [
-                    "v1"
+                    "api"
                 ],
                 "security": [
                     {
@@ -434,7 +434,7 @@
                 }
             },
             "post": {
-                "operationId": "v1_scenarios_create",
+                "operationId": "api_v1_scenarios_create",
                 "parameters": [
                     {
                         "in": "query",
@@ -449,7 +449,7 @@
                     }
                 ],
                 "tags": [
-                    "v1"
+                    "api"
                 ],
                 "requestBody": {
                     "content": {
@@ -495,7 +495,7 @@
         },
         "/api/v1/scenarios{format}": {
             "get": {
-                "operationId": "v1_scenarios_formatted_list",
+                "operationId": "api_v1_scenarios_formatted_list",
                 "parameters": [
                     {
                         "in": "path",
@@ -522,7 +522,7 @@
                     }
                 ],
                 "tags": [
-                    "v1"
+                    "api"
                 ],
                 "security": [
                     {
@@ -558,7 +558,7 @@
                 }
             },
             "post": {
-                "operationId": "v1_scenarios_formatted_create",
+                "operationId": "api_v1_scenarios_formatted_create",
                 "parameters": [
                     {
                         "in": "path",
@@ -585,7 +585,7 @@
                     }
                 ],
                 "tags": [
-                    "v1"
+                    "api"
                 ],
                 "requestBody": {
                     "content": {
@@ -631,7 +631,7 @@
         },
         "/api/v1/scenarios/{id}": {
             "get": {
-                "operationId": "v1_scenarios_retrieve",
+                "operationId": "api_v1_scenarios_retrieve",
                 "parameters": [
                     {
                         "in": "query",
@@ -654,7 +654,7 @@
                     }
                 ],
                 "tags": [
-                    "v1"
+                    "api"
                 ],
                 "security": [
                     {
@@ -684,7 +684,7 @@
                 }
             },
             "put": {
-                "operationId": "v1_scenarios_update",
+                "operationId": "api_v1_scenarios_update",
                 "parameters": [
                     {
                         "in": "query",
@@ -707,7 +707,7 @@
                     }
                 ],
                 "tags": [
-                    "v1"
+                    "api"
                 ],
                 "requestBody": {
                     "content": {
@@ -751,7 +751,7 @@
                 }
             },
             "patch": {
-                "operationId": "v1_scenarios_partial_update",
+                "operationId": "api_v1_scenarios_partial_update",
                 "parameters": [
                     {
                         "in": "query",
@@ -774,7 +774,7 @@
                     }
                 ],
                 "tags": [
-                    "v1"
+                    "api"
                 ],
                 "requestBody": {
                     "content": {
@@ -817,7 +817,7 @@
                 }
             },
             "delete": {
-                "operationId": "v1_scenarios_destroy",
+                "operationId": "api_v1_scenarios_destroy",
                 "parameters": [
                     {
                         "in": "query",
@@ -840,7 +840,7 @@
                     }
                 ],
                 "tags": [
-                    "v1"
+                    "api"
                 ],
                 "security": [
                     {
@@ -859,7 +859,7 @@
         },
         "/api/v1/scenarios/{id}{format}": {
             "get": {
-                "operationId": "v1_scenarios_formatted_retrieve",
+                "operationId": "api_v1_scenarios_formatted_retrieve",
                 "parameters": [
                     {
                         "in": "path",
@@ -894,7 +894,7 @@
                     }
                 ],
                 "tags": [
-                    "v1"
+                    "api"
                 ],
                 "security": [
                     {
@@ -924,7 +924,7 @@
                 }
             },
             "put": {
-                "operationId": "v1_scenarios_formatted_update",
+                "operationId": "api_v1_scenarios_formatted_update",
                 "parameters": [
                     {
                         "in": "path",
@@ -959,7 +959,7 @@
                     }
                 ],
                 "tags": [
-                    "v1"
+                    "api"
                 ],
                 "requestBody": {
                     "content": {
@@ -1003,7 +1003,7 @@
                 }
             },
             "patch": {
-                "operationId": "v1_scenarios_formatted_partial_update",
+                "operationId": "api_v1_scenarios_formatted_partial_update",
                 "parameters": [
                     {
                         "in": "path",
@@ -1038,7 +1038,7 @@
                     }
                 ],
                 "tags": [
-                    "v1"
+                    "api"
                 ],
                 "requestBody": {
                     "content": {
@@ -1081,7 +1081,7 @@
                 }
             },
             "delete": {
-                "operationId": "v1_scenarios_formatted_destroy",
+                "operationId": "api_v1_scenarios_formatted_destroy",
                 "parameters": [
                     {
                         "in": "path",
@@ -1116,7 +1116,7 @@
                     }
                 ],
                 "tags": [
-                    "v1"
+                    "api"
                 ],
                 "security": [
                     {
@@ -1135,7 +1135,7 @@
         },
         "/api/v1/vocals/{id}": {
             "get": {
-                "operationId": "v1_vocals_retrieve",
+                "operationId": "api_v1_vocals_retrieve",
                 "parameters": [
                     {
                         "in": "query",
@@ -1158,7 +1158,7 @@
                     }
                 ],
                 "tags": [
-                    "v1"
+                    "api"
                 ],
                 "security": [
                     {
@@ -1176,7 +1176,7 @@
                 }
             },
             "put": {
-                "operationId": "v1_vocals_update",
+                "operationId": "api_v1_vocals_update",
                 "parameters": [
                     {
                         "in": "query",
@@ -1199,7 +1199,7 @@
                     }
                 ],
                 "tags": [
-                    "v1"
+                    "api"
                 ],
                 "security": [
                     {
@@ -1218,7 +1218,7 @@
         },
         "/api/v1/vocals/{id}{format}": {
             "get": {
-                "operationId": "v1_vocals_formatted_retrieve",
+                "operationId": "api_v1_vocals_formatted_retrieve",
                 "parameters": [
                     {
                         "in": "path",
@@ -1253,7 +1253,7 @@
                     }
                 ],
                 "tags": [
-                    "v1"
+                    "api"
                 ],
                 "security": [
                     {
@@ -1271,7 +1271,7 @@
                 }
             },
             "put": {
-                "operationId": "v1_vocals_formatted_update",
+                "operationId": "api_v1_vocals_formatted_update",
                 "parameters": [
                     {
                         "in": "path",
@@ -1306,7 +1306,7 @@
                     }
                 ],
                 "tags": [
-                    "v1"
+                    "api"
                 ],
                 "security": [
                     {
