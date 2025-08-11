@@ -1,7 +1,7 @@
 /* generated using openapi-typescript-codegen -- do not edit */
 /* istanbul ignore file */
 /* tslint:disable */
- 
+
 import type { Event } from './Event';
 /**
  * Adds nested create feature
@@ -11,4 +11,3 @@ export type EventGroup = {
   title?: string;
   events: Array<Event>;
 };
-

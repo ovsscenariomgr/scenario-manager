@@ -1,6 +1,5 @@
-import { boot } from 'quasar/wrappers';
-import type { AxiosInstance } from 'axios';
-import axios from 'axios';
+import { defineBoot } from '#q-app/wrappers';
+import axios, { type AxiosInstance } from 'axios';
 
 declare module 'vue' {
   interface ComponentCustomProperties {
@@ -29,17 +28,17 @@ function getCookie(name: string): string | null {
   return null;
 }
 
-export default boot(({ app }) => {
-    // Set the X-CSRFToken header for all POST/PUT requests
-    api.interceptors.request.use((config) => {
-      if (config.method?.toLowerCase() === 'post' || config.method?.toLowerCase() === 'put') {
-          const csrfToken = getCookie('csrftoken');
-          if (csrfToken) {
-              config.headers['X-CSRFToken'] = csrfToken;
-          }
+export default defineBoot(({ app }) => {
+  // Set the X-CSRFToken header for all POST/PUT requests
+  api.interceptors.request.use((config) => {
+    if (config.method?.toLowerCase() === 'post' || config.method?.toLowerCase() === 'put') {
+      const csrfToken = getCookie('csrftoken');
+      if (csrfToken) {
+        config.headers['X-CSRFToken'] = csrfToken;
       }
-      return config;
-    });
+    }
+    return config;
+  });
 
   // for use inside Vue files (Options API) through this.$axios and this.$api
 

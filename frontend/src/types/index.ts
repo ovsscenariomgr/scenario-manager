@@ -1,7 +1,6 @@
 /* generated using openapi-typescript-codegen -- do not edit */
 /* istanbul ignore file */
 /* tslint:disable */
- 
 
 export type { Avatar } from './models/Avatar';
 export { ConnectedEnum } from './models/ConnectedEnum';

@@ -8,7 +8,6 @@
 import ScenarioTableComponent from 'src/components/ScenarioTableComponent.vue';
 
 defineOptions({
-  name: 'IndexPage'
+  name: 'IndexPage',
 });
-
 </script>

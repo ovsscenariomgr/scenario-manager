@@ -1,7 +1,7 @@
 /* generated using openapi-typescript-codegen -- do not edit */
 /* istanbul ignore file */
 /* tslint:disable */
- 
+
 import type { SceneInitCardiac } from './SceneInitCardiac';
 import type { SceneInitGeneral } from './SceneInitGeneral';
 import type { SceneInitRespiration } from './SceneInitRespiration';
@@ -13,4 +13,3 @@ export type SceneInit = {
   respiration: SceneInitRespiration;
   general: SceneInitGeneral;
 };
-

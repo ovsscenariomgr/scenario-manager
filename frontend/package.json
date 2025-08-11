@@ -10,6 +10,7 @@
     "lint": "eslint -c ./eslint.config.js --fix \"./src*/**/*.{ts,js,cjs,mjs,vue}\"",
     "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
     "test": "echo \"No test specified\" && exit 0",
+    "test:ui": "playwright test",
     "dev": "quasar dev",
     "build": "quasar build --skip-pkg",
     "postinstall": "quasar prepare"

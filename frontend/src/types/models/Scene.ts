@@ -1,7 +1,7 @@
 /* generated using openapi-typescript-codegen -- do not edit */
 /* istanbul ignore file */
 /* tslint:disable */
- 
+
 import type { SceneInit } from './SceneInit';
 import type { Timeout } from './Timeout';
 import type { Trigger } from './Trigger';
@@ -16,4 +16,3 @@ export type Scene = {
   init: SceneInit;
   triggers: Array<Trigger>;
 };
-

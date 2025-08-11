@@ -1,7 +1,7 @@
 /* generated using openapi-typescript-codegen -- do not edit */
 /* istanbul ignore file */
 /* tslint:disable */
- 
+
 import type { Title } from './Title';
 /**
  * Adds nested create feature
@@ -12,4 +12,3 @@ export type Header = {
   date_of_creation?: string;
   description?: string;
 };
-

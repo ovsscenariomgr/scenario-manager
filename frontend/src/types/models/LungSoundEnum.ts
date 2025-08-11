@@ -1,7 +1,7 @@
 /* generated using openapi-typescript-codegen -- do not edit */
 /* istanbul ignore file */
 /* tslint:disable */
- 
+
 /**
  * * `normal` - Normal
  * * `coarse_crackles` - Coarse Crackles

@@ -1,4 +1,4 @@
-import autoprefixer from 'autoprefixer'
+import autoprefixer from 'autoprefixer';
 // import rtlcss from 'postcss-rtlcss'
 
 export default {
@@ -13,8 +13,8 @@ export default {
         'last 4 Android versions',
         'last 4 ChromeAndroid versions',
         'last 4 FirefoxAndroid versions',
-        'last 4 iOS versions'
-      ]
+        'last 4 iOS versions',
+      ],
     }),
 
     // https://github.com/elchininet/postcss-rtlcss
@@ -23,5 +23,5 @@ export default {
     // 2. optionally set quasar.config.js > framework > lang to an RTL language
     // 3. uncomment the following line (and its import statement above):
     // rtlcss()
-  ]
-}
+  ],
+};

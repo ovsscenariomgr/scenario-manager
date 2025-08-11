@@ -1,7 +1,7 @@
 /* generated using openapi-typescript-codegen -- do not edit */
 /* istanbul ignore file */
 /* tslint:disable */
- 
+
 export type Summary = {
   description?: string;
   breed: string;
@@ -11,4 +11,3 @@ export type Summary = {
   symptoms?: string;
   image?: string | null;
 };
-

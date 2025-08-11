@@ -1,7 +1,7 @@
 /* generated using openapi-typescript-codegen -- do not edit */
 /* istanbul ignore file */
 /* tslint:disable */
- 
+
 import type { PriorityEnum } from './PriorityEnum';
 export type Event = {
   title?: string;
@@ -9,4 +9,3 @@ export type Event = {
   priority?: PriorityEnum | null;
   hotkey?: string | null;
 };
-

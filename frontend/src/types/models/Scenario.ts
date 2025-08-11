@@ -1,7 +1,7 @@
 /* generated using openapi-typescript-codegen -- do not edit */
 /* istanbul ignore file */
 /* tslint:disable */
- 
+
 import type { EventGroup } from './EventGroup';
 import type { Header } from './Header';
 import type { Media } from './Media';
@@ -22,4 +22,3 @@ export type Scenario = {
   eventgroups: Array<EventGroup>;
   scenes: Array<Scene>;
 };
-

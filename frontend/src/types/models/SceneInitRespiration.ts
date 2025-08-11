@@ -1,7 +1,7 @@
 /* generated using openapi-typescript-codegen -- do not edit */
 /* istanbul ignore file */
 /* tslint:disable */
- 
+
 import type { ConnectedEnum } from './ConnectedEnum';
 import type { LungSoundEnum } from './LungSoundEnum';
 import type { OnOffEnum } from './OnOffEnum';
@@ -19,4 +19,3 @@ export type SceneInitRespiration = {
   rate?: number;
   chest_movement?: OnOffEnum;
 };
-
