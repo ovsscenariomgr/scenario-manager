@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia';
+import { defineStore, acceptHMRUpdate } from 'pinia';
 import { api } from 'boot/axios';
 import { Notify } from 'quasar';
 import type { Scenario, ScenarioTableRow } from '../types';
@@ -35,3 +35,7 @@ export const scenarioStore = defineStore('scenarios', {
     },
   },
 });
+
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(scenarioStore, import.meta.hot));
+}
