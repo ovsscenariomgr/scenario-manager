@@ -1,9 +1,15 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
-        <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
-        <q-toolbar-title class="text-primary">OVS Scenario Manager</q-toolbar-title>
+  <div class="q-pa-md">
+    <q-layout view="hHh Lpr lff" class="shadow-2 rounded-borders">
+      <q-header elevated :class="$q.dark.isActive ? 'bg-secondary' : 'bg-black'">
+        <q-toolbar>
+          <q-btn dense flat round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
+          <q-toolbar-title>
+            <q-avatar>
+            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
+          </q-avatar>
+          OVS Scenario Manager
+        </q-toolbar-title>
         <div class="q-pa-sm">
           <q-toggle
             v-model="darkMode"
@@ -16,31 +22,90 @@
         </div>
         <q-separator dark vertical />
         <div class="q-pa-sm">Quasar v{{ $q.version }}</div>
-      </q-toolbar>
-    </q-header>
+        </q-toolbar>
+      </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
-      <q-list>
-        <q-item-label header>Essential Links</q-item-label>
-        <EssentialLink v-for="link in linksList" :key="link.title" v-bind="link" />
-        <q-item>
-          <q-item-secion>
-            <q-btn v-if="!appAuthStore.loggedOut" label="Logout" color="primary" @click="appAuthStore.logout()" />
-          </q-item-secion>
-        </q-item>
-      </q-list>
-    </q-drawer>
+      <q-drawer
+        v-model="leftDrawerOpen"
+        show-if-above
 
-    <q-page-container>
-      <router-view />
-    </q-page-container>
-    <LoginForm></LoginForm>
-  </q-layout>
+        :mini="miniState"
+        @mouseenter="miniState = false"
+        @mouseleave="miniState = true"
+        mini-to-overlay
+
+        :width="200"
+        :breakpoint="500"
+        bordered
+        :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-3'"
+      >
+        <q-scroll-area class="fit" :horizontal-thumb-style="{ opacity: '' }">
+          <q-list padding>
+            <q-item clickable v-ripple @click="$router.push('/')">
+              <q-item-section avatar>
+                <q-icon name="table_rows" />
+              </q-item-section>
+
+              <q-item-section>
+                Scenarios
+              </q-item-section>
+            </q-item>
+
+            <q-item clickable v-ripple @click="$router.push('create')">
+              <q-item-section avatar>
+                <q-icon name="add" />
+              </q-item-section>
+
+              <q-item-section>
+                Create
+              </q-item-section>
+            </q-item>
+
+            <q-item clickable v-ripple @click="$router.push('export')">
+              <q-item-section avatar>
+                <q-icon name="file_download" />
+              </q-item-section>
+
+              <q-item-section>
+                Export
+              </q-item-section>
+            </q-item>
+
+            <q-item clickable v-ripple @click="$router.push('import')">
+              <q-item-section avatar>
+                <q-icon name="upload" />
+              </q-item-section>
+
+              <q-item-section>
+                Import
+              </q-item-section>
+            </q-item>
+
+            <q-separator />
+
+            <q-item v-if="!appAuthStore.loggedOut" clickable v-ripple @click="appAuthStore.logout()">
+              <q-item-section avatar>
+                <q-icon name="logout" />
+              </q-item-section>
+
+              <q-item-section>
+                 Logout
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-scroll-area>
+      </q-drawer>
+
+      <q-page-container>
+        <router-view />
+      </q-page-container>
+      <LoginForm></LoginForm>
+    </q-layout>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import EssentialLink, { type EssentialLinkProps } from 'components/EssentialLink.vue';
 import LoginForm from 'components/auth/LoginForm.vue';
 import { useAppAuthStore } from '../stores/app-auth-store';
 
@@ -49,55 +114,9 @@ defineOptions({
 });
 
 const appAuthStore = useAppAuthStore();
-
-const linksList: EssentialLinkProps[] = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev',
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework',
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev',
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev',
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev',
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev',
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev',
-  },
-];
-
 const leftDrawerOpen = ref(false);
-
 const darkMode = ref(false);
+const miniState = ref(true)
 
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value;

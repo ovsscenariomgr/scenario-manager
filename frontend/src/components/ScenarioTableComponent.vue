@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { onBeforeMount } from 'vue';
 import type { QTableProps } from 'quasar';
 import { scenarioStore } from '../stores/scenario-store';
 import { useAppAuthStore } from '../stores/app-auth-store';
@@ -64,7 +64,7 @@ const columns: QTableProps['columns'] = [
   },
 ];
 
-onMounted(() => {
+onBeforeMount(() => {
   store.fetchScenarios();
 });
 </script>
