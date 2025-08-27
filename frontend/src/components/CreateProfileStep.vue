@@ -1,6 +1,7 @@
 <template>
   <q-form @submit.prevent="saveStepData()">
     <div class="q-pa-sm row items-start q-gutter-md">
+      <!-- Avatar -->
       <q-card class="q-ma-auto" style="width: 700px; max-width: 80vw;" bordered>
         <q-card-section>
           <div class="text-h5">Avatar</div>
@@ -15,6 +16,7 @@
           </q-field>
         </q-card-section>
       </q-card>
+      <!-- Color -->
       <q-card class="q-ma-auto" style="width: 700px; max-width: 80vw;" bordered>
         <q-card-section>
           <div class="text-h5">Color</div>
@@ -23,6 +25,7 @@
           </q-field>
         </q-card-section>
       </q-card>
+      <!-- Summary -->
       <q-card class="q-ma-auto" style="width: 700px; max-width: 80vw;" bordered>
         <q-card-section>
           <div class="text-h5">Summary</div>
@@ -30,7 +33,7 @@
             <q-input v-model="formStore.summary.description" type="text" />
           </q-field>
           <q-field class="q-ma-sm" label="Breed" >
-            <q-input v-model="formStore.summary.breed"  type="text" />
+            <q-input v-model="formStore.summary.breed" type="text" />
           </q-field>
           <q-field class="q-ma-sm" label="Gender">
             <q-input v-model="formStore.summary.gender" type="text" />
@@ -39,28 +42,63 @@
             <q-input v-model="formStore.summary.weight" type="text" />
           </q-field>
           <q-field class="q-ma-sm" label="Species">
-            <q-input v-model="formStore.summary.gender" type="text" />
+            <q-input v-model="formStore.summary.species" type="text" />
           </q-field>
           <q-field class="q-ma-sm" label="Symptoms">
             <q-input v-model="formStore.summary.symptoms" type="text" />
           </q-field>
+          <q-field class="q-ma-sm" label="Image">
+            <q-input v-model="formStore.summary.image" type="text" />
+          </q-field>
         </q-card-section>
       </q-card>
-
+      <!-- Controls -->
+      <q-card class="q-ma-auto" style="width: 700px; max-width: 80vw;" bordered>
+        <q-card-section>
+          <div class="q-ma-auto text-h5">Controls</div>
+          <div class="q-pa-sm row items-start q-gutter-md">
+            <q-table
+              :columns="formStore.controlColumns"
+              :rows="formStore.controls"
+              row-key="id"
+            >
+              <template v-slot:body-cell-action="props">
+                <q-td :props="props">
+                  <q-btn
+                    color="negative"
+                    icon="delete"
+                    flat
+                    dense
+                    @click="deleteControl(props.row.id)"
+                  />
+                </q-td>
+              </template>
+            </q-table>
+            <q-separator />
+            <add-control class="q-pa-sm" ></add-control>
+          </div>
+        </q-card-section>
+      </q-card>
     </div>
-
-
     <q-btn type="submit" label="Save Step" />
   </q-form>
 </template>
 
 <script setup lang="ts">
 import { CreateNewProfileStore } from '../stores/create-new-profile-store';
+import AddControl from './AddControl.vue';
 defineOptions({
   name: 'CreateProfileStep',
 });
 
 const formStore = CreateNewProfileStore();
+
+const deleteControl= (id) => {
+  const index = formStore.controls.findIndex(row => row.id === id);
+  if (index !== -1) {
+    formStore.controls.splice(index, 1);
+  }
+}
 
 const saveStepData = () => {
   formStore.saveProfile()
