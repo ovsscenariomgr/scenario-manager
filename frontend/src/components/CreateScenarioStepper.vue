@@ -17,12 +17,11 @@
 
       <q-step
         :name="2"
-        title="Create an ad group"
-        caption="Optional"
-        icon="create_new_folder"
+        title="Add Profile"
+        icon="settings"
         :done="step > 2"
       >
-        An ad group contains one or more ads which target a shared set of keywords.
+        <create-profile-step></create-profile-step>
       </q-step>
 
       <q-step
@@ -57,7 +56,9 @@
 <script setup lang="ts">
 import { ref, onBeforeMount } from 'vue';
 import { scenarioStore } from '../stores/scenario-store';
-import CreateHeaderStep from '../components/CreateHeaderStep.vue'
+import { NewScenarioStore } from '../stores/new-scenario-store';
+import CreateHeaderStep from './CreateHeaderStep.vue'
+import CreateProfileStep from './CreateProfileStep.vue';
 // import { Scenario } from 'src/types';
 
 defineOptions({
@@ -67,8 +68,10 @@ defineOptions({
 const step = ref(1)
 const stepper = ref(null)
 const store = scenarioStore();
+const formsStore = NewScenarioStore();
 
 onBeforeMount(() => {
   store.fetchScenarios();
+  formsStore.$reset()
 });
 </script>
