@@ -14,7 +14,7 @@
 <script setup lang="ts">
 import { onBeforeMount } from 'vue';
 import type { QTableProps } from 'quasar';
-import { scenarioStore } from '../stores/scenario-store';
+import { useScenarioStore } from '../stores/scenario-store';
 import { useAppAuthStore } from '../stores/app-auth-store';
 
 defineOptions({
@@ -22,7 +22,7 @@ defineOptions({
 });
 
 const appAuthStore = useAppAuthStore();
-const store = scenarioStore();
+const store = useScenarioStore();
 
 const columns: QTableProps['columns'] = [
   {

@@ -45,7 +45,7 @@
 
       <template v-slot:navigation>
         <q-stepper-navigation>
-          <q-btn @click="stepper.next()" color="primary" :label="step === 4 ? 'Finish' : 'Continue'" />
+          <q-btn @click="handleContinue()" color="primary" :label="step === 4 ? 'Finish' : 'Continue'" />
           <q-btn v-if="step > 1" flat color="primary" @click="stepper.previous()" label="Back" class="q-ml-sm" />
         </q-stepper-navigation>
       </template>
@@ -55,8 +55,8 @@
 
 <script setup lang="ts">
 import { ref, onBeforeMount } from 'vue';
-import { scenarioStore } from '../stores/scenario-store';
-import { NewScenarioStore } from '../stores/new-scenario-store';
+import { useScenarioStore } from '../stores/scenario-store';
+import { useNewScenarioStore } from '../stores/new-scenario-store';
 import CreateHeaderStep from './CreateHeaderStep.vue'
 import CreateProfileStep from './CreateProfileStep.vue';
 // import { Scenario } from 'src/types';
@@ -67,11 +67,16 @@ defineOptions({
 
 const step = ref(1)
 const stepper = ref(null)
-const store = scenarioStore();
-const formsStore = NewScenarioStore();
+const store = useScenarioStore();
+const newScenarioStore = useNewScenarioStore();
+
+const handleContinue = () => {
+  newScenarioStore.saveScenarioData()
+  stepper.value.next()
+}
 
 onBeforeMount(() => {
   store.fetchScenarios();
-  formsStore.$reset()
+  newScenarioStore.$reset()
 });
 </script>

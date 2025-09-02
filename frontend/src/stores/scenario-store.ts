@@ -3,7 +3,7 @@ import { api } from 'boot/axios';
 import { Notify } from 'quasar';
 import type { Scenario, ScenarioTableRow } from '../types';
 
-export const scenarioStore = defineStore('scenarios', {
+export const useScenarioStore = defineStore('scenarios', {
   state: () => ({
     scenarios: [] as Scenario[],
   }),
@@ -37,5 +37,5 @@ export const scenarioStore = defineStore('scenarios', {
 });
 
 if (import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(scenarioStore, import.meta.hot));
+  import.meta.hot.accept(acceptHMRUpdate(useScenarioStore, import.meta.hot));
 }

@@ -4,7 +4,7 @@
       <div class="col-md-4">
         <q-card class="q-ma-auto" bordered>
           <q-card-section>
-            <div class="text-h5">Header</div>
+            <div class="q-ma-sm text-h5">Header</div>
             <q-field class="q-ma-sm" label="Author" stack-label :dense="false">
               <q-input v-model="formStore.header.author" type="text" />
             </q-field>
@@ -25,34 +25,32 @@
       <div class="col-md-4">
         <q-card class="q-ma-auto" bordered>
           <q-card-section>
-            <div class="text-h5">Title</div>
+            <div class="q-ma-sm text-h5">Title</div>
             <q-field class="q-ma-sm">
-              <q-input v-model="formStore.title.name" label="Title Name" type="text" />
+              <q-input v-model="formStore.header.title.name" label="Title Name" type="text" />
             </q-field>
             <q-field class="q-ma-sm">
-              <q-input v-model="formStore.title.top" label="Title Top" type="number" />
+              <q-input v-model="formStore.header.title.top" label="Title Top" type="number" />
             </q-field>
             <q-field class="q-ma-sm">
-              <q-input v-model="formStore.title.left" label="Title Left" type="number" />
+              <q-input v-model="formStore.header.title.left" label="Title Left" type="number" />
             </q-field>
           </q-card-section>
         </q-card>
       </div>
     </div>
-    <q-btn type="submit" label="Save Step" />
   </q-form>
 </template>
 
 <script setup lang="ts">
-import { CreateNewHeaderStore } from '../stores/create-new-header-store';
+import { useCreateNewHeaderStore } from '../stores/create-new-header-store';
 defineOptions({
   name: 'CreateHeaderStep',
 });
 
-const formStore = CreateNewHeaderStore();
+const formStore = useCreateNewHeaderStore();
 
 const saveStepData = () => {
-  formStore.saveHeader()
   console.log(`${JSON.stringify(formStore.header)}`)
 }
 </script>
