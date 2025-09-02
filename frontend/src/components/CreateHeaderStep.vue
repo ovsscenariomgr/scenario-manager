@@ -1,8 +1,8 @@
 <template>
   <q-form @submit.prevent="saveStepData()">
     <div class="q-pa-sm row items-start q-gutter-md">
-      <div>
-        <q-card class="q-ma-auto" style="width: 700px; max-width: 80vw;" bordered>
+      <div class="col-md-4">
+        <q-card class="q-ma-auto" bordered>
           <q-card-section>
             <div class="text-h5">Header</div>
             <q-field class="q-ma-sm" label="Author" stack-label :dense="false">
@@ -22,8 +22,8 @@
           </q-card-section>
         </q-card>
       </div>
-      <div>
-        <q-card class="q-ma-auto" style="width: 700px; max-width: 80vw;" bordered>
+      <div class="col-md-4">
+        <q-card class="q-ma-auto" bordered>
           <q-card-section>
             <div class="text-h5">Title</div>
             <q-field class="q-ma-sm">
