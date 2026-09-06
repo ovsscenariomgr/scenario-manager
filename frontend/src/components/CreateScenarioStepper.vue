@@ -72,6 +72,7 @@ const newScenarioStore = useNewScenarioStore();
 
 const handleContinue = () => {
   newScenarioStore.saveScenarioData()
+  console.log(`${JSON.stringify(newScenarioStore.newScenario)}`)
   stepper.value.next()
 }
 

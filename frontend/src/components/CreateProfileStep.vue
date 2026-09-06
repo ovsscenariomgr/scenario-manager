@@ -89,7 +89,6 @@
         </q-card>
       </div>
     </div>
-    <q-btn type="submit" label="Save Step" />
   </q-form>
 </template>
 

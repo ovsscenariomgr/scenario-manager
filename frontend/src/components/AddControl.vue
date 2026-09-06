@@ -15,7 +15,7 @@
           <q-field class="q-ma-sm" label="Left">
             <q-input v-model="control.left" type="number" />
           </q-field>
-          <q-btn type="submit" label="Add Control" />
+          <q-btn type="submit" color="primary" label="Add Control" />
         </q-card-section>
       </q-card>
   </q-form>
