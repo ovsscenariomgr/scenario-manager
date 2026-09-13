@@ -27,16 +27,22 @@ export const useCreateNewProfileStore = defineStore('CreateNewProfileStore', {
       controls: [] as Control[],
     } as Profile,
 
+    // Actual picked image files. Can't ride along in the scenario's initial
+    // JSON POST (FileField needs multipart) -- attached via PATCH
+    // /api/v1/images/<id> once the scenario id exists (see ADR-0002).
+    avatarFile: null as File | null,
+    summaryImageFile: null as File | null,
+
     controlColumns: [
-      { name: 'id', label: 'Id', field: 'id',  sortable: true },
+      { name: 'id', label: 'Id', field: 'id', sortable: true },
       { name: 'title', label: 'Title', field: 'title', sortable: true },
       { name: 'top', label: 'Top', field: 'top', sortable: false },
-      { name: 'left', label: 'Left', field: 'left',  sortable: false },
-      { name: 'action', label: 'Delete' }
+      { name: 'left', label: 'Left', field: 'left', sortable: false },
+      { name: 'action', label: 'Delete' },
     ] as QTableColumn<Control>[],
   }),
   getters: {},
-  actions: {}
+  actions: {},
 });
 
 if (import.meta.hot) {

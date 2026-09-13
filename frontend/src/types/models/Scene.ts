@@ -12,7 +12,7 @@ export type Scene = {
   title?: string;
   id?: number;
   triggers_needed?: number;
-  timeout: Timeout;
-  init: SceneInit;
-  triggers: Array<Trigger>;
+  timeout?: Timeout;
+  init?: SceneInit;
+  triggers?: Array<Trigger>;
 };

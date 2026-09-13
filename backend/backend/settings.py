@@ -10,24 +10,28 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import os
 from pathlib import Path
+
+import dj_database_url
 from corsheaders.defaults import default_headers
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Quick-start development settings - unsuitable for production
+# Local-dev defaults below (docker-compose proof-of-concept). A cloud deploy
+# overrides these via environment variables -- see backend/example.env.
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-)@ryh5tx=8w#c_+kck+o!=8tijx)50(nc!(+1!los%(pi+s#0&'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-)@ryh5tx=8w#c_+kck+o!=8tijx)50(nc!(+1!los%(pi+s#0&')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = None # SuspiciousOperation check
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
+ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', 'localhost 127.0.0.1 [::1]').split(' ')
 
 # Application definition
 
@@ -82,11 +86,12 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASE_URL unset -> local sqlite (docker-compose dev). Set to a
+# postgres:// URL for a cloud deploy -- see backend/example.env.
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR.joinpath('data') / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default='sqlite:///%s' % (BASE_DIR.joinpath('data') / 'db.sqlite3'),
+    )
 }
 
 
@@ -129,6 +134,25 @@ MEDIA_URL = '/files/'
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 STATIC_ROOT = BASE_DIR.joinpath('static')
 STATIC_URL = 'static/'
+
+# GS_BUCKET_NAME unset -> local disk (docker-compose dev, matches
+# MEDIA_ROOT/STATIC_ROOT above). Set it for a cloud deploy to store media in
+# GCS instead -- see backend/example.env.
+#
+# NOTE: app/models/Scenario.py's post_save signal (mkdir'ing the per-scenario
+# images/vocals/media directories) and the zip-building code in
+# ScenarioExport (app/views.py) both walk MEDIA_ROOT with raw os.path/os.listdir
+# calls rather than going through Django's Storage API, and app/storage.py's
+# OverwriteStorage assumes a local path in get_available_name(). All three
+# need to be ported to Storage-API calls (default_storage.exists(),
+# .listdir(), etc.) before GCS mode actually works end-to-end -- flagging
+# this as a known follow-up, not resolved by this settings change alone.
+if os.environ.get('GS_BUCKET_NAME'):
+    STORAGES = {
+        'default': {'BACKEND': 'storages.backends.gcloud.GoogleCloudStorage'},
+        'staticfiles': {'BACKEND': 'django.contrib.staticfiles.storage.StaticFilesStorage'},
+    }
+    GS_BUCKET_NAME = os.environ['GS_BUCKET_NAME']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

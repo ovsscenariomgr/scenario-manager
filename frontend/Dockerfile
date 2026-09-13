@@ -1,16 +1,14 @@
-FROM node:lts-alpine as build
+FROM node:24-alpine as build
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY . .
 
 RUN npm install
 
-COPY . .
-
 RUN npm run build
 
-FROM nginx:stable-alpine as deploy
+FROM nginx:stable-alpine-slim as deploy
 
 COPY --from=build /app/dist/spa /usr/share/nginx/html
 

@@ -3,21 +3,21 @@
 /* tslint:disable */
 
 /**
- * * `eq` - Eq
- * * `gt` - Gt
- * * `lt` - Lt
- * * `lte` - Lte
- * * `gte` - Gte
- * * `inside` - Inside
- * * `outside` - Outside
+ * * `EQ` - Eq
+ * * `GT` - Gt
+ * * `LT` - Lt
+ * * `LTE` - Lte
+ * * `GTE` - Gte
+ * * `INSIDE` - Inside
+ * * `OUTSIDE` - Outside
  * * `` - None
  */
 export enum TestEnum {
-  EQ = 'eq',
-  GT = 'gt',
-  LT = 'lt',
-  LTE = 'lte',
-  GTE = 'gte',
-  INSIDE = 'inside',
-  OUTSIDE = 'outside',
+  EQ = 'EQ',
+  GT = 'GT',
+  LT = 'LT',
+  LTE = 'LTE',
+  GTE = 'GTE',
+  INSIDE = 'INSIDE',
+  OUTSIDE = 'OUTSIDE',
 }

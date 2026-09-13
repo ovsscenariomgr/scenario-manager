@@ -7,13 +7,15 @@ from .Scene import Scene
 # TODO: Validation upon save for fields.
 class Trigger(models.Model):
     class TestChoices(models.TextChoices):
-        EQ = "eq"
-        GT = "gt"
-        LT = "lt"
-        LTE = "lte"
-        GTE = "gte"
-        INSIDE = "inside"
-        OUTSIDE = "outside"
+        # Values match spec section 10.4 exactly (uppercase) -- confirmed
+        # against real archives, e.g. main-megacode.xml uses <test>GTE</test>.
+        EQ = "EQ"
+        GT = "GT"
+        LT = "LT"
+        LTE = "LTE"
+        GTE = "GTE"
+        INSIDE = "INSIDE"
+        OUTSIDE = "OUTSIDE"
         NONE = ""
 
     # A scene_id is required for all triggers

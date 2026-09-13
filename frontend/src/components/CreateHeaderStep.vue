@@ -8,9 +8,9 @@
             <q-field class="q-ma-sm" label="Author" stack-label :dense="false">
               <q-input v-model="formStore.header.author" type="text" />
             </q-field>
-            <q-field class="q-ma-sm" label="Date of Creation" stack-label :dense="false" >
+            <q-field class="q-ma-sm" label="Date of Creation" stack-label :dense="false">
               <template v-slot:label>
-                <span class="q-mb-sm" style="font-size: 18px;">Date of Creation</span>
+                <span class="q-mb-sm" style="font-size: 18px">Date of Creation</span>
               </template>
               <template v-slot:control>
                 <q-date class="q-mt-sm" v-model="formStore.header.date_of_creation" minimal label="Date" />
@@ -51,6 +51,6 @@ defineOptions({
 const formStore = useCreateNewHeaderStore();
 
 const saveStepData = () => {
-  console.log(`${JSON.stringify(formStore.header)}`)
-}
+  console.log(`${JSON.stringify(formStore.header)}`);
+};
 </script>

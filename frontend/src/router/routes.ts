@@ -12,7 +12,7 @@ const routes: RouteRecordRaw[] = [
       { path: '', component: IndexPage },
       { path: 'create', component: CreatePage },
       { path: 'export', component: ExportPage },
-      { path: 'import', component: ImportPage }
+      { path: 'import', component: ImportPage },
     ],
   },
 

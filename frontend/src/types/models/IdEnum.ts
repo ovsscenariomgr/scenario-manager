@@ -16,7 +16,7 @@
  * * `button-ekg` - Ekg
  * * `button-SpO2` - Spo2
  * * `button-CO2` - Etco2
- * * `button-cuff` - Cuff
+ * * `button-bpcuff` - Cuff
  * * `button-palpate` - Palpate
  * * `button-Tperi` - Temp
  */
@@ -34,7 +34,7 @@ export enum IdEnum {
   BUTTON_EKG = 'button-ekg',
   BUTTON_SP_O2 = 'button-SpO2',
   BUTTON_CO2 = 'button-CO2',
-  BUTTON_CUFF = 'button-cuff',
+  BUTTON_BPCUFF = 'button-bpcuff',
   BUTTON_PALPATE = 'button-palpate',
   BUTTON_TPERI = 'button-Tperi',
 }

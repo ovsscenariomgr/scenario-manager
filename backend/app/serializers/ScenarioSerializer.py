@@ -31,3 +31,28 @@ class ScenarioSerializer(WritableNestedModelSerializer):
         if not len(value) > 0:
             raise serializers.ValidationError('scenes must contain at least one object')
         return value
+
+    def validate(self, data):
+        scene_ids = {scene.get('id') for scene in data.get('scenes', []) if scene.get('id') is not None}
+        event_ids = {
+            event.get('id')
+            for group in data.get('eventgroups', [])
+            for event in group.get('events', [])
+            if event.get('id')
+        }
+
+        initial_scene = data.get('init', {}).get('initial_scene')
+        if initial_scene is not None and initial_scene not in scene_ids:
+            raise serializers.ValidationError({
+                'init': {'initial_scene': 'initial_scene %s does not match any scene id' % initial_scene}
+            })
+
+        for scene in data.get('scenes', []):
+            for trigger in scene.get('triggers', []):
+                event_id = trigger.get('event_id')
+                if event_id and event_id not in event_ids:
+                    raise serializers.ValidationError({
+                        'scenes': 'trigger event_id "%s" does not match any event id' % event_id
+                    })
+
+        return data

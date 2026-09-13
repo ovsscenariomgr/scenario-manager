@@ -5,7 +5,7 @@
 export type Summary = {
   description?: string;
   breed: string;
-  gender: string;
+  gender?: string;
   weight: string;
   species: string;
   symptoms?: string;

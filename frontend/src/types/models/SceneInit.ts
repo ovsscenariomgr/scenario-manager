@@ -9,7 +9,7 @@ import type { SceneInitRespiration } from './SceneInitRespiration';
  * Adds nested create feature
  */
 export type SceneInit = {
-  cardiac: SceneInitCardiac;
-  respiration: SceneInitRespiration;
-  general: SceneInitGeneral;
+  cardiac?: SceneInitCardiac;
+  respiration?: SceneInitRespiration;
+  general?: SceneInitGeneral;
 };

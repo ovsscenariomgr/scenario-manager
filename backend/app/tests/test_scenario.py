@@ -64,4 +64,27 @@ class ScenarioTestCase(TestCase):
         self.assertEqual(set(serializer.errors), set(['eventgroups', 'scenes']))
 
     def test_initial_scene_exists(self):
-        self.skipTest("TODO")
+        self.serializer_data['init']['initial_scene'] = 99
+        self.serializer_data['scenes'][0]['id'] = 1
+        serializer = ScenarioSerializer(data=self.serializer_data)
+        self.assertFalse(serializer.is_valid())
+        self.assertIn('init', serializer.errors)
+
+    def test_initial_scene_matching_a_real_scene_is_valid(self):
+        self.serializer_data['init']['initial_scene'] = 1
+        self.serializer_data['scenes'][0]['id'] = 1
+        serializer = ScenarioSerializer(data=self.serializer_data)
+        self.assertTrue(serializer.is_valid(), serializer.errors)
+
+    def test_trigger_event_id_must_reference_a_real_event(self):
+        self.serializer_data['eventgroups'] = [{'events': [{'id': 'dextrose', 'title': 'Dextrose'}]}]
+        self.serializer_data['scenes'][0]['triggers'] = [{'event_id': 'nonexistent', 'scene_id': 2}]
+        serializer = ScenarioSerializer(data=self.serializer_data)
+        self.assertFalse(serializer.is_valid())
+        self.assertIn('scenes', serializer.errors)
+
+    def test_trigger_event_id_matching_a_real_event_is_valid(self):
+        self.serializer_data['eventgroups'] = [{'events': [{'id': 'dextrose', 'title': 'Dextrose'}]}]
+        self.serializer_data['scenes'][0]['triggers'] = [{'event_id': 'dextrose', 'scene_id': 2}]
+        serializer = ScenarioSerializer(data=self.serializer_data)
+        self.assertTrue(serializer.is_valid(), serializer.errors)

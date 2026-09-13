@@ -16,6 +16,30 @@ Application to manage Open Vet Sim scenario archives.
         1. username: test
         2. password: test
 
+## Running Backend/Frontend Separately (outside Docker)
+Useful for local development/debugging without rebuilding the Docker stack.
+
+### VS Code
+`.vscode/launch.json` has run configs for both — open the Run and Debug panel (`Cmd+Shift+D`) and pick one:
+* **Python Debugger: Django** — runs `manage.py runserver` with the debugger attached.
+* **NPM Run Client DevServer** — runs `npm run dev` in `frontend/`.
+
+Start both to run the full stack locally, or just one to iterate on a single side.
+
+### Command line
+* Backend (from `backend/`, with a Python 3.12 virtualenv and `requirements.txt` installed):
+    ```shell
+    cp example.env .env    # if not already done
+    python manage.py migrate
+    python manage.py runserver
+    ```
+* Frontend (from `frontend/`):
+    ```shell
+    npm install
+    npm run dev
+    ```
+    Reads the `BACKEND_URL` env var for the API base URL (defaults to `http://localhost:8000`).
+
 ## Tests
 1. From backend dir:
     * coverage run --source='.' manage.py test && coverage html

@@ -11,12 +11,12 @@ export const useCreateNewHeaderStore = defineStore('CreateNewHeaderStore', {
       title: {
         name: 'Open Vet Sim Scenario Title',
         top: 0,
-        left: 0
+        left: 0,
       } as Title,
     } as Header,
   }),
   getters: {},
-  actions: {}
+  actions: {},
 });
 
 if (import.meta.hot) {

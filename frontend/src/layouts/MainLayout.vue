@@ -6,34 +6,32 @@
           <q-btn dense flat round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
           <q-toolbar-title>
             <q-avatar>
-            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
-          </q-avatar>
-          OVS Scenario Manager
-        </q-toolbar-title>
-        <div class="q-pa-sm">
-          <q-toggle
-            v-model="darkMode"
-            dark
-            label="Dark Mode"
-            color="grey"
-            :icon="$q.dark.isActive ? 'bi-moon' : 'bi-brightness-high'"
-            @click="$q.dark.toggle()"
-          />
-        </div>
-        <q-separator dark vertical />
-        <div class="q-pa-sm">Quasar v{{ $q.version }}</div>
+              <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg" />
+            </q-avatar>
+            OVS Scenario Manager
+          </q-toolbar-title>
+          <div class="q-pa-sm">
+            <q-toggle
+              v-model="darkMode"
+              dark
+              label="Dark Mode"
+              color="grey"
+              :icon="$q.dark.isActive ? 'bi-moon' : 'bi-brightness-high'"
+              @click="$q.dark.toggle()"
+            />
+          </div>
+          <q-separator dark vertical />
+          <div class="q-pa-sm">Quasar v{{ $q.version }}</div>
         </q-toolbar>
       </q-header>
 
       <q-drawer
         v-model="leftDrawerOpen"
         show-if-above
-
         :mini="miniState"
         @mouseenter="miniState = false"
         @mouseleave="miniState = true"
         mini-to-overlay
-
         :width="200"
         :breakpoint="500"
         bordered
@@ -46,9 +44,7 @@
                 <q-icon name="table_rows" />
               </q-item-section>
 
-              <q-item-section>
-                Scenarios
-              </q-item-section>
+              <q-item-section>Scenarios</q-item-section>
             </q-item>
 
             <q-item clickable v-ripple @click="$router.push('create')">
@@ -56,9 +52,7 @@
                 <q-icon name="add" />
               </q-item-section>
 
-              <q-item-section>
-                Create
-              </q-item-section>
+              <q-item-section>Create</q-item-section>
             </q-item>
 
             <q-item clickable v-ripple @click="$router.push('export')">
@@ -66,9 +60,7 @@
                 <q-icon name="file_download" />
               </q-item-section>
 
-              <q-item-section>
-                Export
-              </q-item-section>
+              <q-item-section>Export</q-item-section>
             </q-item>
 
             <q-item clickable v-ripple @click="$router.push('import')">
@@ -76,9 +68,7 @@
                 <q-icon name="upload" />
               </q-item-section>
 
-              <q-item-section>
-                Import
-              </q-item-section>
+              <q-item-section>Import</q-item-section>
             </q-item>
 
             <q-separator />
@@ -88,9 +78,7 @@
                 <q-icon name="logout" />
               </q-item-section>
 
-              <q-item-section>
-                 Logout
-              </q-item-section>
+              <q-item-section>Logout</q-item-section>
             </q-item>
           </q-list>
         </q-scroll-area>
@@ -116,7 +104,7 @@ defineOptions({
 const appAuthStore = useAppAuthStore();
 const leftDrawerOpen = ref(false);
 const darkMode = ref(false);
-const miniState = ref(true)
+const miniState = ref(true);
 
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value;
