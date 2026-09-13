@@ -9,7 +9,19 @@
         "/api/v1/export/{id}": {
             "get": {
                 "operationId": "api_v1_export_retrieve",
+                "description": "Export a Scenario as a Scenario Archive: a zip of main.xml plus the\nimages/vocals/media directories, per OVS Scenario Specification SS2.2-2.5.",
                 "parameters": [
+                    {
+                        "in": "query",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "json",
+                                "xml"
+                            ]
+                        }
+                    },
                     {
                         "in": "path",
                         "name": "id",
@@ -34,13 +46,14 @@
                 "responses": {
                     "200": {
                         "content": {
-                            "application/ovsxml": {
+                            "application/zip": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Scenario"
+                                    "type": "string",
+                                    "format": "binary"
                                 }
                             }
                         },
-                        "description": ""
+                        "description": "Scenario Archive: a zip of main.xml plus the images/vocals/media directories."
                     }
                 }
             }
@@ -48,6 +61,7 @@
         "/api/v1/export/{id}{format}": {
             "get": {
                 "operationId": "api_v1_export_formatted_retrieve",
+                "description": "Export a Scenario as a Scenario Archive: a zip of main.xml plus the\nimages/vocals/media directories, per OVS Scenario Specification SS2.2-2.5.",
                 "parameters": [
                     {
                         "in": "path",
@@ -55,10 +69,22 @@
                         "schema": {
                             "type": "string",
                             "enum": [
+                                ".json",
                                 ".xml"
                             ]
                         },
                         "required": true
+                    },
+                    {
+                        "in": "query",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "json",
+                                "xml"
+                            ]
+                        }
                     },
                     {
                         "in": "path",
@@ -84,13 +110,14 @@
                 "responses": {
                     "200": {
                         "content": {
-                            "application/ovsxml": {
+                            "application/zip": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Scenario"
+                                    "type": "string",
+                                    "format": "binary"
                                 }
                             }
                         },
-                        "description": ""
+                        "description": "Scenario Archive: a zip of main.xml plus the images/vocals/media directories."
                     }
                 }
             }
@@ -187,6 +214,184 @@
                 "responses": {
                     "200": {
                         "description": "No response body"
+                    }
+                }
+            }
+        },
+        "/api/v1/import": {
+            "post": {
+                "operationId": "api_v1_import_create",
+                "description": "Create a Scenario from an uploaded Scenario Archive (zip of main.xml +\nimages/vocals/media directories, per OVS Scenario Specification SS2.2-2.5).",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "json",
+                                "xml"
+                            ]
+                        }
+                    }
+                ],
+                "tags": [
+                    "api"
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "archive": {
+                                        "type": "string",
+                                        "format": "binary",
+                                        "description": "OVS Scenario Archive (.zip)"
+                                    }
+                                },
+                                "required": [
+                                    "archive"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "cookieAuth": []
+                    },
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Scenario"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Scenario"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "400": {
+                        "content": {
+                            "application/xml": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": {}
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": {}
+                                }
+                            }
+                        },
+                        "description": "Validation error: missing/invalid archive, or files referenced by main.xml are missing from the zip."
+                    }
+                }
+            }
+        },
+        "/api/v1/import{format}": {
+            "post": {
+                "operationId": "api_v1_import_formatted_create",
+                "description": "Create a Scenario from an uploaded Scenario Archive (zip of main.xml +\nimages/vocals/media directories, per OVS Scenario Specification SS2.2-2.5).",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                ".json",
+                                ".xml"
+                            ]
+                        },
+                        "required": true
+                    },
+                    {
+                        "in": "query",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "json",
+                                "xml"
+                            ]
+                        }
+                    }
+                ],
+                "tags": [
+                    "api"
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "archive": {
+                                        "type": "string",
+                                        "format": "binary",
+                                        "description": "OVS Scenario Archive (.zip)"
+                                    }
+                                },
+                                "required": [
+                                    "archive"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "cookieAuth": []
+                    },
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Scenario"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Scenario"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "400": {
+                        "content": {
+                            "application/xml": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": {}
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": {}
+                                }
+                            }
+                        },
+                        "description": "Validation error: missing/invalid archive, or files referenced by main.xml are missing from the zip."
                     }
                 }
             }
@@ -1473,12 +1678,12 @@
                     "button-ekg",
                     "button-SpO2",
                     "button-CO2",
-                    "button-cuff",
+                    "button-bpcuff",
                     "button-palpate",
                     "button-Tperi"
                 ],
                 "type": "string",
-                "description": "* `vocals-dog-control` - Vocalizations\n* `right-lung-dog-control` - Right Lung Sound\n* `left-lung-dog-control` - Left Lung Sound\n* `left-femoral-pulse-dog-control` - Left Femoral Pulse\n* `right-femoral-pulse-dog-control` - Right Femoral Pulse\n* `left-dorsal-pulse-dog-control` - Left Dorsal Pulse\n* `right-dorsal-pulse-dog-control` - Right Dorsal Pulse\n* `heart-sound-dog-control` - Heart Sounds\n* `chest-dog-control` - Chest Movement\n* `button-cpr` - Cpr\n* `button-ekg` - Ekg\n* `button-SpO2` - Spo2\n* `button-CO2` - Etco2\n* `button-cuff` - Cuff\n* `button-palpate` - Palpate\n* `button-Tperi` - Temp"
+                "description": "* `vocals-dog-control` - Vocalizations\n* `right-lung-dog-control` - Right Lung Sound\n* `left-lung-dog-control` - Left Lung Sound\n* `left-femoral-pulse-dog-control` - Left Femoral Pulse\n* `right-femoral-pulse-dog-control` - Right Femoral Pulse\n* `left-dorsal-pulse-dog-control` - Left Dorsal Pulse\n* `right-dorsal-pulse-dog-control` - Right Dorsal Pulse\n* `heart-sound-dog-control` - Heart Sounds\n* `chest-dog-control` - Chest Movement\n* `button-cpr` - Cpr\n* `button-ekg` - Ekg\n* `button-SpO2` - Spo2\n* `button-CO2` - Etco2\n* `button-bpcuff` - Cuff\n* `button-palpate` - Palpate\n* `button-Tperi` - Temp"
             },
             "IlluminatedEnum": {
                 "enum": [
@@ -2011,12 +2216,7 @@
                             "$ref": "#/components/schemas/Trigger"
                         }
                     }
-                },
-                "required": [
-                    "init",
-                    "timeout",
-                    "triggers"
-                ]
+                }
             },
             "SceneInit": {
                 "type": "object",
@@ -2031,12 +2231,7 @@
                     "general": {
                         "$ref": "#/components/schemas/SceneInitGeneral"
                     }
-                },
-                "required": [
-                    "cardiac",
-                    "general",
-                    "respiration"
-                ]
+                }
             },
             "SceneInitCardiac": {
                 "type": "object",
@@ -2207,23 +2402,22 @@
                 },
                 "required": [
                     "breed",
-                    "gender",
                     "species",
                     "weight"
                 ]
             },
             "TestEnum": {
                 "enum": [
-                    "eq",
-                    "gt",
-                    "lt",
-                    "lte",
-                    "gte",
-                    "inside",
-                    "outside"
+                    "EQ",
+                    "GT",
+                    "LT",
+                    "LTE",
+                    "GTE",
+                    "INSIDE",
+                    "OUTSIDE"
                 ],
                 "type": "string",
-                "description": "* `eq` - Eq\n* `gt` - Gt\n* `lt` - Lt\n* `lte` - Lte\n* `gte` - Gte\n* `inside` - Inside\n* `outside` - Outside\n* `` - None"
+                "description": "* `EQ` - Eq\n* `GT` - Gt\n* `LT` - Lt\n* `LTE` - Lte\n* `GTE` - Gte\n* `INSIDE` - Inside\n* `OUTSIDE` - Outside\n* `` - None"
             },
             "Timeout": {
                 "type": "object",

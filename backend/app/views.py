@@ -6,6 +6,8 @@ from rest_framework.decorators import renderer_classes, parser_classes, permissi
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser, MultiPartParser, FormParser
 from rest_framework.response import Response
+from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiResponse
+from drf_spectacular.types import OpenApiTypes
 from django.conf import settings
 from django.contrib.auth import login
 from django.contrib.sessions.models import Session
@@ -34,6 +36,16 @@ class ScenarioDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Scenario.objects.all()
     serializer_class = ScenarioSerializer
 
+@extend_schema_view(
+    get=extend_schema(
+        responses={
+            (200, 'application/zip'): OpenApiResponse(
+                response=OpenApiTypes.BINARY,
+                description='Scenario Archive: a zip of main.xml plus the images/vocals/media directories.',
+            ),
+        },
+    ),
+)
 @permission_classes([permissions.IsAuthenticatedOrReadOnly])
 class ScenarioExport(generics.RetrieveAPIView):
     """Export a Scenario as a Scenario Archive: a zip of main.xml plus the
@@ -71,6 +83,28 @@ class ScenarioImport(views.APIView):
     """Create a Scenario from an uploaded Scenario Archive (zip of main.xml +
     images/vocals/media directories, per OVS Scenario Specification SS2.2-2.5)."""
 
+    @extend_schema(
+        request={
+            'multipart/form-data': {
+                'type': 'object',
+                'properties': {
+                    'archive': {
+                        'type': 'string',
+                        'format': 'binary',
+                        'description': 'OVS Scenario Archive (.zip)',
+                    },
+                },
+                'required': ['archive'],
+            },
+        },
+        responses={
+            201: ScenarioSerializer,
+            400: OpenApiResponse(
+                response=OpenApiTypes.OBJECT,
+                description='Validation error: missing/invalid archive, or files referenced by main.xml are missing from the zip.',
+            ),
+        },
+    )
     def post(self, request):
         upload = request.data.get('archive')
         if not upload:
