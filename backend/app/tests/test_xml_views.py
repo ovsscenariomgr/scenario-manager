@@ -1,5 +1,6 @@
 import re
 import os
+import zipfile
 from io import BytesIO
 from ..parsers import ScenarioXMLParser, OvsXMLParser
 from .test_setup import TestSetup
@@ -102,10 +103,18 @@ class TestXMLViews(TestSetup):
         vocal_data = {'title': 'test', 'filename': self.wav_file}
         resp = self.client.put(self.scenario_vocals, vocal_data, format='multipart')
         self.assertEqual(resp.status_code, 201)
-        # Export as OVS spec
-        resp = self.client.get(self.scenario_export, content_type='application/ovsxml')
+        # Export as a Scenario Archive (zip of main.xml + images/vocals/media)
+        resp = self.client.get(self.scenario_export)
         self.assertEqual(resp.status_code, 200)
-        parsed = OvsXMLParser().parse(BytesIO(resp.content))
+        self.assertEqual(resp['Content-Type'], 'application/zip')
+        archive = zipfile.ZipFile(BytesIO(resp.content))
+        names = archive.namelist()
+        self.assertIn('main.xml', names)
+        self.assertTrue(any(n.startswith('images/') and n.endswith(img_data['avatar'].name) for n in names))
+        self.assertTrue(any(n.startswith('vocals/') and n.endswith(vocal_data['filename'].name) for n in names))
+        self.assertTrue(any(n.startswith('media/') and n.endswith(media_data['filename'].name) for n in names))
+
+        parsed = OvsXMLParser().parse(BytesIO(archive.read('main.xml')))
         self.assertEqual(parsed['id'], 1)
         self.assertEqual(parsed['profile']['controls']['color'], '#000000')
         self.assertEqual(parsed['profile']['avatar']['filename'], img_data['avatar'].name) # Should just be file basename

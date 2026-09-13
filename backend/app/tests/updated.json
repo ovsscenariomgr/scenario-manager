@@ -224,7 +224,7 @@
                 {
                     "scene_id": 5,
                     "cpr": { "duration": 7 },
-                    "test": "eq"
+                    "test": "EQ"
                 }
             ]
         }

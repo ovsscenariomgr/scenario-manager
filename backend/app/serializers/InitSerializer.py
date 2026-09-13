@@ -14,9 +14,13 @@ class ScenarioInitSerializer(WritableNestedModelSerializer):
         fields = ('cardiac', 'respiration', 'general', 'initial_scene', 'record',)
 
 class SceneInitSerializer(WritableNestedModelSerializer):
-    cardiac = SceneInitCardiacSerializer()
-    respiration = SceneInitRespirationSerializer()
-    general = SceneInitGeneralSerializer()
+    # A scene's init only overrides the parameters that change from the
+    # scenario's initial state -- real archives commonly specify just one of
+    # cardiac/respiration/general (e.g. main-sepsis.xml's scene 1 has only
+    # <cardiac>), so none of the three should be required here.
+    cardiac = SceneInitCardiacSerializer(required=False)
+    respiration = SceneInitRespirationSerializer(required=False)
+    general = SceneInitGeneralSerializer(required=False)
 
     class Meta:
         model = SceneInit

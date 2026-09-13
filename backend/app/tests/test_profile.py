@@ -99,7 +99,8 @@ class ProfileTestCase(TestCase):
         }
         serializer = SummarySerializer(data=serializer_data)
         self.assertFalse(serializer.is_valid())
-        self.assertEqual(set(serializer.errors), set(['breed', 'gender', 'weight', 'species']))
+        # gender is not required: real archives (e.g. main-megacode.xml) omit it entirely
+        self.assertEqual(set(serializer.errors), set(['breed', 'weight', 'species']))
 
     def test_control_top_left(self):
         serializer_data = {'title': 'the title', 'id': 'vocals-dog-control', 'top': -1, 'left': -1}

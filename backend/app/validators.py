@@ -14,3 +14,7 @@ def validate_left_lung_sound(sound):
 def validate_right_lung_sound(sound):
     if sound == 'same_as_right':
         raise ValidationError(_('Cannot be assigned value: same_as_right'))
+
+def validate_wav_extension(value):
+    if not value.name.lower().endswith('.wav'):
+        raise ValidationError(_('%s must be a .wav file' % value.name))

@@ -1,5 +1,6 @@
 from .Avatar import Avatar
 from .Cardiac import Cardiac, ScenarioInitCardiac, SceneInitCardiac, ParameterTriggerCardiac
+from .CommonChoices import OnOffChoices
 from .Control import Control
 from .Event import Event
 from .EventGroup import EventGroup

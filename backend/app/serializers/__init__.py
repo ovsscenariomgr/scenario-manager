@@ -7,6 +7,7 @@ from .FileSerializer import MediaSerializer, VocalSerializer
 from .GeneralSerializer import GeneralSerializer, ScenarioInitGeneralSerializer, SceneInitGeneralSerializer
 from .HeaderSerializer import HeaderSerializer
 from .InitSerializer import ScenarioInitSerializer, SceneInitSerializer
+from .LoginSerializer import LoginSerializer
 from .ProfileSerializer import ProfileSerializer
 from .RespirationSerializer import RespirationSerializer, ScenarioInitRespirationSerializer, SceneInitRespirationSerializer
 from .ScenarioSerializer import ScenarioSerializer
@@ -15,3 +16,4 @@ from .SummarySerializer import SummarySerializer
 from .TimeoutSerializer import TimeoutSerializer
 from .TitleSerializer import TitleSerializer
 from .TriggerSerializer import TriggerSerializer
+from .UserSerializer import UserSerializer

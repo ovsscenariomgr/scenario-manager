@@ -1,13 +1,25 @@
+import io
+import os
+import zipfile
 from rest_framework import generics, permissions, views, status
-from rest_framework.decorators import renderer_classes, parser_classes, permission_classes
+from rest_framework.decorators import renderer_classes, parser_classes, permission_classes, authentication_classes
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser, MultiPartParser, FormParser
 from rest_framework.response import Response
+from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiResponse
+from drf_spectacular.types import OpenApiTypes
+from django.conf import settings
+from django.contrib.auth import login
+from django.contrib.sessions.models import Session
+from django.core.files.uploadedfile import SimpleUploadedFile
+from django.db import transaction
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from app.models import Scenario, VocalFile, MediaFile, Profile
-from app.serializers import ScenarioSerializer, VocalSerializer, MediaSerializer
+from app.serializers import ScenarioSerializer, VocalSerializer, MediaSerializer, LoginSerializer, UserSerializer
 from app.renderers import ScenarioXMLRenderer, OvsXMLRenderer
 from app.parsers import ScenarioXMLParser
+from app.archive import read_archive, manifest_to_internal, missing_referenced_files, ScenarioArchiveError
 
 @permission_classes([permissions.IsAuthenticatedOrReadOnly])
 @renderer_classes([ScenarioXMLRenderer, JSONRenderer])
@@ -24,11 +36,128 @@ class ScenarioDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Scenario.objects.all()
     serializer_class = ScenarioSerializer
 
+@extend_schema_view(
+    get=extend_schema(
+        responses={
+            (200, 'application/zip'): OpenApiResponse(
+                response=OpenApiTypes.BINARY,
+                description='Scenario Archive: a zip of main.xml plus the images/vocals/media directories.',
+            ),
+        },
+    ),
+)
 @permission_classes([permissions.IsAuthenticatedOrReadOnly])
-@renderer_classes([OvsXMLRenderer])
 class ScenarioExport(generics.RetrieveAPIView):
+    """Export a Scenario as a Scenario Archive: a zip of main.xml plus the
+    images/vocals/media directories, per OVS Scenario Specification SS2.2-2.5."""
     queryset = Scenario.objects.all()
     serializer_class = ScenarioSerializer
+
+    def retrieve(self, request, *args, **kwargs):
+        scenario = self.get_object()
+        serializer = self.get_serializer(scenario)
+        manifest_xml = OvsXMLRenderer().render(serializer.data)
+
+        buf = io.BytesIO()
+        with zipfile.ZipFile(buf, 'w', zipfile.ZIP_DEFLATED) as zf:
+            zf.writestr('main.xml', manifest_xml)
+            scenario_dir = os.path.join(settings.MEDIA_ROOT, str(scenario.pk))
+            for sub_dir in ('images', 'vocals', 'media'):
+                dir_path = os.path.join(scenario_dir, sub_dir)
+                filenames = sorted(os.listdir(dir_path)) if os.path.isdir(dir_path) else []
+                if not filenames:
+                    zf.writestr(sub_dir + '/', '')  # dir must exist even if empty, per spec
+                for filename in filenames:
+                    file_path = os.path.join(dir_path, filename)
+                    if os.path.isfile(file_path):
+                        zf.write(file_path, arcname='%s/%s' % (sub_dir, filename))
+        buf.seek(0)
+
+        response = HttpResponse(buf.getvalue(), content_type='application/zip')
+        response['Content-Disposition'] = 'attachment; filename="scenario-%s.zip"' % scenario.pk
+        return response
+
+@permission_classes([permissions.IsAuthenticatedOrReadOnly])
+@parser_classes([MultiPartParser])
+class ScenarioImport(views.APIView):
+    """Create a Scenario from an uploaded Scenario Archive (zip of main.xml +
+    images/vocals/media directories, per OVS Scenario Specification SS2.2-2.5)."""
+
+    @extend_schema(
+        request={
+            'multipart/form-data': {
+                'type': 'object',
+                'properties': {
+                    'archive': {
+                        'type': 'string',
+                        'format': 'binary',
+                        'description': 'OVS Scenario Archive (.zip)',
+                    },
+                },
+                'required': ['archive'],
+            },
+        },
+        responses={
+            201: ScenarioSerializer,
+            400: OpenApiResponse(
+                response=OpenApiTypes.OBJECT,
+                description='Validation error: missing/invalid archive, or files referenced by main.xml are missing from the zip.',
+            ),
+        },
+    )
+    def post(self, request):
+        upload = request.data.get('archive')
+        if not upload:
+            return Response({'archive': ['This field is required.']}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            root, files = read_archive(upload)
+        except ScenarioArchiveError as exc:
+            return Response({'detail': str(exc)}, status=status.HTTP_400_BAD_REQUEST)
+
+        payload, file_refs = manifest_to_internal(root)
+
+        missing = missing_referenced_files(file_refs, files)
+        if missing:
+            return Response(
+                {'detail': 'Archive references files that are missing from the zip', 'missing': missing},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        serializer = ScenarioSerializer(data=payload)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        with transaction.atomic():
+            scenario = serializer.save()
+            profile = scenario.profile
+
+            if file_refs['avatar']:
+                avatar = profile.avatar
+                avatar.filename = SimpleUploadedFile(file_refs['avatar'], files['images'][file_refs['avatar']])
+                avatar.save()
+
+            if file_refs['summary']:
+                summary = profile.summary
+                summary.image = SimpleUploadedFile(file_refs['summary'], files['images'][file_refs['summary']])
+                summary.save()
+
+            for vocal in file_refs['vocals']:
+                VocalFile.objects.create(
+                    scenario=scenario,
+                    title=vocal.get('title', ''),
+                    filename=SimpleUploadedFile(vocal['filename'], files['vocals'][vocal['filename']]),
+                )
+
+            for media in file_refs['media']:
+                MediaFile.objects.create(
+                    scenario=scenario,
+                    title=media.get('title', ''),
+                    filename=SimpleUploadedFile(media['filename'], files['media'][media['filename']]),
+                )
+
+        scenario.refresh_from_db()
+        return Response(ScenarioSerializer(instance=scenario).data, status=status.HTTP_201_CREATED)
 
 @permission_classes([permissions.IsAuthenticatedOrReadOnly])
 @parser_classes([MultiPartParser, FormParser])
@@ -93,3 +222,36 @@ class ScenarioImages(views.APIView):
         scenario.refresh_from_db()
         serializer = ScenarioSerializer(instance=scenario)
         return Response(serializer.data)
+
+@permission_classes([])
+class AuthCheck(views.APIView):
+
+    def get(self, request):
+        if request.user.is_authenticated:
+            user = UserSerializer(request.user, context={'request': request})
+            return Response({"isAuthenticated": True, "user": user.data})
+        else:
+            return Response({"isAuthenticated": False})
+
+@permission_classes([permissions.AllowAny])
+@authentication_classes([])
+class LoginView(views.APIView):
+
+    def post(self, request):
+        serializer = LoginSerializer(data=request.data)
+
+        if serializer.is_valid():
+            user = serializer.validated_data
+            login(request, user)
+            return Response({"detail": "Login successful."}, status=status.HTTP_200_OK)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+def expire_session_view(request, session_key):
+    try:
+        session = Session.objects.get(session_key=session_key)
+        session.delete()
+    except Session.DoesNotExist:
+        pass
+    return HttpResponseRedirect('/admin/sessions/session/')

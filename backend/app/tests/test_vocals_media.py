@@ -41,3 +41,10 @@ class VocalMediaTestCase(TestCase):
         serializer_data = {'scenario': self.scenario.pk, 'title': 'test', 'filename': self.txtfile}
         serializer = MediaSerializer(data=serializer_data)
         self.assertTrue(serializer.is_valid())
+
+    def test_vocal_must_be_wav(self):
+        not_wav = SimpleUploadedFile('test.mp3', b'fake mp3 bytes', content_type='audio/mpeg')
+        serializer_data = {'scenario': self.scenario.pk, 'title': 'test', 'filename': not_wav}
+        serializer = VocalSerializer(data=serializer_data)
+        self.assertFalse(serializer.is_valid())
+        self.assertIn('filename', serializer.errors)

@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from .Init import ScenarioInit, SceneInit
 from .Trigger import Trigger
+from .CommonChoices import OnOffChoices
 
 # TODO: Items indicated as trendable would need to associate a modifier: <transfer_time>100</transfer_time> somehow
 class Cardiac(models.Model):
@@ -25,10 +26,6 @@ class Cardiac(models.Model):
         VTACH3_SINGLET = '3-1'
         VTACH3_COUPLET = '3-2'
         VTACH3_TRIPLET = '3-3'
-
-    class PeaChoices(models.IntegerChoices):
-        OFF = 0
-        ON = 1
 
     class VfibAmpChoices(models.TextChoices):
         LOW = 'low'
@@ -56,7 +53,7 @@ class Cardiac(models.Model):
     
     rhythm = models.CharField(max_length=8, choices=RhythmChoices.choices, default=RhythmChoices.SINUS)
     vpc = models.CharField(max_length=4, choices=VpcChoices.choices, default=VpcChoices.NONE)
-    pea = models.IntegerField(choices=PeaChoices.choices, default=PeaChoices.OFF)
+    pea = models.IntegerField(choices=OnOffChoices.choices, default=OnOffChoices.OFF)
     vpc_freq = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(100)]) # in increments of 10, validate...
     vfib_amplitude = models.CharField(max_length=6, choices=VfibAmpChoices.choices, default=VfibAmpChoices.LOW)
     rate = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(300)]) # Trendable

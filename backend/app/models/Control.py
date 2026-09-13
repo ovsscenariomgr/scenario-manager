@@ -18,7 +18,7 @@ class Control(models.Model):
         EKG = 'button-ekg'
         SPO2 = 'button-SpO2'
         ETCO2 = 'button-CO2'
-        CUFF = 'button-cuff'
+        CUFF = 'button-bpcuff'
         PALPATE = 'button-palpate'
         TEMP = 'button-Tperi'
 

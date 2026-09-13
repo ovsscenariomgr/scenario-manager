@@ -1,0 +1,16 @@
+/* generated using openapi-typescript-codegen -- do not edit */
+/* istanbul ignore file */
+/* tslint:disable */
+
+/**
+ * * `none` - None
+ * * `weak` - Weak
+ * * `medium` - Medium
+ * * `strong` - Strong
+ */
+export enum PulseStrengthEnum {
+  NONE = 'none',
+  WEAK = 'weak',
+  MEDIUM = 'medium',
+  STRONG = 'strong',
+}

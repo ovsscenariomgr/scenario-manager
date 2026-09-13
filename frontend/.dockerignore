@@ -1,0 +1,8 @@
+node_modules
+.quasar
+dist
+test-results
+playwright-report
+blob-report
+.git
+.DS_Store
